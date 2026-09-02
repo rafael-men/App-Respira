@@ -10,8 +10,8 @@ Programação para Dispositivos Móveis — GP0029VNO07A
 
 | Integrante | Responsabilidade na Atividade 01 |
 |---|---|
-| Franck Patrick Hora Vasconcelos | Estrutura do repositório (README, CHANGELOG), análise do problema (seção 1) e consolidação do documento |
-| Murilo Pedral Mota | Análise de público e usuários (seção 2) e contexto de uso (seção 3) |
+| Franck Patrick Hora Vasconcelos | Análise do problema (seção 1) e consolidação do documento |
+| Murilo Pedral Mota | Estrutura do repositório (README, CHANGELOG), Análise de público e usuários (seção 2) e contexto de uso (seção 3) |
 | Rafael Menezes Gonçalves | Análise de objetivo/proposta de valor (seção 4) e personalidade/identidade/experiência (seção 5) |
 | Rene Mendonça Marinho | Análise de funcionalidades (seção 6), restrições e condições (seção 7) e pontos de atenção (seção 8) |
 
