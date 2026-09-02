@@ -35,11 +35,40 @@ Reduzir a distância entre a pessoa e o cuidado. Isso vale para a distância té
 
 ## 2. Público e usuários
 
-_(seção sob responsabilidade de Murilo Pedral Mota)_
+Os quatro públicos indicados no estudo de caso não se separam apenas pelo perfil demográfico. O que muda de verdade entre eles é a relação com a rede de saúde: parte deles nunca teve contato com um serviço de saúde mental e parte já está em acompanhamento. Essa diferença altera o papel que o aplicativo cumpre em cada caso.
+
+| Público | Relação com o aplicativo | Principais necessidades | Situação de uso |
+|---|---|---|---|
+| Adultos (público geral) | Porta de entrada, em geral sem vínculo com CAPS. Pode ser o primeiro contato com um instrumento de rastreio. | Entender se o que sentem tem nome e intensidade, ter alívio pontual e não se sentir rotulado. | Em casa ou no trabalho, em momentos de tensão ou no fim do dia, para registrar o humor. |
+| Universitários | Uso curto e frequente, encaixado nas brechas da rotina. | Ferramenta rápida e discreta, resolvida em poucos toques, com noção da evolução ao longo do semestre. | Entre aulas, antes de provas e apresentações, à noite. Muitas vezes em aparelhos modestos e com dados limitados. |
+| Professores | Adultos em contexto de trabalho, expostos a demanda emocional constante. | Uso discreto, que não chame atenção no ambiente profissional, e regulação rápida entre atividades. | Em intervalos curtos, com necessidade de silêncio e sem notificação visível. |
+| Pacientes de CAPS | Já vinculados à RAPS. Para eles o aplicativo é apoio entre atendimentos, nunca substituto do cuidado. | Continuidade do acompanhamento, registro do humor entre consultas e acesso imediato ao CVV. | Uso diário de manutenção, com diário e respiração, e uso emergencial em momentos de crise. |
+
+### Dois perfis de engajamento
+
+Além dos quatro públicos, o caso descreve dois modos de uso que atravessam todos eles e que, na prática, orientam mais o projeto do que a segmentação demográfica.
+
+- Engajamento emergencial, que é o usuário em crise. Ele abre o aplicativo durante uma crise de ansiedade ou pânico, com atenção reduzida e sem paciência para navegar. Aqui cada toque a mais é uma barreira, o que explica o CVV a um toque da tela inicial e a animação de respiração começando sozinha.
+- Engajamento diário, que é o usuário em manutenção. Ele usa o diário de humor e a respiração como rotina. O valor está na constância e em conseguir ver o progresso, o que explica o questionário semanal e o gráfico de evolução.
+
+A consequência para o projeto é que a mesma tela inicial precisa servir aos dois perfis, sem obrigar o usuário a escolher logo de cara. O acesso de emergência fica fixo e sempre visível, enquanto o conteúdo de rotina ocupa o corpo da interface.
 
 ## 3. Contexto de uso
 
-_(seção sob responsabilidade de Murilo Pedral Mota)_
+O estudo de caso descreve condições de uso bem específicas, e cada uma delas vira uma restrição concreta de desenvolvimento.
+
+| Dimensão | O que o estudo de caso estabelece | Implicação para o desenvolvimento |
+|---|---|---|
+| Ambiente | Ambientes internos, casa e trabalho. | Uso discreto e silencioso, sem expor a quem está por perto o que o usuário registra. |
+| Momento de utilização | Uso rotineiro, com diário e respiração, e uso em momentos de crise. | A navegação precisa atender aos dois ritmos ao mesmo tempo, sem exigir uma escolha inicial. |
+| Condição do usuário | Em crise, atenção reduzida. Em manutenção, atenção normal. | Textos curtos, hierarquia visual óbvia, uma decisão por tela e questionário apresentado passo a passo. |
+| Dispositivo | O aplicativo deve ser testado em smartphones básicos. | Animações leves, consumo de memória controlado, poucas dependências e teste em aparelho real, não só em emulador. |
+| Conectividade | Diário de humor offline e número do CVV em cache local, discando sem sinal de dados. | Persistência local como padrão, com sincronização posterior. Nenhuma função crítica pode depender da rede. |
+| Iluminação | A tela deve ser suave para leitura noturna. | Paleta sem contraste agressivo, brilho controlado e suporte a tema escuro, evitando fundos brancos intensos. |
+| Nível de atenção | A funcionalidade principal deve ocorrer em até 3 interações. | Abrir o app, tocar no card Respirar e tocar em Voltar. Qualquer etapa extra precisa de justificativa. |
+| Situação de urgência | Botão do CVV a 1 toque da tela inicial, fixo no topo e em vermelho vivo. | O elemento de emergência é global e persistente, nunca escondido em menu ou rodapé. |
+| Estímulos sensoriais | Sem vibração excessiva, com silêncio total permitido, sem animação rápida e sem pop-up. | Feedback háptico opcional e desativável, notificações não invasivas e nenhuma interrupção modal. |
+| Energia | A tela de respiração pode ficar aberta por vários minutos, com consumo mínimo de bateria. | Animação contínua e leve, sem redesenho desnecessário nem processo em segundo plano durante a sessão. |
 
 ## 4. Objetivo e proposta de valor
 
