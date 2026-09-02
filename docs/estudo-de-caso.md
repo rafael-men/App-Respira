@@ -149,7 +149,3 @@ Essa é a funcionalidade de maior consequência do aplicativo e também a mais e
 ### 8.3. A interface precisa induzir calma, não ansiedade
 
 É esse critério que separa o Respira de um aplicativo genérico de bem-estar. A proibição de animações rápidas e pop-ups, a duração de 4 a 7 segundos das animações, a gradação do roxo ao azul, a leitura noturna suave, a vibração contida, o baixo consumo de bateria e o suporte a smartphones básicos formam um conjunto coerente, e cada item existe para evitar que a própria interface vire mais um estímulo de estresse. Uma animação travando em um aparelho de entrada, um pop-up inesperado ou uma vibração forte durante uma crise produzem o efeito oposto ao pretendido, o que faz do desempenho e da contenção sensorial requisitos funcionais, e não detalhes de acabamento.
-
-### Observação sobre o escopo do documento
-
-Esta análise foi elaborada apenas a partir das informações contidas no estudo de caso do projeto Respira, conforme a orientação da Atividade 01. A identidade visual não foi desenvolvida nesta etapa, e as decisões técnicas de arquitetura serão detalhadas nas atividades seguintes.
