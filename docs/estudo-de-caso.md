@@ -98,12 +98,58 @@ A frase escolhida, "o aplicativo que te escuta sem te julgar", funciona como cri
 
 ## 6. Funcionalidades e características já definidas
 
-_(seção sob responsabilidade de Rene Mendonça Marinho)_
+O estudo de caso já estabelece o núcleo funcional do aplicativo. Cada item corresponde a uma necessidade identificável dos públicos analisados.
+
+| Funcionalidade ou característica | Necessidade que atende |
+|---|---|
+| Diário de humor com emojis grandes | Registro rápido e de baixo esforço mental, adequado a quem está com a atenção reduzida, e base para acompanhar a evolução emocional. |
+| Botão de Respiração com círculo que expande e contrai no padrão 4-7-8 | Alívio imediato na ansiedade, com uma técnica concreta que não exige conhecimento prévio. |
+| Questionário PHQ-9 semanal com gráfico de progresso | Rastreio de sintomas depressivos com instrumento validado e visualização da evolução, apoiando o autoconhecimento e a conversa com profissionais. |
+| Telefone do CVV (188) com discagem por toque, fixo no topo e em vermelho vivo | Acesso imediato à ajuda humana em situação de crise, com o menor número possível de interações. |
+| Número do CVV em cache local, discando sem sinal de dados | Garantia de que o recurso mais crítico funcione mesmo sem conectividade. |
+| Funcionamento offline do diário de humor | Continuidade da rotina de registro em qualquer condição de rede. |
+| Anonimato por padrão, sem login obrigatório nas funções básicas | Redução da barreira de entrada e do receio de exposição, atacando o estigma de forma direta. |
+| Criptografia de ponta a ponta dos diários | Proteção de dados de saúde mental, que são extremamente sensíveis. |
+| Botão de Pânico para apagar dados locais e da nuvem | Exercício do direito ao esquecimento e sensação de controle sobre as próprias informações. |
+| Notificações push motivacionais e não invasivas | Estímulo à constância sem gerar pressão, culpa ou sobressalto. |
+| Identidade visual translúcida, com gradientes suaves e animações lentas | Indução de calma pela própria interface e adequação à leitura noturna. |
+| Baixo consumo de bateria e compatibilidade com smartphones básicos | Viabilidade de sessões longas de respiração e inclusão de quem usa aparelho de entrada. |
 
 ## 7. Restrições e condições
 
-_(seção sob responsabilidade de Rene Mendonça Marinho)_
+As restrições abaixo foram estabelecidas pelo estudo de caso e funcionam como critérios objetivos para verificar as entregas.
+
+| Categoria | Restrição |
+|---|---|
+| Quantidade de telas | Até 4 telas principais: registro de humor com emojis grandes, animação de respiração 4-7-8, início do questionário PHQ-9 e acesso ao CVV. |
+| Número de interações | A funcionalidade principal ocorre em até 3 interações. Em situação de crise, o botão do CVV fica a 1 toque da tela inicial. |
+| Navegação | O botão de emergência do CVV é fixo no topo da tela, na AppBar, em vermelho vivo e acessível de qualquer tela. |
+| Privacidade | Uso anônimo por padrão, sem obrigar cadastro de e-mail para as funções básicas, e diários criptografados de ponta a ponta. |
+| Direito ao esquecimento | Deve existir um Botão de Pânico capaz de apagar todos os dados locais e da nuvem. |
+| Conectividade | O diário de humor funciona offline e o número do CVV fica em cache local, discando sem sinal de dados. |
+| Dispositivos | O aplicativo deve ser testado em smartphones básicos. |
+| Consumo de energia | O consumo de bateria deve ser mínimo, já que a tela de respiração pode ficar aberta por vários minutos. |
+| Acessibilidade e estímulos | Sem vibração excessiva, com silêncio total permitido. Não são aceitas animações rápidas nem pop-ups. |
+| Ambiente de utilização | Ambientes internos, casa e trabalho, além de momentos de crise. A tela precisa ser suave para leitura noturna. |
+| Animação | As animações de respiração duram de 4 a 7 segundos por etapa, com gradiente do roxo profundo ao azul claro. |
+| Documentação | A pasta /docs do repositório deve manter o documento de requisitos, as personas, as pesquisas com as fontes de validade do PHQ-9 e do GAD-7, a justificativa das decisões visuais ligadas à redução da ansiedade e o CHANGELOG.md. |
 
 ## 8. Pontos de atenção
 
-_(seção sob responsabilidade de Rene Mendonça Marinho)_
+Entre os aspectos apresentados no estudo de caso, o grupo considera os três a seguir como os mais determinantes para o sucesso do aplicativo.
+
+### 8.1. Privacidade e anonimato como condição de existência do produto
+
+O estudo de caso classifica esse como o projeto mais sensível da turma, e a razão é o tipo de dado envolvido. O anonimato por padrão, a criptografia de ponta a ponta e o Botão de Pânico não são funcionalidades como as outras, são o que torna o uso possível. Se o usuário não confiar que aquilo que registra está protegido, ele simplesmente não registra, e todas as demais funções perdem sentido, porque dependem do registro honesto. Exigir cadastro para as funções básicas reintroduziria pela porta dos fundos o mesmo estigma que o projeto quer reduzir.
+
+### 8.2. Acesso ao CVV em um toque, funcionando sem rede
+
+Essa é a funcionalidade de maior consequência do aplicativo e também a mais exigente do ponto de vista técnico, porque precisa funcionar exatamente na pior condição possível: usuário em crise, com atenção reduzida e possivelmente sem sinal de dados. Por isso o caso combina três exigências que só fazem sentido juntas, que são um toque a partir da tela inicial, botão fixo no topo em vermelho vivo e número em cache local. O próprio exemplo de CHANGELOG fornecido no caso registra a correção de um erro desse tipo, quando o botão estava camuflado no rodapé, o que mostra que a posição do elemento é decisão crítica e não questão estética.
+
+### 8.3. A interface precisa induzir calma, não ansiedade
+
+É esse critério que separa o Respira de um aplicativo genérico de bem-estar. A proibição de animações rápidas e pop-ups, a duração de 4 a 7 segundos das animações, a gradação do roxo ao azul, a leitura noturna suave, a vibração contida, o baixo consumo de bateria e o suporte a smartphones básicos formam um conjunto coerente, e cada item existe para evitar que a própria interface vire mais um estímulo de estresse. Uma animação travando em um aparelho de entrada, um pop-up inesperado ou uma vibração forte durante uma crise produzem o efeito oposto ao pretendido, o que faz do desempenho e da contenção sensorial requisitos funcionais, e não detalhes de acabamento.
+
+### Observação sobre o escopo do documento
+
+Esta análise foi elaborada apenas a partir das informações contidas no estudo de caso do projeto Respira, conforme a orientação da Atividade 01. A identidade visual não foi desenvolvida nesta etapa, e as decisões técnicas de arquitetura serão detalhadas nas atividades seguintes.
