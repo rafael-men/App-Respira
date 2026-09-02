@@ -43,11 +43,29 @@ _(seção sob responsabilidade de Murilo Pedral Mota)_
 
 ## 4. Objetivo e proposta de valor
 
-_(seção sob responsabilidade de Rafael Menezes Gonçalves)_
+O objetivo do Respira é ser um espaço digital seguro para cuidado emocional, reunindo três coisas que normalmente aparecem separadas: uma ferramenta de alívio imediato, um instrumento de rastreio com validade científica e um caminho direto para a rede de apoio.
+
+O benefício para o usuário aparece em três níveis. No nível imediato, a respiração guiada no padrão 4-7-8 entrega uma técnica concreta de regulação em segundos, sem preparo nenhum. No nível do autoconhecimento, o diário de humor e o PHQ-9 semanal transformam uma sensação difusa de mal-estar em informação organizada, que dá para acompanhar ao longo do tempo e até levar para uma conversa com um profissional. No nível da segurança, a presença permanente do CVV garante que, no pior momento, o caminho até a ajuda humana esteja a um toque.
+
+A proposta de valor, portanto, não é substituir o cuidado profissional. É diminuir a distância entre a pessoa e esse cuidado, tanto a distância técnica quanto a distância simbólica criada pelo estigma.
 
 ## 5. Personalidade, identidade e experiência
 
-_(seção sob responsabilidade de Rafael Menezes Gonçalves)_
+### 5.1 Palavras conceituais
+
+As palavras vinculadas ao projeto, que são mindfulness, PHQ-9, GAD-7, CVV, CAPS, setembro amarelo e RAPS, vêm de dois mundos diferentes. Metade pertence ao vocabulário do bem-estar e da atenção plena, e a outra metade ao vocabulário clínico e da saúde pública. O aplicativo precisa sustentar as duas dimensões: ter a leveza de um produto de wellness sem perder a seriedade de quem aplica escalas validadas e encaminha para serviços reais. Na prática, os termos clínicos ficam na documentação e na fundamentação do projeto, mas não podem dominar a linguagem da interface, sob risco de reforçar justamente o estigma que a missão pretende reduzir.
+
+### 5.2 Personalidade da identidade
+
+A identidade é calma e translúcida, com gradientes suaves de lilás e azul e animações lentas com efeito de respiração. Essas escolhas não são decorativas, e o próprio estudo de caso as justifica pela função: as animações de 4 a 7 segundos induzem a respiração diafragmática, e a transição do roxo profundo para o azul claro representa visualmente a passagem do estado de ansiedade para a calma. A identidade visual, aqui, faz parte do mecanismo da solução, e não é um acabamento aplicado no fim.
+
+### 5.3 Tom da interface e da experiência
+
+O tom é empático e livre de julgamentos, e isso vira decisão verificável: o questionário aparece um passo por vez para não sobrecarregar o usuário, as notificações são motivacionais mas não invasivas, e não existem pop-ups nem animações rápidas capazes de gerar sobressalto. Um aplicativo que se propõe a acalmar não pode ter uma interface que compete por atenção. O mesmo vale para o texto: o resultado do PHQ-9 precisa ser comunicado sem linguagem alarmista e sem tom de diagnóstico fechado, sempre com o encaminhamento à rede de apoio como saída natural.
+
+### 5.4 Como o aplicativo quer ser lembrado
+
+A frase escolhida, "o aplicativo que te escuta sem te julgar", funciona como critério de decisão do projeto inteiro. Escutar implica registro, memória e acolhimento, ou seja, diário de humor e gráfico de progresso. Não julgar implica anonimato por padrão, ausência de metas, ausência de cobrança e nenhum mecanismo de comparação ou pontuação. Sempre que houver dúvida sobre uma funcionalidade, a frase resolve: se o recurso cobra, compara ou expõe, ele contradiz a identidade do produto.
 
 ## 6. Funcionalidades e características já definidas
 
