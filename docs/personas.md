@@ -1,6 +1,13 @@
-# Personas — Projeto Respira
+# Personas da Atividade 02: Pesquisa, Benchmark e Personas
 
-Duas personas principais construídas a partir dos quatro públicos e dos dois perfis de engajamento (emergencial e diário) descritos no estudo de caso.
+Projeto Respira, aplicativo de saúde mental e apoio emocional
+Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 pontos (Personas: 0,50)
+
+| Campo | Preenchimento |
+|---|---|
+| Seção | Personas (item 4 da Atividade 02) |
+| Autores desta seção | Rafael Menezes Gonçalves (Persona 1) e Rene Mendonça Marinho (Persona 2) |
+| Data | 08/09/2026 |
 
 ## Persona 1 — Marina Souza (uso emergencial/crise)
 
@@ -18,6 +25,7 @@ Duas personas principais construídas a partir dos quatro públicos e dos dois p
 
 *Dores:*
 - Já teve uma crise em que não conseguiu lembrar ou encontrar rapidamente o número do CVV.
+- Segundo a pesquisa do projeto (docs/pesquisa.md), menos de 35% dos municípios brasileiros têm CAPS próprio, o que reforça sua dependência de um canal de apoio sempre disponível quando não pode se deslocar até uma consulta.
 - Sente vergonha de expor que está mal perto de colegas de trabalho.
 - Tem medo de que dados sobre sua saúde mental vazem ou sejam usados contra ela.
 
