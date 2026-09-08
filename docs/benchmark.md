@@ -31,23 +31,23 @@ Interface colorida e gamificada (sequências, conquistas, comparação de progre
 Aproveitar: o registro por emojis grandes em poucos toques e a ausência de login obrigatório.
 Melhorar: o Respira precisa manter esse mesmo baixo esforço de registro, mas sem elementos de gamificação/comparação, e complementar o diário com instrumento validado (PHQ-9) e ação imediata (respiração), coisas que o Daylio não oferece.
 
-## 2. Sanvello (ex-Pacifica)
+## 2. Youper
 
 ### Principais funcionalidades
-Rastreio de humor, trilhas de terapia cognitivo-comportamental (TCC), exercícios de respiração e relaxamento guiado, comunidade de apoio entre usuários e, na versão paga, acesso a terapia profissional.
+Assistente de saúde emocional baseado em IA para conversas guiadas por técnicas de terapia cognitivo-comportamental (TCC), check-in diário de humor, questionários de rastreio de ansiedade e depressão, e gráficos de evolução emocional.
 
 ### Pontos positivos
-Combina autoconhecimento (rastreio e trilhas de TCC) com ferramentas de regulação imediata (respiração), o que é próximo da proposta de três camadas do Respira (alívio, autoconhecimento, rede de apoio). O conteúdo é fundamentado em técnicas terapêuticas reconhecidas, não apenas em bem-estar genérico.
+Combina autoconhecimento (check-in de humor e questionários de rastreio) com ferramentas de regulação guiadas pela IA, o que é próximo da proposta de três camadas do Respira (alívio, autoconhecimento, rede de apoio). O conteúdo é fundamentado em técnicas terapêuticas reconhecidas, não apenas em bem-estar genérico.
 
 ### Pontos negativos
-Exige criação de conta para acompanhar o progresso, boa parte dos recursos aprofundados fica atrás de assinatura paga, e a comunidade de apoio é feita entre usuários (não é um canal de ajuda profissional imediata). Não há um recurso de emergência de um toque: para chegar a qualquer ajuda humana real, o caminho é a assinatura de terapia, não um botão fixo e gratuito.
+Exige criação de conta para acompanhar o progresso e depende de conexão com a internet para funcionar, já que a conversa com a IA acontece em nuvem. Boa parte dos recursos aprofundados fica atrás de assinatura paga, e não há um recurso de emergência de um toque: em caso de crise, o usuário precisaria digitar e conversar com o assistente, sem um botão fixo de acesso a um canal humano.
 
 ### Aspectos de interface/experiência
-Interface acolhedora e com boa curadoria de conteúdo, mas com navegação em várias etapas (trilhas, módulos, telas de progresso), pensada para uso de manutenção, não para o cenário de crise com atenção reduzida que o Respira também precisa atender em até 3 interações.
+Interface amigável, baseada em conversa por chat, o que funciona bem para reflexão em ritmo tranquilo, mas exige digitação e leitura de várias mensagens antes de chegar a qualquer alívio. Isso é o oposto do cenário de crise com atenção reduzida que o Respira também precisa atender em até 3 interações.
 
 ### O que pode ser aproveitado ou melhorado no Respira
-Aproveitar: a ideia de unir rastreio validado com uma técnica de regulação imediata na mesma jornada.
-Melhorar: o Respira deve entregar essa combinação sem exigir conta, sem assinatura e sem múltiplas etapas. O "alívio imediato" precisa estar disponível de graça e em poucos toques, não como parte de uma trilha paga.
+Aproveitar: a ideia de unir check-in de humor com questionário de rastreio validado na mesma jornada.
+Melhorar: o Respira deve entregar essa combinação sem exigir conta, sem assinatura, sem depender de internet e sem precisar de uma conversa por chat. O "alívio imediato" precisa estar disponível de graça, offline e em poucos toques, não atrás de uma interação por texto com uma IA.
 
 ## 3. CVV, Centro de Valorização da Vida (chat, e-mail e telefone 188)
 
@@ -69,4 +69,4 @@ Melhorar: o Respira remove a etapa de "procurar o canal" ao deixar o botão do C
 
 ## Síntese: o que o Respira pode fazer de diferente ou melhor
 
-Nenhuma das três soluções cobre as três frentes ao mesmo tempo: o Daylio resolve o registro rápido mas não tem rastreio validado nem canal de ajuda; o Sanvello une rastreio e regulação mas cobra por isso e não tem emergência de um toque; o CVV é o canal de ajuda humana mas não tem nenhuma ferramenta de autocuidado. O Respira se diferencia por entregar as três coisas juntas, de graça, sem login e sem cadastro: diário de humor tão rápido quanto o do Daylio, rastreio validado (PHQ-9) e respiração guiada tão fundamentados quanto os do Sanvello, e o acesso ao CVV tão direto quanto o Respira consegue tornar um canal que, sozinho, exige mais passos. A diferença central não é ter uma funcionalidade nova, é remover todo atrito entre essas três frentes para que funcionem como uma coisa só, inclusive offline e em aparelhos básicos.
+Nenhuma das três soluções cobre as três frentes ao mesmo tempo: o Daylio resolve o registro rápido mas não tem rastreio validado nem canal de ajuda; o Youper une rastreio e regulação mas depende de internet, conta e conversa por chat, sem emergência de um toque; o CVV é o canal de ajuda humana mas não tem nenhuma ferramenta de autocuidado. O Respira se diferencia por entregar as três coisas juntas, de graça, sem login e sem cadastro: diário de humor tão rápido quanto o do Daylio, rastreio validado (PHQ-9) e respiração guiada tão fundamentados quanto os do Youper, e o acesso ao CVV tão direto quanto o Respira consegue tornar um canal que, sozinho, exige mais passos. A diferença central não é ter uma funcionalidade nova, é remover todo atrito entre essas três frentes para que funcionem como uma coisa só, inclusive offline e em aparelhos básicos.
