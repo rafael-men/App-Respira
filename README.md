@@ -20,7 +20,7 @@ Programação para Dispositivos Móveis — GP0029VNO07A
 | Integrante | Responsabilidade na Atividade 02 |
 |---|---|
 | Franck Patrick Hora Vasconcelos | Benchmark de soluções existentes (docs/benchmark.md) |
-| Murilo Pedral Mota | Pesquisa do projeto (docs/pesquisa.md) |
+| Murilo Pedral Mota | Pesquisa do projeto (docs/pesquisa.md) e criação do slide da apresentação |
 | Rafael Menezes Gonçalves | Persona 1 (docs/personas.md) |
 | Rene Mendonça Marinho | Persona 2 (docs/personas.md) |
 
