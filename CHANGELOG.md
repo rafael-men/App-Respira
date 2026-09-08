@@ -1,5 +1,11 @@
 # Changelog
 
+## [08/09/2026]
+
+### Adicionado
+- Benchmark de 3 soluções existentes — Daylio, Sanvello e CVV (docs/benchmark.md), com análise de funcionalidades, pontos fortes/fracos, experiência e o que o Respira pode aproveitar ou fazer diferente (Atividade 02).
+- Linha de responsabilidade da Atividade 02 no README.md.
+
 ## [01/09/2026]
 
 ### Adicionado
