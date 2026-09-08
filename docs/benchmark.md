@@ -13,6 +13,8 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 
 O Respira reúne três frentes que normalmente aparecem separadas: alívio imediato (respiração guiada), autoconhecimento (diário de humor e PHQ-9) e acesso à rede de apoio (CVV). Por isso, em vez de comparar três apps genéricos de bem-estar, o benchmark foi montado com uma solução forte em cada uma dessas frentes. Isso permite avaliar, frente a frente, o que já existe de bom em cada pilar e onde o Respira precisa se diferenciar.
 
+Essa escolha também dialoga com a pesquisa do projeto (docs/pesquisa.md): a exclusão digital de parte do público e a ausência de instrumentos validados nos apps analisados reforçam por que o Respira precisa ser offline e cientificamente embasado, não apenas mais uma opção de bem-estar. As personas Marina Souza e Lucas Andrade (docs/personas.md) representam, respectivamente, o cenário de crise e o de uso diário que cada solução comparada resolve apenas parcialmente.
+
 ## 1. Daylio (diário de humor e hábitos)
 
 ### Principais funcionalidades
