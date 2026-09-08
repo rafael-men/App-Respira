@@ -27,3 +27,33 @@ Duas personas principais construídas a partir dos quatro públicos e dos dois p
 - Evita aplicativos que pedem cadastro ou muitas etapas antes de entregar alguma utilidade.
 
 *Relação com o aplicativo:* Usa o Respira principalmente em momentos de crise (engajamento emergencial), mas também mantém o diário de humor como rotina de manutenção entre atendimentos no CAPS. Para ela, o app é uma ponte de segurança até a rede de apoio profissional, nunca um substituto dela.
+
+## Persona 2 — Lucas Andrade (uso diário/rotina)
+
+*Perfil/contexto:* 21 anos, estudante universitário em período de provas frequentes, mora com os pais, usa o celular entre aulas e durante intervalos curtos. Nunca teve contato com um serviço de saúde mental.
+
+*Objetivos:*
+- Entender se o que sente (ansiedade antes de provas, oscilação de humor) tem nome e intensidade.
+- Ter uma ferramenta rápida e discreta para usar entre uma aula e outra.
+- Acompanhar sua evolução emocional ao longo do semestre.
+
+*Necessidades:*
+- Registro de humor em poucos toques, sem burocracia.
+- Um instrumento de rastreio (PHQ-9) que traduza sensações difusas em algo mensurável.
+- Uso discreto, que não chame atenção de colegas ao redor.
+
+*Dores:*
+- Tem receio de ser rotulado ou julgado se alguém descobrir que usa um app de saúde mental.
+- Não sabe ao certo se o que sente é "só estresse de prova" ou algo que merece atenção.
+- Pouco tempo livre — qualquer app que exija muitas etapas é abandonado rapidamente.
+
+*Comportamentos:*
+- Usa o app em sessões curtas e frequentes, muitas vezes escondido, entre uma atividade e outra.
+- Responde ao questionário semanal aos poucos, aproveitando brechas da rotina.
+- Valoriza ver gráficos de progresso como forma de entender a própria evolução.
+
+*Relação com o aplicativo:* Uso predominantemente diário/rotineiro (diário de humor, respiração e PHQ-9 semanal), sem necessariamente ter usado o botão do CVV ainda. Para ele, o app é uma porta de entrada — o primeiro contato com a ideia de que aquilo que sente pode ser observado e cuidado.
+
+## Persona prioritária: Marina Souza
+
+A escolha por Marina se justifica pelo tipo de cenário que ela representa: uma pessoa em crise, com atenção reduzida, possivelmente sem internet, decidindo em segundos o que fazer. É esse cenário que exige mais do projeto tecnicamente e que tem maior peso humano caso o app falhe. Foi a partir dele que nasceram as decisões mais críticas do produto — o botão do CVV a um toque, o número em cache local, o funcionamento offline. Priorizar Marina no design significa garantir que a função mais importante do aplicativo funcione mesmo na pior condição possível. Se o projeto partisse primeiro de Lucas, o risco seria tratar o CVV como só mais uma funcionalidade entre outras, quando na prática é o motivo de existir do aplicativo nos momentos que mais importam.
