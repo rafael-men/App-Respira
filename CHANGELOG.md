@@ -3,7 +3,7 @@
 ## [08/09/2026]
 
 ### Adicionado
-- Benchmark de 3 soluções existentes (Daylio, Sanvello e CVV) em docs/benchmark.md, com funcionalidades, pontos fortes/fracos, experiência de uso e o que o Respira pode aproveitar ou fazer diferente (Atividade 02). Franck.
+- Benchmark de 3 soluções existentes (Daylio, Youper e CVV) em docs/benchmark.md, com funcionalidades, pontos fortes/fracos, experiência de uso e o que o Respira pode aproveitar ou fazer diferente (Atividade 02). Franck.
 
 ### Alterado
 - README.md: adicionada a tabela de responsabilidades da Atividade 02, com Franck no benchmark, Murilo na pesquisa e no slide da apresentação, Rafael na persona 1 e Rene na persona 2. Franck.
