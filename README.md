@@ -4,7 +4,7 @@ Aplicativo de saúde mental e apoio emocional, com diário de humor, respiraçã
 
 ## Turma
 
-Programação para Dispositivos Móveis — GP0029VNO07A
+Programação para Dispositivos Móveis, GP0029VNO07A
 
 ## Integrantes
 
@@ -15,7 +15,7 @@ Programação para Dispositivos Móveis — GP0029VNO07A
 | Rafael Menezes Gonçalves | Análise de objetivo/proposta de valor (seção 4) e personalidade/identidade/experiência (seção 5) |
 | Rene Mendonça Marinho | Análise de funcionalidades (seção 6), restrições e condições (seção 7) e pontos de atenção (seção 8) |
 
-## Atividade 02 — Pesquisa, Benchmark e Personas
+## Atividade 02: Pesquisa, Benchmark e Personas
 
 | Integrante | Responsabilidade na Atividade 02 |
 |---|---|
