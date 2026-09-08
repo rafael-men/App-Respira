@@ -54,6 +54,7 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 - Tem receio de ser rotulado ou julgado se alguém descobrir que usa um app de saúde mental.
 - Não sabe ao certo se o que sente é "só estresse de prova" ou algo que merece atenção.
 - Pouco tempo livre — qualquer app que exija muitas etapas é abandonado rapidamente.
+- Segundo a pesquisa do projeto (docs/pesquisa.md), 83,05% dos universitários brasileiros relatam dificuldades emocionais na graduação (dado da Andifes), o que confirma que Lucas representa um público amplo, não um caso isolado.
 
 *Comportamentos:*
 - Usa o app em sessões curtas e frequentes, muitas vezes escondido, entre uma atividade e outra.
@@ -64,4 +65,4 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 
 ## Persona prioritária: Marina Souza
 
-A escolha por Marina se justifica pelo tipo de cenário que ela representa: uma pessoa em crise, com atenção reduzida, possivelmente sem internet, decidindo em segundos o que fazer. É esse cenário que exige mais do projeto tecnicamente e que tem maior peso humano caso o app falhe. Foi a partir dele que nasceram as decisões mais críticas do produto — o botão do CVV a um toque, o número em cache local, o funcionamento offline. Priorizar Marina no design significa garantir que a função mais importante do aplicativo funcione mesmo na pior condição possível. Se o projeto partisse primeiro de Lucas, o risco seria tratar o CVV como só mais uma funcionalidade entre outras, quando na prática é o motivo de existir do aplicativo nos momentos que mais importam.
+A escolha por Marina se justifica pelo tipo de cenário que ela representa: uma pessoa em crise, com atenção reduzida, possivelmente sem internet, decidindo em segundos o que fazer. É esse cenário que exige mais do projeto tecnicamente e que tem maior peso humano caso o app falhe. Foi a partir dele que nasceram as decisões mais críticas do produto — o botão do CVV a um toque, o número em cache local, o funcionamento offline. Priorizar Marina no design significa garantir que a função mais importante do aplicativo funcione mesmo na pior condição possível. Se o projeto partisse primeiro de Lucas, o risco seria tratar o CVV como só mais uma funcionalidade entre outras, quando na prática é o motivo de existir do aplicativo nos momentos que mais importam. Essa priorização também é sustentada pelo benchmark (docs/benchmark.md): nenhuma das soluções analisadas oferece emergência de um toque de graça, o que confirma que esse é o maior risco do produto caso o Respira falhe em atender exatamente o cenário de Marina.
