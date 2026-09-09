@@ -1,3 +1,14 @@
+# Pesquisa da Atividade 02: Pesquisa, Benchmark e Personas
+
+Projeto Respira, aplicativo de saúde mental e apoio emocional
+Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 pontos (Pesquisa: 0,50)
+
+| Campo | Preenchimento |
+|---|---|
+| Seção | Pesquisa (item 2 da Atividade 02) |
+| Autor desta seção | Murilo Pedral Mota |
+| Data | 08/09/2026 |
+
 ## 1. Objetivo da pesquisa
 
 Esta pesquisa reúne dados externos e evidências científicas que confirmam e detalham os problemas e públicos já descritos no estudo de caso do Respira: o sofrimento causado por ansiedade e depressão, o estigma, a falta de identificação dos sintomas, a necessidade de resposta imediata em crise, as barreiras de acesso tecnológico e a insegurança quanto à privacidade. A ideia é sair da descrição qualitativa do caso e checar o que os números e a literatura dizem sobre cada um desses pontos, de modo que as decisões de design e de funcionalidade tenham base em evidência, e não apenas em suposição.
@@ -84,3 +95,7 @@ Mesmo com 88,9% da população possuindo celular, ainda existem 20,5 milhões de
 
 **3. Os instrumentos escolhidos, PHQ-9 e GAD-7, têm validade científica documentada no Brasil, o que abre espaço para comunicar resultados com mais responsabilidade, e também exige cuidado redobrado no texto.**
 A validação desses questionários no contexto brasileiro, incluindo o estudo de base populacional em Pelotas e a validação da GAD-7 em adolescentes, mostra que ambos são instrumentos de rastreio confiáveis, mas nenhum dos dois é um teste diagnóstico definitivo. A literatura é clara em dizer que os pontos de corte indicam sensibilidade e especificidade, e não certeza clínica. Isso confirma a decisão do caso de comunicar o resultado do PHQ-9 sem linguagem alarmista e sem tom de diagnóstico fechado, e sugere que a documentação da pasta /docs deve deixar explícito, tanto para a equipe quanto para o usuário final, que esses questionários rastreiam sintomas e não substituem avaliação profissional. É um ponto que protege tanto o usuário quanto a credibilidade do projeto.
+
+## 7. Relação com as personas e o benchmark
+
+Os dados de universitários (83,05% relatam dificuldades emocionais, segundo a Andifes) embasam diretamente o perfil de Lucas Andrade, a persona de uso diário e discreto (docs/personas.md). Os dados de cobertura de CAPS/RAPS e o volume de atendimentos do CVV embasam o perfil de Marina Souza, a persona priorizada por representar o cenário de crise. Os mesmos achados, sobretudo a exclusão digital e a ausência de instrumentos validados nos aplicativos concorrentes, sustentam as conclusões do benchmark (docs/benchmark.md) sobre por que o Respira precisa ser offline, gratuito e cientificamente embasado.
