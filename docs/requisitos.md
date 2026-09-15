@@ -6,7 +6,7 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 | Campo | Preenchimento |
 |---|---|
 | Seção | Funcionalidades e Requisitos (Atividade 03) |
-| Autores | Rene Mendonça Marinho (Funcionalidades e Priorização), Franck Patrick Hora Vasconcelos (Requisitos funcionais e consolidação), Murilo Pedral Mota (Requisitos não funcionais e Apresentação dos Requisitos), Rafael Menezes Gonçalves (CRUD) |
+| Autores | Rene Mendonça Marinho (Funcionalidades e Priorização), Franck Patrick Hora Vasconcelos (Requisitos funcionais e consolidação), Murilo Pedral Mota (Requisitos não funcionais, Apresentação dos Requisitos e Priorização), Rafael Menezes Gonçalves (CRUD) |
 | Data | 14/09/2026 |
 
 Este documento transforma em funcionalidades e requisitos o que já foi levantado nas atividades anteriores: o problema e as restrições descritos no estudo de caso (`docs/estudo-de-caso.md`), os dados da pesquisa (`docs/pesquisa.md`), as personas Marina Souza e Lucas Andrade (`docs/personas.md`) e as lacunas identificadas no benchmark (`docs/benchmark.md`). Nenhuma funcionalidade aqui é nova em relação ao que já havia sido definido; o trabalho desta atividade é detalhar, numerar e priorizar o que antes estava descrito em prosa.
