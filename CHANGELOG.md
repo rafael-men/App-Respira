@@ -24,3 +24,12 @@
 - Análise de público e usuários e contexto de uso (seções 2 e 3) em docs/estudo-de-caso.md. Murilo.
 - Análise de objetivo/proposta de valor e personalidade, identidade e experiência (seções 4 e 5) em docs/estudo-de-caso.md. Rafael.
 - Análise de funcionalidades e características, restrições e condições, e pontos de atenção (seções 6, 7 e 8) em docs/estudo-de-caso.md. Rene.
+
+## [14/09/2026]
+
+### Adicionado
+- Documento completo de funcionalidades e requisitos em docs/requisitos.md (Atividade 03): 10 funcionalidades com nome, descrição, necessidade do usuário e justificativa; 16 requisitos funcionais (RF01–RF16); 8 requisitos não funcionais (RNF01–RNF08); tabela de CRUD; priorização em essenciais, importantes e secundárias; e a funcionalidade mais importante com justificativa. Rene, Franck, Murilo e Rafael.
+- Slides de apresentação da Atividade 03 em docs/apresentacaoRequisitos.pdf, cobrindo funcionalidades, requisitos funcionais e não funcionais, exemplo de CRUD, priorização e a funcionalidade mais importante. Franck.
+
+### Alterado
+- README.md: adicionada a tabela de responsabilidades da Atividade 03

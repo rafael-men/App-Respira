@@ -24,6 +24,15 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 | Rafael Menezes Gonçalves | Persona 1 (docs/personas.md) |
 | Rene Mendonça Marinho | Persona 2 (docs/personas.md) |
 
+# Atividade 03: Funcionalidades e Requisitos
+
+| Integrante | Responsabilidade na Atividade 03 |
+|---|---|
+| Franck Patrick Hora Vasconcelos | Requisitos funcionais e consolidação |
+| Murilo Pedral Mota | Requisitos não funcionais, Priorização e Apresentação de Requisitos |
+| Rafael Menezes Gonçalves | CRUD |
+| Rene Mendonça Marinho | Funcionalidades e Priorização |
+
 ## Descrição do projeto
 
 O Respira é um espaço digital seguro para cuidado emocional, voltado a adultos em geral, universitários, professores e pacientes de CAPS. Reúne três frentes que normalmente aparecem separadas: alívio imediato (respiração guiada), autoconhecimento (diário de humor e PHQ-9 semanal) e acesso rápido à rede de apoio (CVV). O projeto prioriza privacidade, uso anônimo, funcionamento offline e uma interface que induz calma em vez de competir por atenção.
