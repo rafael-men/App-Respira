@@ -82,4 +82,14 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 | RF13 | Botão de Pânico | O sistema deve oferecer, a partir de qualquer tela, uma opção que exclua permanentemente todos os dados locais e da nuvem associados ao uso do aplicativo, mediante confirmação do usuário. |
 | RF14 | Notificações motivacionais configuráveis | O sistema deve permitir o envio de notificações push motivacionais e não invasivas, que o usuário possa ativar ou desativar. |
 | RF15 | Alternância de tema | O sistema deve permitir a alternância entre tema claro e tema escuro, adequado à leitura noturna. |
+
+## 4. CRUD
+
+| Informação | C | R | U | D | Observação / Justificativa |
+|---|---|---|---|---|---|
+| Registro de humor (diário) | Sim | Sim | Não | Sim | Não há atualização de um registro já salvo: o histórico precisa refletir fielmente o estado emocional no momento do registro (RF01, RF03). Para corrigir um toque errado, o usuário exclui o registro (RF04) e cria um novo. |
+| Resposta do questionário PHQ-9 | Sim | Sim | Não | Não | Cada aplicação semanal gera um novo registro de escore (RF06, RF07); respostas não são editáveis nem excluíveis individualmente, para preservar a integridade do histórico usado no gráfico de evolução (RF08). A única forma de remover esses dados é a exclusão total pelo Botão de Pânico (RF13). |
+| Configurações do usuário (tema, notificações) | Sim (na primeira configuração) | Sim | Sim | Não aplicável | Preferências como tema e notificações (RF14, RF15) são sempre atualizáveis; não fazem sentido "excluídas" isoladamente, apenas redefinidas para o padrão. |
+| Número de emergência do CVV (188) | Não aplicável | Sim | Não aplicável | Não aplicável | É uma informação fixa, definida pela equipe de desenvolvimento, não pelo usuário (RF09, RF10). O usuário apenas consulta e disca; alterar, atualizar ou excluir esse dado exigiria mudança de código, não uma ação dentro do app. |
+| Todos os dados do usuário (uso local) | Sim (implicitamente, ao usar o app) | Sim | Não aplicável | Sim | Como não existe conta ou login (RF11), não há "atualização de perfil"; a única operação de escrita ampla sobre o conjunto de dados é a exclusão total via Botão de Pânico (RF13). |
 | RF16 | Funcionamento offline do diário | O sistema deve permitir a criação e a consulta de registros do diário de humor mesmo sem conexão à internet, sincronizando os dados quando a conexão for restabelecida. |
