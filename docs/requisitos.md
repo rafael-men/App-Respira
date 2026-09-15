@@ -11,6 +11,58 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 
 Este documento transforma em funcionalidades e requisitos o que já foi levantado nas atividades anteriores: o problema e as restrições descritos no estudo de caso (`docs/estudo-de-caso.md`), os dados da pesquisa (`docs/pesquisa.md`), as personas Marina Souza e Lucas Andrade (`docs/personas.md`) e as lacunas identificadas no benchmark (`docs/benchmark.md`). Nenhuma funcionalidade aqui é nova em relação ao que já havia sido definido; o trabalho desta atividade é detalhar, numerar e priorizar o que antes estava descrito em prosa.
 
+## 1. Funcionalidades
+
+### F01 — Diário de humor com emojis
+**Descrição:** tela em que o usuário registra como está se sentindo tocando em um emoji grande (de muito ruim a muito bem), podendo adicionar uma nota curta opcional. O registro é salvo com data e hora, consultável depois em um histórico.
+**Necessidade do usuário que atende:** Marina precisa de um registro rápido, de baixo esforço mental, mesmo em estado de atenção reduzida; Lucas quer acompanhar sua evolução emocional ao longo do semestre sem burocracia.
+**Justificativa:** o estudo de caso já define essa funcionalidade como núcleo do produto (seção 6). O benchmark mostra que o Daylio valida esse formato de registro rápido e sem cadastro, mas sem os diferenciais de privacidade e integração que o Respira propõe.
+
+### F02 — Respiração guiada no padrão 4-7-8
+**Descrição:** tela com animação de um círculo que se expande e contrai em ciclos de inspirar (4s), segurar (7s) e expirar (8s), com gradiente do roxo profundo ao azul claro, iniciando sozinha ao abrir a tela.
+**Necessidade do usuário que atende:** alívio imediato em crise de ansiedade, sem exigir leitura ou raciocínio complexo (cenário central da persona Marina).
+**Justificativa:** o estudo de caso trata a animação como parte do mecanismo da solução, não como estética (seção 5.2); o benchmark aponta a respiração guiada do Calm como referência de qualidade, mas presa a assinatura paga e a múltiplas telas de navegação.
+
+### F03 — Questionário PHQ-9 semanal com gráfico de progresso
+**Descrição:** questionário validado, apresentado um item por tela, aplicado semanalmente; ao final, o sistema calcula o escore e mostra sua evolução em um gráfico ao longo do tempo, sem linguagem alarmista.
+**Necessidade do usuário que atende:** Lucas quer entender se o que sente tem nome e intensidade; pacientes de CAPS querem levar informação organizada para a consulta.
+**Justificativa:** a pesquisa confirma validade científica do PHQ-9 no Brasil, com sensibilidade de 77,5% e especificidade de 86,7% no ponto de corte 9 (`docs/pesquisa.md`, seção 3.3); nenhuma das soluções do benchmark oferece instrumento de rastreio validado.
+
+### F04 — Acesso de emergência ao CVV (188) em 1 toque
+**Descrição:** botão fixo, vermelho, na AppBar, visível em qualquer tela do aplicativo, que disca diretamente para o 188 com um único toque.
+**Necessidade do usuário que atende:** Marina, em crise, precisa de ajuda humana imediata sem navegar por menus.
+**Justificativa:** o CVV realizou cerca de 2 milhões de atendimentos em 2025 (`docs/pesquisa.md`, seção 3.5); o benchmark confirma que nenhuma das soluções analisadas oferece emergência de um toque de graça, o que o estudo de caso já apontava como o maior risco do produto caso essa funcionalidade falhe (seção 8.2).
+
+### F05 — Funcionamento offline do diário e do número do CVV
+**Descrição:** o número do CVV fica em cache local, permitindo discagem mesmo sem internet; os registros do diário de humor são salvos localmente e sincronizados quando houver conexão.
+**Necessidade do usuário que atende:** público com aparelhos de entrada e conexão instável, como universitários e pacientes de CAPS.
+**Justificativa:** 10,9% da população brasileira ainda está digitalmente excluída, e o custo do serviço é o motivo mais citado para não ter internet em casa (`docs/pesquisa.md`, seção 3.2), o que torna o offline requisito não negociável, e não otimização.
+
+### F06 — Uso anônimo, sem cadastro obrigatório
+**Descrição:** todas as funcionalidades básicas (diário, respiração, PHQ-9, CVV) funcionam sem exigir criação de conta, e-mail ou senha.
+**Necessidade do usuário que atende:** reduzir o medo de exposição e julgamento, presente nas duas personas.
+**Justificativa:** estudos citados na pesquisa mostram que o estigma pesa mais do que barreiras estruturais na busca por ajuda (`docs/pesquisa.md`, seção 3.1); o benchmark reforça esse padrão de baixa fricção observado no Daylio.
+
+### F07 — Criptografia de ponta a ponta dos dados
+**Descrição:** os dados do diário de humor e das respostas do PHQ-9 são armazenados de forma criptografada, tanto localmente quanto em eventual sincronização com a nuvem.
+**Necessidade do usuário que atende:** confiança de que dados de saúde mental, extremamente sensíveis, não serão expostos.
+**Justificativa:** um levantamento da Mozilla Foundation reprovou 22 de 32 aplicativos de saúde mental em critérios de privacidade (`docs/pesquisa.md`, seção 3.4); o estudo de caso trata isso como pré-condição de uso, não diferencial (seção 8.1).
+
+### F08 — Botão de Pânico (exclusão total de dados)
+**Descrição:** opção sempre acessível que apaga, mediante confirmação, todos os dados locais e da nuvem associados ao uso do aplicativo.
+**Necessidade do usuário que atende:** exercício do direito ao esquecimento e sensação de controle sobre informações sensíveis.
+**Justificativa:** coerente com o cenário de desconfiança generalizada em apps de saúde mental descrito na pesquisa (seção 3.4) e com a exigência do estudo de caso de que anonimato e controle de dados sejam condição de existência do produto.
+
+### F09 — Notificações motivacionais não invasivas
+**Descrição:** lembretes leves e opcionais para manter constância no diário e no PHQ-9, sem tom de cobrança e sem elementos de gamificação (sequências, conquistas, comparação).
+**Necessidade do usuário que atende:** Lucas e professores precisam de estímulo à constância sem gerar pressão ou culpa.
+**Justificativa:** o benchmark mostra que a gamificação do Daylio (sequências, conquistas) contradiz diretamente o tom "sem julgamento" que define a identidade do Respira (`docs/estudo-de-caso.md`, seção 5.4).
+
+### F10 — Leitura noturna suave (tema claro/escuro)
+**Descrição:** paleta de cores com gradientes suaves de lilás e azul, sem contraste agressivo, com alternância entre tema claro e escuro para uso noturno.
+**Necessidade do usuário que atende:** uso discreto à noite ou em ambientes com pouca luz, comum às duas personas.
+**Justificativa:** o estudo de caso exige explicitamente uma tela suave para leitura noturna como parte do contexto de uso (seção 3), e a identidade visual calma é descrita como parte do mecanismo da solução, não como acabamento (seção 5.2).
+
 ## 2. Requisitos funcionais
 
 | Nº | Nome | Descrição |
