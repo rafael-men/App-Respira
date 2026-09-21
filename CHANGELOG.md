@@ -33,3 +33,11 @@
 
 ### Alterado
 - README.md: adicionada a tabela de responsabilidades da Atividade 03
+
+## [21/09/2026]
+
+### Adicionado
+- Protótipo de baixa fidelidade em docs/prototipoBaixaFidelidade.pdf (Atividade 04): wireframes de 9 telas principais (Início, Diário de Humor - Registro e Histórico, Respiração Guiada, Questionário PHQ-9 - Pergunta e Resultado, Confirmação de Chamada ao CVV, Configurações e Confirmação do Botão de Pânico), uma tela por página, com estrutura e fluxo de navegação entre elas.
+
+### Alterado
+- README.md: adicionada a seção da Atividade 04 com a lista das telas do protótipo de baixa fidelidade e responsáveis a definir.

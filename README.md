@@ -33,6 +33,26 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 | Rafael Menezes Gonçalves | CRUD |
 | Rene Mendonça Marinho | Funcionalidades e Priorização |
 
+# Atividade 04: Prototipação 1/3 (Protótipo de Baixa Fidelidade)
+
+| Tela | Nome | Responsável |
+|---|---|---|
+| 01 | Início | Murilo Pedral Mota |
+| 02 | Diário de Humor — Registro | Murilo Pedral Mota |
+| 03 | Diário de Humor — Histórico | Murilo Pedral Mota |
+| 04 | Respiração Guiada (4-7-8) | Franck Patrick Hora Vasconcelos |
+| 05 | Questionário PHQ-9 — Pergunta | Franck Patrick Hora Vasconcelos |
+| 06 | Questionário PHQ-9 — Resultado | Rene Mendonça Marinho |
+| 07 | Confirmação de Chamada ao CVV | Rene Mendonça Marinho |
+| 08 | Configurações | Rafael Menezes Gonçalves |
+| 09 | Confirmação do Botão de Pânico | Rafael Menezes Gonçalves |
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar docs/prototipoBaixaFidelidade.pdf com link e todas as telas | Murilo Pedral Mota |
+
+Esta etapa cobre apenas o protótipo de baixa fidelidade (estrutura e fluxo das telas, sem cor, tipografia ou identidade visual definitivas). O protótipo de alta fidelidade e as justificativas de UI/UX pertencem a etapas futuras da Atividade 04.
+
 ## Descrição do projeto
 
 O Respira é um espaço digital seguro para cuidado emocional, voltado a adultos em geral, universitários, professores e pacientes de CAPS. Reúne três frentes que normalmente aparecem separadas: alívio imediato (respiração guiada), autoconhecimento (diário de humor e PHQ-9 semanal) e acesso rápido à rede de apoio (CVV). O projeto prioriza privacidade, uso anônimo, funcionamento offline e uma interface que induz calma em vez de competir por atenção.
