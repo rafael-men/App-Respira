@@ -41,3 +41,18 @@
 
 ### Alterado
 - README.md: adicionada a seção da Atividade 04 com a lista das telas do protótipo de baixa fidelidade e responsáveis a definir.
+
+
+## [05/10/2026]
+
+### Adicionado
+- Apresentação Final da Unidade I em docs/apresentacaoFinalUnidadeI.pdf (Atividade 05). Murilo.
+- Protótipo de alta fidelidade em PDF em docs/prototipoAltaFidelidade.pdf (Atividade 04). Murilo.
+- Seções 1, 2 e 3 de justificativas em docs/justificativas.md. Murilo.
+- Seções 4 e 5 de justificativas em docs/justificativas.md. Rafael.
+- Seções 6 e 7 de justificativas em docs/justificativas.md. Franck.
+- Seções 8 e 9 de justificativas em docs/justificativas.md. Rene.
+
+### Alterado
+- README.md: adicionadas as seções da Atividade 04 (Prototipação 3/3, protótipo de alta fidelidade e justificativas) e da Atividade 05 (Apresentação Final da Unidade I), com as respectivas responsabilidades. Murilo.
+- CHANGELOG.md: registrado o acréscimo dos documentos e das justificativas das Atividades 04 e 05. Murilo.

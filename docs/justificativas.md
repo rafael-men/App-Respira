@@ -27,8 +27,8 @@ Fora dessa tela, a paleta aparece de forma comedida: fundo neutro muito claro (#
 
 Duas cores fogem da família roxo-azul por necessidade funcional, não estética:
 
-- *Vermelho de emergência* (#E1483D, com variante mais escura #C23B31 no gradiente do botão): usado exclusivamente no botão SOS CVV, na tela de confirmação de chamada e no Botão de Pânico. O estudo de caso exige "vermelho vivo" (seção 7, linha "Navegação") justamente para que esse elemento nunca seja confundido com uma ação comum — é a única cor do sistema com essa função de alarme, o que preserva seu significado. Um vermelho mais claro ou dessaturado correria o risco de se misturar ao restante da paleta lilás e perder a urgência que RF09 e RF13 exigem.
-- *Escala de humor* (do diário): os cinco emojis de humor usam uma progressão de #E1483D (muito mal) a #5B4A94 (muito bem), passando por laranja suave, lilás-cinza e azul. Em vez de introduzir verde/amarelo (cores fora da paleta de marca), a escala reaproveita o mesmo eixo "alerta → calma" do gradiente de respiração, de modo que o usuário associa intuitivamente "mais calmo" a "mais próximo do azul/roxo da marca" — reforçando a mesma metáfora em duas funcionalidades diferentes (F01 e F02).
+- *Vermelho de emergência* (#E1483D, com variante mais escura #C23B31 no gradiente do botão): usado exclusivamente no botão SOS CVV, na tela de confirmação de chamada e no Botão de Pânico. O estudo de caso exige "vermelho vivo" (seção 7, linha "Navegação") justamente para que esse elemento nunca seja confundido com uma ação comum, é a única cor do sistema com essa função de alarme, o que preserva seu significado. Um vermelho mais claro ou dessaturado correria o risco de se misturar ao restante da paleta lilás e perder a urgência que RF09 e RF13 exigem.
+- *Escala de humor* (do diário): os cinco emojis de humor usam uma progressão de #E1483D (muito mal) a #5B4A94 (muito bem), passando por laranja suave, lilás-cinza e azul. Em vez de introduzir verde/amarelo (cores fora da paleta de marca), a escala reaproveita o mesmo eixo "alerta → calma" do gradiente de respiração, de modo que o usuário associa intuitivamente "mais calmo" a "mais próximo do azul/roxo da marca", reforçando a mesma metáfora em duas funcionalidades diferentes (F01 e F02).
 
 Todos os pares texto/fundo do sistema foram verificados a olho para manter leitura confortável mesmo em tela pequena e com pouca luz (contexto de uso descrito na seção 3 do estudo de caso): texto principal #2E2A45 sobre fundo #F6F5FC ou cartões brancos, texto secundário #6E6788 reservado para legendas e metadados, nunca para conteúdo essencial. Na Tela 04 (fundo gradiente escuro), o texto e os ícones passam para branco, e o círculo central de "Inspire" usa fundo quase opaco (95%) exatamente para garantir contraste alto no ponto de maior atenção da tela, coerente com RNF02 (sem elementos que exijam esforço de leitura em situação de crise).
 
@@ -53,17 +53,17 @@ Nenhum texto do protótipo é menor que 11px, e os textos de maior responsabilid
 
 ## 3. Organização das informações (disposição e fluxo visual)
 
-A Tela 01 mantém a mesma estrutura validada no protótipo de baixa fidelidade — AppBar fixa, pergunta de abertura, grade 2×2 de funcionalidades, área de identidade visual — porque essa estrutura já havia sido pensada para atender aos dois perfis de engajamento descritos no estudo de caso (seção 2): a mesma tela inicial precisa servir tanto a quem está em crise (engajamento emergencial) quanto a quem usa o app por rotina (engajamento diário), sem obrigar a escolha de um caminho logo de cara. A alta fidelidade reforça essa leitura com hierarquia visual real: os quatro cards têm o mesmo peso visual entre si (nenhuma funcionalidade de rotina é destacada sobre outra), enquanto o botão SOS CVV se distingue por cor, forma (círculo) e posição fixa — a única ação da tela com tratamento visual de urgência, coerente com o ponto de atenção 8.2 do estudo de caso.
+A Tela 01 mantém a mesma estrutura validada no protótipo de baixa fidelidade, AppBar fixa, pergunta de abertura, grade 2×2 de funcionalidades, área de identidade visual, porque essa estrutura já havia sido pensada para atender aos dois perfis de engajamento descritos no estudo de caso (seção 2): a mesma tela inicial precisa servir tanto a quem está em crise (engajamento emergencial) quanto a quem usa o app por rotina (engajamento diário), sem obrigar a escolha de um caminho logo de cara. A alta fidelidade reforça essa leitura com hierarquia visual real: os quatro cards têm o mesmo peso visual entre si (nenhuma funcionalidade de rotina é destacada sobre outra), enquanto o botão SOS CVV se distingue por cor, forma (círculo) e posição fixa, a única ação da tela com tratamento visual de urgência, coerente com o ponto de atenção 8.2 do estudo de caso.
 
 Dentro de cada tela, a disposição segue um padrão consistente: AppBar → contexto/pergunta → conteúdo principal → ação primária no rodapé. Esse padrão reduz a carga cognitiva de reaprender a interface a cada tela nova, o que é particularmente importante para a persona Lucas, que usa o app em sessões curtas entre uma aula e outra (docs/personas.md) e não tem tempo para reaprender onde as coisas ficam.
 
-A área de identidade visual da Tela 01 (antes apenas um retrato pontilhado com legenda no wireframe) virou, na alta fidelidade, um cartão real com gradiente suave, formas orgânicas translúcidas e a frase "Respire fundo. Este é um espaço seguro, sem julgamentos." — uma aplicação direta da frase-guia definida na seção 5.4 do estudo de caso ("o aplicativo que te escuta sem te julgar"). Ela ocupa a parte inferior da tela, depois das funcionalidades, para não competir com as ações principais, mas ainda assim reforçar a identidade em todo acesso à Home.
+A área de identidade visual da Tela 01 (antes apenas um retrato pontilhado com legenda no wireframe) virou, na alta fidelidade, um cartão real com gradiente suave, formas orgânicas translúcidas e a frase "Respire fundo. Este é um espaço seguro, sem julgamentos.", uma aplicação direta da frase-guia definida na seção 5.4 do estudo de caso ("o aplicativo que te escuta sem te julgar"). Ela ocupa a parte inferior da tela, depois das funcionalidades, para não competir com as ações principais, mas ainda assim reforçar a identidade em todo acesso à Home.
 
 ## 4. Navegação (fluxos, menus e facilidade de localização)
 
 A navegação do protótipo de alta fidelidade é idêntica, em estrutura, à validada na baixa fidelidade: a Tela 01 é o único ponto de entrada para Diário, Respirar, PHQ-9 e Configurações, e o botão SOS CVV fica acessível a partir de qualquer tela, sempre no mesmo canto superior direito, sempre com a mesma cor e o mesmo rótulo. Essa previsibilidade é o que garante RNF01 (função principal em até 3 interações) e a exigência de "1 toque a partir de qualquer tela" para o CVV (RF09, seção 8.2 do estudo de caso): não há menu para abrir, não há tela intermediária, o botão está sempre no mesmo lugar físico da tela, o que importa quando o usuário está com atenção reduzida.
 
-Todas as telas secundárias (Diário, Histórico, Respiração, PHQ-9, Configurações) usam o mesmo padrão de retorno — seta "‹" no canto superior esquerdo da AppBar, sempre voltando à tela de origem — exceto as duas telas de confirmação crítica (Chamada ao CVV e Botão de Pânico), que substituem a seta por um botão "Cancelar" explícito no rodapé. Essa exceção é proposital: em ações que envolvem uma ligação de emergência ou a exclusão permanente de dados, um toque acidental no canto da tela (comum em uso com uma mão só, ou em situação de crise) não deve ser a única forma de sair da tela — o "Cancelar" exige uma ação de leitura e confirmação, reduzindo o risco de saída não intencional em um momento sensível.
+Todas as telas secundárias (Diário, Histórico, Respiração, PHQ-9, Configurações) usam o mesmo padrão de retorno, seta "‹" no canto superior esquerdo da AppBar, sempre voltando à tela de origem, exceto as duas telas de confirmação crítica (Chamada ao CVV e Botão de Pânico), que substituem a seta por um botão "Cancelar" explícito no rodapé. Essa exceção é proposital: em ações que envolvem uma ligação de emergência ou a exclusão permanente de dados, um toque acidental no canto da tela (comum em uso com uma mão só, ou em situação de crise) não deve ser a única forma de sair da tela, o "Cancelar" exige uma ação de leitura e confirmação, reduzindo o risco de saída não intencional em um momento sensível.
 
 ## 5. Componentes (elementos de UI utilizados)
 
@@ -71,12 +71,12 @@ O protótipo define um pequeno conjunto de componentes reutilizáveis, para que 
 
 - Cartão (card): fundo branco, cantos arredondados de 20px, sombra suave. Usado nos cards da Home, no resultado do PHQ-9 e no gráfico de evolução.
 - Botão primário: preenchimento em gradiente roxo, texto branco em Poppins SemiBold. Usado em ações de avanço no fluxo (Salvar registro, Próxima).
-- Botão de perigo: preenchimento em gradiente vermelho. Usado exclusivamente em Ligar agora e Apagar tudo — as duas únicas ações irreversíveis ou de emergência do app, reservando o vermelho para esse papel específico.
+- Botão de perigo: preenchimento em gradiente vermelho. Usado exclusivamente em Ligar agora e Apagar tudo, as duas únicas ações irreversíveis ou de emergência do app, reservando o vermelho para esse papel específico.
 - Botão contorno/texto: usado em ações secundárias (Voltar ao início, Cancelar), sem competir visualmente com a ação primária da tela.
-- Seletor de humor (chip circular): estado "não selecionado" com contorno fino e ícone colorido; estado "selecionado" com preenchimento sólido, leve aumento de escala e sombra — demonstra visualmente o estado ativo exigido pelo item 2.2 da Atividade 04.
-- Opção de rádio (PHQ-9): linha inteira tocável, com destaque de fundo quando selecionada, não apenas o círculo do rádio — aumenta a área de toque, importante em uso com atenção reduzida.
+- Seletor de humor (chip circular): estado "não selecionado" com contorno fino e ícone colorido; estado "selecionado" com preenchimento sólido, leve aumento de escala e sombra, demonstra visualmente o estado ativo exigido pelo item 2.2 da Atividade 04.
+- Opção de rádio (PHQ-9): linha inteira tocável, com destaque de fundo quando selecionada, não apenas o círculo do rádio, aumenta a área de toque, importante em uso com atenção reduzida.
 - Toggle (interruptor): usado nas duas preferências de Configurações (tema escuro, notificações), com estado ligado/desligado claramente diferenciado por cor e posição.
-- Barra de progresso: usada no PHQ-9 para mostrar "Pergunta X de 9", dando ao usuário uma expectativa clara de quanto falta — reduz a ansiedade de não saber a duração de um questionário sobre saúde mental.
+- Barra de progresso: usada no PHQ-9 para mostrar "Pergunta X de 9", dando ao usuário uma expectativa clara de quanto falta, reduz a ansiedade de não saber a duração de um questionário sobre saúde mental.
 - Gráfico de linha: usado no histórico de PHQ-9, com pontos discretos e traço em gradiente de marca, mantendo a mesma identidade visual mesmo em um componente de dado.
 
 ## 6. Acessibilidade (conformidade com padrões de inclusão)
@@ -85,54 +85,29 @@ O estudo de caso já define, na seção 3 (linha "Estímulos sensoriais") e no R
 
 * Nenhuma confirmação crítica (chamada ao CVV, exclusão de dados) usa um pop-up modal sobreposto à tela: ambas são telas de página inteira, navegáveis como qualquer outra, o que evita o "susto" de um elemento flutuante aparecendo de repente.
 * Todos os alvos de toque (botões, cards, opções de rádio, linhas de configuração) têm altura mínima de 48–56px, bem acima do mínimo recomendado de 44px, considerando o uso por pessoas com atenção reduzida ou em ambientes com pouca luz.
-* O contraste de texto evita tanto o preto puro sobre branco puro (excesso de contraste, cansativo em uso noturno) quanto tons pastéis de baixo contraste (ilegíveis) — um meio-termo verificado visualmente em cada tela, com reforço adicional de peso de fonte (SemiBold/Bold) em vez de apenas cor para indicar seleção (por exemplo, na opção do PHQ-9 selecionada e no chip de humor ativo), o que ajuda usuários com baixa percepção de cor a identificar o estado sem depender só da cor.
+* O contraste de texto evita tanto o preto puro sobre branco puro (excesso de contraste, cansativo em uso noturno) quanto tons pastéis de baixo contraste (ilegíveis), um meio-termo verificado visualmente em cada tela, com reforço adicional de peso de fonte (SemiBold/Bold) em vez de apenas cor para indicar seleção (por exemplo, na opção do PHQ-9 selecionada e no chip de humor ativo), o que ajuda usuários com baixa percepção de cor a identificar o estado sem depender só da cor.
 
 ## 7. Decisões relacionadas ao contexto de uso
 
 O contexto de uso do Respira (estudo de caso, seção 3) é o ponto de partida de praticamente todas as decisões acima, mas duas merecem destaque específico:
 
-* Leitura noturna e tema escuro (RF15, F10): o protótipo de alta fidelidade inclui, além das nove telas principais, uma variante de estado da Tela 01 com o tema escuro ativado (arquivo Tela_HD_01_TemaEscuro.svg, também presente no PDF como página de estado). Ela reaproveita a mesma paleta de marca em versão mais escura e saturada (fundo #191627, cartões #241F38), mantendo o mesmo gradiente roxo-azul como acento, em vez de simplesmente inverter as cores — o que preservaria a identidade da marca mesmo à noite, coerente com a exigência de "suporte a tema escuro, evitando fundos brancos intensos" (seção 3, linha "Iluminação").
-* Tela de respiração como caso especial de contexto de uso: é a única tela pensada para permanecer aberta por vários minutos (RNF04), por isso não tem nenhuma animação decorativa além do próprio círculo de respiração — sem elementos que se movam sem propósito, o que ajuda tanto no consumo de bateria quanto em evitar estímulos visuais desnecessários durante uma sessão de regulação emocional.
+* Leitura noturna e tema escuro (RF15, F10): o protótipo de alta fidelidade inclui, além das nove telas principais, uma variante de estado da Tela 01 com o tema escuro ativado (arquivo Tela_HD_01_TemaEscuro.svg, também presente no PDF como página de estado). Ela reaproveita a mesma paleta de marca em versão mais escura e saturada (fundo #191627, cartões #241F38), mantendo o mesmo gradiente roxo-azul como acento, em vez de simplesmente inverter as cores, o que preservaria a identidade da marca mesmo à noite, coerente com a exigência de "suporte a tema escuro, evitando fundos brancos intensos" (seção 3, linha "Iluminação").
+* Tela de respiração como caso especial de contexto de uso: é a única tela pensada para permanecer aberta por vários minutos (RNF04), por isso não tem nenhuma animação decorativa além do próprio círculo de respiração, sem elementos que se movam sem propósito, o que ajuda tanto no consumo de bateria quanto em evitar estímulos visuais desnecessários durante uma sessão de regulação emocional.
 
 A escala de mockup (402×874px) corresponde a um aparelho de entrada/intermediário comum, não ao maior iPhone disponível, o que mantém o desenho honesto em relação à exigência de RNF08 (teste em ao menos um Android real de entrada): nenhum elemento do layout depende de uma tela grande para funcionar.
 
 ## 8. Arquitetura do sistema (visão geral)
 
-O protótipo de alta fidelidade já antecipa, na disposição das telas e dos componentes, algumas decisões de arquitetura que deverão orientar a implementação em Flutter na Unidade II:
-
-┌─────────────────────────────────────────────┐
-│ UI (Flutter) │
-│ Telas/Widgets: Home, Diário, Respirar, │
-│ PHQ-9, Config., CVV, Botão de Pânico │
-└───────────────┬───────────────────┬─────────┘
-│ │
-┌─────────▼────────┐ ┌────────▼─────────┐
-│ Camada de estado │ │ Serviços de apoio │
-│ (Provider/Riverpod)│ │ - Cálculo PHQ-9 │
-│ por funcionalidade│ │ - Discagem (url_ │
-└─────────┬────────┘ │ launcher) │
-│ │ - Notificações │
-┌─────────▼────────┐ │ locais │
-│ Armazenamento │ └────────────────────┘
-│ local criptografado│
-│ (ex.: Hive/SQLite │
-│ + chave segura) │
-└─────────┬────────┘
-│ sincronização opcional
-┌─────────▼────────┐
-│ Backend na nuvem │
-│ (dados sempre │
-│ criptografados) │
-└───────────────────┘
+O protótipo de alta fidelidade já antecipa, na disposição das telas e dos componentes, algumas decisões de arquitetura que deverão orientar a implementação em Flutter:
 
 * *Camada de UI:* widgets Flutter organizados por funcionalidade (uma pasta por tela), reaproveitando os componentes definidos na seção 5 (cartão, botões, seletor de humor, toggle etc.) como widgets próprios, para que o mapeamento do protótipo Figma para código seja direto.
-* *Camada de estado:* um gerenciador de estado leve (Provider ou Riverpod) por funcionalidade, evitando um estado global único — coerente com o fato de que quase todas as informações do app (diário, PHQ-9) não têm relação entre si e não exigem um usuário autenticado (RF11).
+* *Camada de estado:* um gerenciador de estado leve (Provider ou Riverpod) por funcionalidade, evitando um estado global único, coerente com o fato de que quase todas as informações do app (diário, PHQ-9) não têm relação entre si e não exigem um usuário autenticado (RF11).
 * *Armazenamento local criptografado:* todo dado sensível (registros do diário, respostas do PHQ-9) é gravado localmente por padrão, usando uma solução de armazenamento embutido com criptografia (por exemplo, Hive com criptografia por chave gerada no dispositivo, ou SQLite com extensão de criptografia). Isso implementa diretamente RF12, RF16 e RNF06: o app funciona por completo sem rede, e a criptografia local não depende de nenhum serviço externo estar disponível.
 * *Número do CVV em cache local:* RF09/RF10 exigem que a discagem funcione sem conexão; por isso o número 188 é uma constante embutida no app (não uma chamada de API), consultada localmente e usada por um pacote de discagem nativa (como url_launcher), sem qualquer dependência de rede.
-* *Sincronização em nuvem opcional:* conforme RNF06, a nuvem é sempre opcional e nunca crítica — nenhuma tela do protótipo assume que os dados estão sincronizados, e a ausência de conexão nunca bloqueia uma funcionalidade essencial (F05).
-* *Botão de Pânico:* implementado como uma operação de exclusão local imediata (apagar o armazenamento local) seguida de uma tentativa de exclusão remota, se houver sincronização ativa — mas a exclusão local nunca espera a confirmação da nuvem, para que o direito ao esquecimento (RF13) funcione mesmo offline.
+* *Sincronização em nuvem opcional:* conforme RNF06, a nuvem é sempre opcional e nunca crítica, nenhuma tela do protótipo assume que os dados estão sincronizados, e a ausência de conexão nunca bloqueia uma funcionalidade essencial (F05).
+* *Botão de Pânico:* implementado como uma operação de exclusão local imediata (apagar o armazenamento local) seguida de uma tentativa de exclusão remota, se houver sincronização ativa, mas a exclusão local nunca espera a confirmação da nuvem, para que o direito ao esquecimento (RF13) funcione mesmo offline.
 
-Essa visão geral é propositalmente simples: o objetivo, nesta etapa, é confirmar que a estrutura visual e de navegação já validada no protótipo tem uma arquitetura viável por trás, não fechar decisões técnicas definitivas — essas serão detalhadas durante a implementação em Unidade II.
+Essa visão geral é propositalmente simples: o objetivo, nesta etapa, é confirmar que a estrutura visual e de navegação já validada no protótipo tem uma arquitetura viável por trás, não fechar decisões técnicas definitivas, essas serão detalhadas durante a implementação posteriormente.
 
 ## 9. Relação com o restante do projeto
 
@@ -141,5 +116,5 @@ Cada decisão descrita acima foi verificada contra os artefatos das atividades a
 * *Estudo de caso* (docs/estudo-de-caso.md): definiu a identidade calma e translúcida (seção 5.2), o botão de emergência sempre visível (seção 7) e as restrições sensoriais (seção 3) que o protótipo de alta fidelidade apenas formaliza em tokens de cor, tipografia e componentes.
 * *Pesquisa* (docs/pesquisa.md): o volume de atendimentos do CVV e a exclusão digital parcial do público justificam, respectivamente, o tratamento visual de urgência do botão SOS e a arquitetura offline-first descrita na seção 8.
 * *Personas* (docs/personas.md): Marina (uso emergencial) orienta as decisões de alto contraste, alvos de toque grandes e ausência de pop-ups; Lucas (uso diário) orienta a consistência de padrão entre telas e a rapidez do fluxo do diário.
-* *Benchmark* (docs/benchmark.md): a ausência de gamificação (sequências, conquistas, comparação) no Daylio e a dependência de assinatura no Calm reforçam por que o Respira não usa elementos de progresso comparativo nem conteúdo bloqueado — cada tela do protótipo mostra o que é necessário, sem cobrança visual.
+* *Benchmark* (docs/benchmark.md): a ausência de gamificação (sequências, conquistas, comparação) no Daylio e a dependência de assinatura no Calm reforçam por que o Respira não usa elementos de progresso comparativo nem conteúdo bloqueado, cada tela do protótipo mostra o que é necessário, sem cobrança visual.
 * *Requisitos* (docs/requisitos.md): todas as telas do protótipo trazem os requisitos funcionais que atendem, conforme indicado nas páginas do docs/prototipoAltaFidelidade.pdf; nenhum elemento visual foi incluído sem corresponder a um RF ou RNF já definido na Atividade 03.

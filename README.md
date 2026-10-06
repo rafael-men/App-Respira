@@ -53,6 +53,26 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 
 Esta etapa cobre apenas o protótipo de baixa fidelidade (estrutura e fluxo das telas, sem cor, tipografia ou identidade visual definitivas). O protótipo de alta fidelidade e as justificativas de UI/UX pertencem a etapas futuras da Atividade 04.
 
+# Atividade 04: Prototipação 3/3 (Protótipo de Alta Fidelidade e Justificativas)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/prototipoAltaFidelidade.pdf`](docs/prototipoAltaFidelidade.pdf), com o protótipo de alta fidelidade em PDF | Murilo Pedral Mota |
+| Seções 1, 2 e 3 de [`docs/justificativas.md`](docs/justificativas.md) | Murilo Pedral Mota |
+| Seções 4 e 5 de [`docs/justificativas.md`](docs/justificativas.md) | Rafael Menezes Gonçalves |
+| Seções 6 e 7 de [`docs/justificativas.md`](docs/justificativas.md) | Franck Patrick Hora Vasconcelos |
+| Seções 8 e 9 de [`docs/justificativas.md`](docs/justificativas.md) | Rene Mendonça Marinho |
+
+# Atividade 05: Apresentação Final da Unidade I
+
+| Atividade | Responsável |
+| --- | --- |
+| Anexar o documento de apresentação final da Unidade I em [`docs/apresentacaoFinalUnidadeI.pdf`](docs/apresentacaoFinalUnidadeI.pdf) | Murilo Pedral Mota |
+| Slides 1 a 8 da apresentação final da Unidade I | Franck Patrick Hora Vasconcelos |
+| Slides 9 a 12 da apresentação final da Unidade I | Murilo Pedral Mota |
+| Slides 13 a 16 da apresentação final da Unidade I | Rafael Menezes Gonçalves |
+| Slides 17 a 22 da apresentação final da Unidade I | Rene Mendonça Marinho |
+
 ## Descrição do projeto
 
 O Respira é um espaço digital seguro para cuidado emocional, voltado a adultos em geral, universitários, professores e pacientes de CAPS. Reúne três frentes que normalmente aparecem separadas: alívio imediato (respiração guiada), autoconhecimento (diário de humor e PHQ-9 semanal) e acesso rápido à rede de apoio (CVV). O projeto prioriza privacidade, uso anônimo, funcionamento offline e uma interface que induz calma em vez de competir por atenção.
