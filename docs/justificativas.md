@@ -59,3 +59,22 @@ Dentro de cada tela, a disposição segue um padrão consistente: AppBar → con
 
 A área de identidade visual da Tela 01 (antes apenas um retrato pontilhado com legenda no wireframe) virou, na alta fidelidade, um cartão real com gradiente suave, formas orgânicas translúcidas e a frase "Respire fundo. Este é um espaço seguro, sem julgamentos." — uma aplicação direta da frase-guia definida na seção 5.4 do estudo de caso ("o aplicativo que te escuta sem te julgar"). Ela ocupa a parte inferior da tela, depois das funcionalidades, para não competir com as ações principais, mas ainda assim reforçar a identidade em todo acesso à Home.
 
+## 4. Navegação (fluxos, menus e facilidade de localização)
+
+A navegação do protótipo de alta fidelidade é idêntica, em estrutura, à validada na baixa fidelidade: a Tela 01 é o único ponto de entrada para Diário, Respirar, PHQ-9 e Configurações, e o botão SOS CVV fica acessível a partir de qualquer tela, sempre no mesmo canto superior direito, sempre com a mesma cor e o mesmo rótulo. Essa previsibilidade é o que garante RNF01 (função principal em até 3 interações) e a exigência de "1 toque a partir de qualquer tela" para o CVV (RF09, seção 8.2 do estudo de caso): não há menu para abrir, não há tela intermediária, o botão está sempre no mesmo lugar físico da tela, o que importa quando o usuário está com atenção reduzida.
+
+Todas as telas secundárias (Diário, Histórico, Respiração, PHQ-9, Configurações) usam o mesmo padrão de retorno — seta "‹" no canto superior esquerdo da AppBar, sempre voltando à tela de origem — exceto as duas telas de confirmação crítica (Chamada ao CVV e Botão de Pânico), que substituem a seta por um botão "Cancelar" explícito no rodapé. Essa exceção é proposital: em ações que envolvem uma ligação de emergência ou a exclusão permanente de dados, um toque acidental no canto da tela (comum em uso com uma mão só, ou em situação de crise) não deve ser a única forma de sair da tela — o "Cancelar" exige uma ação de leitura e confirmação, reduzindo o risco de saída não intencional em um momento sensível.
+
+## 5. Componentes (elementos de UI utilizados)
+
+O protótipo define um pequeno conjunto de componentes reutilizáveis, para que a implementação em Flutter (Unidade II) possa mapear cada um a um widget único em vez de recriar estilos tela a tela:
+
+- Cartão (card): fundo branco, cantos arredondados de 20px, sombra suave. Usado nos cards da Home, no resultado do PHQ-9 e no gráfico de evolução.
+- Botão primário: preenchimento em gradiente roxo, texto branco em Poppins SemiBold. Usado em ações de avanço no fluxo (Salvar registro, Próxima).
+- Botão de perigo: preenchimento em gradiente vermelho. Usado exclusivamente em Ligar agora e Apagar tudo — as duas únicas ações irreversíveis ou de emergência do app, reservando o vermelho para esse papel específico.
+- Botão contorno/texto: usado em ações secundárias (Voltar ao início, Cancelar), sem competir visualmente com a ação primária da tela.
+- Seletor de humor (chip circular): estado "não selecionado" com contorno fino e ícone colorido; estado "selecionado" com preenchimento sólido, leve aumento de escala e sombra — demonstra visualmente o estado ativo exigido pelo item 2.2 da Atividade 04.
+- Opção de rádio (PHQ-9): linha inteira tocável, com destaque de fundo quando selecionada, não apenas o círculo do rádio — aumenta a área de toque, importante em uso com atenção reduzida.
+- Toggle (interruptor): usado nas duas preferências de Configurações (tema escuro, notificações), com estado ligado/desligado claramente diferenciado por cor e posição.
+- Barra de progresso: usada no PHQ-9 para mostrar "Pergunta X de 9", dando ao usuário uma expectativa clara de quanto falta — reduz a ansiedade de não saber a duração de um questionário sobre saúde mental.
+- Gráfico de linha: usado no histórico de PHQ-9, com pontos discretos e traço em gradiente de marca, mantendo a mesma identidade visual mesmo em um componente de dado.
