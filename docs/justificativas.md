@@ -78,3 +78,20 @@ O protótipo define um pequeno conjunto de componentes reutilizáveis, para que 
 - Toggle (interruptor): usado nas duas preferências de Configurações (tema escuro, notificações), com estado ligado/desligado claramente diferenciado por cor e posição.
 - Barra de progresso: usada no PHQ-9 para mostrar "Pergunta X de 9", dando ao usuário uma expectativa clara de quanto falta — reduz a ansiedade de não saber a duração de um questionário sobre saúde mental.
 - Gráfico de linha: usado no histórico de PHQ-9, com pontos discretos e traço em gradiente de marca, mantendo a mesma identidade visual mesmo em um componente de dado.
+
+## 6. Acessibilidade (conformidade com padrões de inclusão)
+
+O estudo de caso já define, na seção 3 (linha "Estímulos sensoriais") e no RNF02, que o app não pode usar vibração excessiva, animações rápidas ou pop-ups, e deve funcionar com feedback háptico desativado e em silêncio total. O protótipo de alta fidelidade segue essa exigência de três formas concretas:
+
+* Nenhuma confirmação crítica (chamada ao CVV, exclusão de dados) usa um pop-up modal sobreposto à tela: ambas são telas de página inteira, navegáveis como qualquer outra, o que evita o "susto" de um elemento flutuante aparecendo de repente.
+* Todos os alvos de toque (botões, cards, opções de rádio, linhas de configuração) têm altura mínima de 48–56px, bem acima do mínimo recomendado de 44px, considerando o uso por pessoas com atenção reduzida ou em ambientes com pouca luz.
+* O contraste de texto evita tanto o preto puro sobre branco puro (excesso de contraste, cansativo em uso noturno) quanto tons pastéis de baixo contraste (ilegíveis) — um meio-termo verificado visualmente em cada tela, com reforço adicional de peso de fonte (SemiBold/Bold) em vez de apenas cor para indicar seleção (por exemplo, na opção do PHQ-9 selecionada e no chip de humor ativo), o que ajuda usuários com baixa percepção de cor a identificar o estado sem depender só da cor.
+
+## 7. Decisões relacionadas ao contexto de uso
+
+O contexto de uso do Respira (estudo de caso, seção 3) é o ponto de partida de praticamente todas as decisões acima, mas duas merecem destaque específico:
+
+* Leitura noturna e tema escuro (RF15, F10): o protótipo de alta fidelidade inclui, além das nove telas principais, uma variante de estado da Tela 01 com o tema escuro ativado (arquivo Tela_HD_01_TemaEscuro.svg, também presente no PDF como página de estado). Ela reaproveita a mesma paleta de marca em versão mais escura e saturada (fundo #191627, cartões #241F38), mantendo o mesmo gradiente roxo-azul como acento, em vez de simplesmente inverter as cores — o que preservaria a identidade da marca mesmo à noite, coerente com a exigência de "suporte a tema escuro, evitando fundos brancos intensos" (seção 3, linha "Iluminação").
+* Tela de respiração como caso especial de contexto de uso: é a única tela pensada para permanecer aberta por vários minutos (RNF04), por isso não tem nenhuma animação decorativa além do próprio círculo de respiração — sem elementos que se movam sem propósito, o que ajuda tanto no consumo de bateria quanto em evitar estímulos visuais desnecessários durante uma sessão de regulação emocional.
+
+A escala de mockup (402×874px) corresponde a um aparelho de entrada/intermediário comum, não ao maior iPhone disponível, o que mantém o desenho honesto em relação à exigência de RNF08 (teste em ao menos um Android real de entrada): nenhum elemento do layout depende de uma tela grande para funcionar.
