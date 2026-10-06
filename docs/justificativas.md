@@ -95,3 +95,51 @@ O contexto de uso do Respira (estudo de caso, seção 3) é o ponto de partida d
 * Tela de respiração como caso especial de contexto de uso: é a única tela pensada para permanecer aberta por vários minutos (RNF04), por isso não tem nenhuma animação decorativa além do próprio círculo de respiração — sem elementos que se movam sem propósito, o que ajuda tanto no consumo de bateria quanto em evitar estímulos visuais desnecessários durante uma sessão de regulação emocional.
 
 A escala de mockup (402×874px) corresponde a um aparelho de entrada/intermediário comum, não ao maior iPhone disponível, o que mantém o desenho honesto em relação à exigência de RNF08 (teste em ao menos um Android real de entrada): nenhum elemento do layout depende de uma tela grande para funcionar.
+
+## 8. Arquitetura do sistema (visão geral)
+
+O protótipo de alta fidelidade já antecipa, na disposição das telas e dos componentes, algumas decisões de arquitetura que deverão orientar a implementação em Flutter na Unidade II:
+
+┌─────────────────────────────────────────────┐
+│ UI (Flutter) │
+│ Telas/Widgets: Home, Diário, Respirar, │
+│ PHQ-9, Config., CVV, Botão de Pânico │
+└───────────────┬───────────────────┬─────────┘
+│ │
+┌─────────▼────────┐ ┌────────▼─────────┐
+│ Camada de estado │ │ Serviços de apoio │
+│ (Provider/Riverpod)│ │ - Cálculo PHQ-9 │
+│ por funcionalidade│ │ - Discagem (url_ │
+└─────────┬────────┘ │ launcher) │
+│ │ - Notificações │
+┌─────────▼────────┐ │ locais │
+│ Armazenamento │ └────────────────────┘
+│ local criptografado│
+│ (ex.: Hive/SQLite │
+│ + chave segura) │
+└─────────┬────────┘
+│ sincronização opcional
+┌─────────▼────────┐
+│ Backend na nuvem │
+│ (dados sempre │
+│ criptografados) │
+└───────────────────┘
+
+* *Camada de UI:* widgets Flutter organizados por funcionalidade (uma pasta por tela), reaproveitando os componentes definidos na seção 5 (cartão, botões, seletor de humor, toggle etc.) como widgets próprios, para que o mapeamento do protótipo Figma para código seja direto.
+* *Camada de estado:* um gerenciador de estado leve (Provider ou Riverpod) por funcionalidade, evitando um estado global único — coerente com o fato de que quase todas as informações do app (diário, PHQ-9) não têm relação entre si e não exigem um usuário autenticado (RF11).
+* *Armazenamento local criptografado:* todo dado sensível (registros do diário, respostas do PHQ-9) é gravado localmente por padrão, usando uma solução de armazenamento embutido com criptografia (por exemplo, Hive com criptografia por chave gerada no dispositivo, ou SQLite com extensão de criptografia). Isso implementa diretamente RF12, RF16 e RNF06: o app funciona por completo sem rede, e a criptografia local não depende de nenhum serviço externo estar disponível.
+* *Número do CVV em cache local:* RF09/RF10 exigem que a discagem funcione sem conexão; por isso o número 188 é uma constante embutida no app (não uma chamada de API), consultada localmente e usada por um pacote de discagem nativa (como url_launcher), sem qualquer dependência de rede.
+* *Sincronização em nuvem opcional:* conforme RNF06, a nuvem é sempre opcional e nunca crítica — nenhuma tela do protótipo assume que os dados estão sincronizados, e a ausência de conexão nunca bloqueia uma funcionalidade essencial (F05).
+* *Botão de Pânico:* implementado como uma operação de exclusão local imediata (apagar o armazenamento local) seguida de uma tentativa de exclusão remota, se houver sincronização ativa — mas a exclusão local nunca espera a confirmação da nuvem, para que o direito ao esquecimento (RF13) funcione mesmo offline.
+
+Essa visão geral é propositalmente simples: o objetivo, nesta etapa, é confirmar que a estrutura visual e de navegação já validada no protótipo tem uma arquitetura viável por trás, não fechar decisões técnicas definitivas — essas serão detalhadas durante a implementação em Unidade II.
+
+## 9. Relação com o restante do projeto
+
+Cada decisão descrita acima foi verificada contra os artefatos das atividades anteriores antes de entrar no protótipo:
+
+* *Estudo de caso* (docs/estudo-de-caso.md): definiu a identidade calma e translúcida (seção 5.2), o botão de emergência sempre visível (seção 7) e as restrições sensoriais (seção 3) que o protótipo de alta fidelidade apenas formaliza em tokens de cor, tipografia e componentes.
+* *Pesquisa* (docs/pesquisa.md): o volume de atendimentos do CVV e a exclusão digital parcial do público justificam, respectivamente, o tratamento visual de urgência do botão SOS e a arquitetura offline-first descrita na seção 8.
+* *Personas* (docs/personas.md): Marina (uso emergencial) orienta as decisões de alto contraste, alvos de toque grandes e ausência de pop-ups; Lucas (uso diário) orienta a consistência de padrão entre telas e a rapidez do fluxo do diário.
+* *Benchmark* (docs/benchmark.md): a ausência de gamificação (sequências, conquistas, comparação) no Daylio e a dependência de assinatura no Calm reforçam por que o Respira não usa elementos de progresso comparativo nem conteúdo bloqueado — cada tela do protótipo mostra o que é necessário, sem cobrança visual.
+* *Requisitos* (docs/requisitos.md): todas as telas do protótipo trazem os requisitos funcionais que atendem, conforme indicado nas páginas do docs/prototipoAltaFidelidade.pdf; nenhum elemento visual foi incluído sem corresponder a um RF ou RNF já definido na Atividade 03.
