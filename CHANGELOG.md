@@ -56,3 +56,11 @@
 ### Alterado
 - README.md: adicionadas as seções da Atividade 04 (Prototipação 3/3, protótipo de alta fidelidade e justificativas) e da Atividade 05 (Apresentação Final da Unidade I), com as respectivas responsabilidades. Murilo.
 - CHANGELOG.md: registrado o acréscimo dos documentos e das justificativas das Atividades 04 e 05. Murilo.
+
+## [05/11/2026]
+
+### Adicionado
+- Escopo do projeto em docs/escopo.md (Projeto Unidade II, Q1 d) i): objetivo, justificativa, público e personas, escopo do produto (F01 a F10) e técnico, entregáveis, fora do escopo, premissas, restrições e critérios de aceitação. Murilo.
+
+### Alterado
+- README.md: adicionada a seção do Projeto Unidade II (Escopo do Projeto) com a responsabilidade e o link para docs/escopo.md. Murilo.

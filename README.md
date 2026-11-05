@@ -82,3 +82,9 @@ O Respira é um espaço digital seguro para cuidado emocional, voltado a adultos
 A análise completa do estudo de caso está em [`docs/estudo-de-caso.md`](docs/estudo-de-caso.md).
 
 O benchmark de soluções existentes está em [`docs/benchmark.md`](docs/benchmark.md).
+
+# Projeto Unidade II: Escopo do Projeto (Questão 01 d) i)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/escopo.md`](docs/escopo.md), com o escopo do projeto (objetivo, justificativa, público, escopo do produto e técnico, entregáveis, fora do escopo, premissas, restrições e critérios de aceitação) | Murilo Pedral Mota |
