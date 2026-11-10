@@ -94,3 +94,11 @@
 
 ### Alterado
 - README.md: adicionada a seção do Diagrama de Classes com a responsabilidade e os links para docs/diagrama-classes.md e docs/diagrama-classes.pdf. Murilo.
+
+## [10/11/2026]
+
+### Adicionado
+- Modelagem do banco de dados em docs/modelagem-firestore.md (Projeto Unidade II, Q1 b) iii): estrutura de coleções e documentos no Cloud Firestore (usuarios, registros_humor e respostas_phq9), campos e tipos, exemplos, CRUD por coleção, consultas e índices, Security Rules e ordem de exclusão do Botão de Pânico. Rafael.
+
+### Alterado
+- README.md: adicionada a seção da Modelagem do Firestore com a responsabilidade e o link para docs/modelagem-firestore.md. Rafael.

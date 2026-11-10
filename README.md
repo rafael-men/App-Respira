@@ -131,3 +131,11 @@ A EAP do projeto da Unidade II está em [`docs/eap.md`](docs/eap.md).
 | Adicionar [`docs/diagrama-classes.md`](docs/diagrama-classes.md) e [`docs/diagrama-classes.pdf`](docs/diagrama-classes.pdf), com as classes de domínio, atributos, métodos, relacionamentos e descrição de cada classe | Murilo Pedral Mota |
 
 O diagrama de classes da Unidade II está em [`docs/diagrama-classes.md`](docs/diagrama-classes.md).
+
+# Projeto Unidade II: Modelagem do Banco de Dados no Firestore (Questão 01 b) iii)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md), com coleções, documentos, campos, consultas, Security Rules e exclusão pelo Botão de Pânico | Rafael Menezes Gonçalves |
+
+A modelagem do banco de dados no Firestore está em [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md).
