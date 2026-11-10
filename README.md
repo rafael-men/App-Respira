@@ -107,3 +107,27 @@ O benchmark de soluções existentes está em [`docs/benchmark.md`](docs/benchma
 | Atividade | Responsável |
 | --- | --- |
 | Adicionar [`docs/escopo.md`](docs/escopo.md), com o escopo do projeto (objetivo, justificativa, público, escopo do produto e técnico, entregáveis, fora do escopo, premissas, restrições e critérios de aceitação) | Murilo Pedral Mota |
+
+# Projeto Unidade II: Diagrama de Casos de Uso (Questão 01 b) i)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/diagrama-casos-de-uso.md`](docs/diagrama-casos-de-uso.md) e [`docs/diagrama-casos-de-uso.pdf`](docs/diagrama-casos-de-uso.pdf), com atores, casos de uso UC01 a UC14, regras de negócio RN01 a RN08 e código PlantUML | Franck Patrick Hora Vasconcelos |
+
+O diagrama de casos de uso da Unidade II está em [`docs/diagrama-casos-de-uso.md`](docs/diagrama-casos-de-uso.md).
+
+# Projeto Unidade II: Estrutura Analítica do Projeto, EAP (Questão 01 d) ii)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/eap.md`](docs/eap.md), com a EAP simplificada: diagrama em Mermaid com 7 pacotes principais e dicionário com entregável e origem de cada pacote | Franck Patrick Hora Vasconcelos |
+
+A EAP do projeto da Unidade II está em [`docs/eap.md`](docs/eap.md).
+
+# Projeto Unidade II: Diagrama de Classes (Questão 01 b) ii)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/diagrama-classes.md`](docs/diagrama-classes.md) e [`docs/diagrama-classes.pdf`](docs/diagrama-classes.pdf), com as classes de domínio, atributos, métodos, relacionamentos e descrição de cada classe | Murilo Pedral Mota |
+
+O diagrama de classes da Unidade II está em [`docs/diagrama-classes.md`](docs/diagrama-classes.md).

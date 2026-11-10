@@ -70,3 +70,27 @@
 
 ### Alterado
 - README.md: adicionada a seção do Projeto Unidade II (Escopo do Projeto) com a responsabilidade e o link para docs/escopo.md. Murilo.
+
+## [10/11/2026]
+
+### Adicionado
+- Diagrama de Casos de Uso em docs/diagrama-casos-de-uso.md e docs/diagrama-casos-de-uso.pdf (Projeto Unidade II, Q1 b) i): atores, 14 casos de uso (UC01 a UC14), regras de negócio RN01 a RN08 e código-fonte em PlantUML. Franck.
+
+### Alterado
+- README.md: adicionada a seção do Diagrama de Casos de Uso com a responsabilidade e os links para docs/diagrama-casos-de-uso.md e docs/diagrama-casos-de-uso.pdf. Franck.
+
+## [10/11/2026]
+
+### Adicionado
+- EAP simplificada em docs/eap.md (Projeto Unidade II, Q1 d) ii): diagrama em Mermaid e dicionário dos pacotes de trabalho (gerenciamento, documentação e modelagem, prototipação, infraestrutura Firebase, funcionalidades, qualidade e entrega), cada um ligado a funcionalidade, requisito ou item do Projeto II. Franck.
+
+### Alterado
+- README.md: adicionada a seção da EAP com a responsabilidade e o link para docs/eap.md. Franck.
+
+## [10/11/2026]
+
+### Adicionado
+- Diagrama de Classes em docs/diagrama-classes.md e docs/diagrama-classes.pdf (Projeto Unidade II, Q1 b) ii): classes Usuario, RegistroHumor, NivelHumor, RespostaPHQ9, Configuracoes, ContatoEmergencia e Criptografia, com descrição das classes, métodos principais e relacionamentos. Murilo.
+
+### Alterado
+- README.md: adicionada a seção do Diagrama de Classes com a responsabilidade e os links para docs/diagrama-classes.md e docs/diagrama-classes.pdf. Murilo.
