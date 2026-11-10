@@ -62,3 +62,11 @@
 ### Alterado
 - README.md: adicionada a seção da Unidade II com a Sprint 1, a tabela de responsabilidades do Tópico 01 e a stack (Dart, Flutter e Firebase) na descrição do projeto. Franck.
 - .gitignore: adicionada a pasta docs/unidade-ii/, de documentos internos de planejamento que não devem ser versionados. Franck.
+
+## [05/11/2026]
+
+### Adicionado
+- Escopo do projeto em docs/escopo.md (Projeto Unidade II, Q1 d) i): objetivo, justificativa, público e personas, escopo do produto (F01 a F10) e técnico, entregáveis, fora do escopo, premissas, restrições e critérios de aceitação. Murilo.
+
+### Alterado
+- README.md: adicionada a seção do Projeto Unidade II (Escopo do Projeto) com a responsabilidade e o link para docs/escopo.md. Murilo.
