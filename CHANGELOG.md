@@ -57,6 +57,12 @@
 - README.md: adicionadas as seções da Atividade 04 (Prototipação 3/3, protótipo de alta fidelidade e justificativas) e da Atividade 05 (Apresentação Final da Unidade I), com as respectivas responsabilidades. Murilo.
 - CHANGELOG.md: registrado o acréscimo dos documentos e das justificativas das Atividades 04 e 05. Murilo.
 
+## [03/11/2026] Unidade II, Sprint 1
+
+### Alterado
+- README.md: adicionada a seção da Unidade II com a Sprint 1, a tabela de responsabilidades do Tópico 01 e a stack (Dart, Flutter e Firebase) na descrição do projeto. Franck.
+- .gitignore: adicionada a pasta docs/unidade-ii/, de documentos internos de planejamento que não devem ser versionados. Franck.
+
 ## [05/11/2026]
 
 ### Adicionado

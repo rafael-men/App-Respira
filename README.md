@@ -73,7 +73,26 @@ Esta etapa cobre apenas o protótipo de baixa fidelidade (estrutura e fluxo das 
 | Slides 13 a 16 da apresentação final da Unidade I | Rafael Menezes Gonçalves |
 | Slides 17 a 22 da apresentação final da Unidade I | Rene Mendonça Marinho |
 
+# Unidade II: Projeto (Programação para Dispositivos Móveis)
+
+Stack obrigatória: Dart, Flutter e Firebase (Autenticação e Banco de Dados). Apresentações em 24/11/2026 e 01/12/2026.
+
+## Sprint 1 (03/11/2026 a 09/11/2026)
+
+### Tópico 01: Q1 a) ii) Firebase (Autenticação e Banco de Dados)
+
+Decisão: Firebase Authentication anônimo e Cloud Firestore com persistência offline, mantendo o uso sem cadastro (RF11) e o funcionamento offline (RF16).
+
+| Integrante | Responsabilidade no Tópico 01 | Status |
+|---|---|---|
+| Franck Patrick Hora Vasconcelos | Endosso do Firebase em estudo-de-caso (seção 1), benchmark, RF11, RF12, RF13 e novo RF17 em requisitos, seção 7 de justificativas e README | Pendente |
+| Murilo Pedral Mota | Endosso em estudo-de-caso (seção 3), pesquisa (3.2, 3.4 e síntese), RNF03, RNF06 e RNF07 em requisitos, seção "Serviços de nuvem" em arquitetura | Pendente |
+| Rafael Menezes Gonçalves | Endosso na persona 1, mapeamento do CRUD para coleções do Firestore e reposicionamento do RF16 em requisitos, seção 4 de justificativas | Pendente |
+| Rene Mendonça Marinho | Endosso em estudo-de-caso (seções 6, 7 e 8.1), persona 2, F05 a F08 em requisitos, seção 8 de justificativas | Pendente |
+
 ## Descrição do projeto
+
+Dart, Flutter e Firebase (Authentication anônimo e Cloud Firestore com persistência offline).
 
 O Respira é um espaço digital seguro para cuidado emocional, voltado a adultos em geral, universitários, professores e pacientes de CAPS. Reúne três frentes que normalmente aparecem separadas: alívio imediato (respiração guiada), autoconhecimento (diário de humor e PHQ-9 semanal) e acesso rápido à rede de apoio (CVV). O projeto prioriza privacidade, uso anônimo, funcionamento offline e uma interface que induz calma em vez de competir por atenção.
 
