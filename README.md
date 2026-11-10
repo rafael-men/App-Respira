@@ -139,3 +139,20 @@ O diagrama de classes da Unidade II está em [`docs/diagrama-classes.md`](docs/d
 | Adicionar [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md), com coleções, documentos, campos, consultas, Security Rules e exclusão pelo Botão de Pânico | Rafael Menezes Gonçalves |
 
 A modelagem do banco de dados no Firestore está em [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md).
+
+# Projeto Unidade II: Mapeamento das Classes Dart para o Firestore (Questão 01 b) iv)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/mapeamento-dart-firestore.md`](docs/mapeamento-dart-firestore.md), com a correspondência campo a campo entre as classes e os documentos, regras de conversão de tipos, `toMap()`/`fromMap()` e uso de `withConverter` | Rene Mendonça Marinho |
+
+O mapeamento das classes Dart para o Firestore está em [`docs/mapeamento-dart-firestore.md`](docs/mapeamento-dart-firestore.md).
+
+# Projeto Unidade II: Planejamento do Desenvolvimento em Sprints (Questão 01 d) iii)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar as seções 1 a 4 de [`docs/sprints.md`](docs/sprints.md): premissas, calendário, Sprint 1 e Sprint 2 | Rene Mendonça Marinho |
+| Adicionar as seções 5 a 8 de [`docs/sprints.md`](docs/sprints.md): Sprint 3, Sprint 4, riscos e ritual dos checkpoints | Rafael Menezes Gonçalves |
+
+O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprints.md).

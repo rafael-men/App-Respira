@@ -102,3 +102,21 @@
 
 ### Alterado
 - README.md: adicionada a seção da Modelagem do Firestore com a responsabilidade e o link para docs/modelagem-firestore.md. Rafael.
+
+## [10/11/2026]
+
+### Adicionado
+- Mapeamento das classes Dart para o Firestore em docs/mapeamento-dart-firestore.md (Projeto Unidade II, Q1 b) iv): correspondência das classes Usuario, Configuracoes, RegistroHumor, NivelHumor e RespostaPHQ9 com as coleções, regras de conversão (DateTime, enum, campos cifrados), implementação de referência de toMap()/fromMap(), withConverter por coleção e comportamento offline. Rene.
+
+### Alterado
+- README.md: adicionada a seção do Mapeamento Dart para Firestore com a responsabilidade e o link para docs/mapeamento-dart-firestore.md. Rene.
+
+## [10/11/2026]
+
+### Adicionado
+- Planejamento em sprints em docs/sprints.md, seções 1 a 4 (Projeto Unidade II, Q1 d) iii): premissas do planejamento, calendário das sprints até as apresentações de 24/11 e 01/12, e tarefas da Sprint 1 (Firebase na documentação) e da Sprint 2 (escopo, EAP, sprints, casos de uso, classes e modelagem do Firestore). Rene.
+- Planejamento em sprints em docs/sprints.md, seções 5 a 8 (Projeto Unidade II, Q1 d) iii): Sprint 3 (app mínimo executável), Sprint 4 (conclusão, qualidade e apresentação), riscos e respostas, e ritual dos checkpoints semanais. Rafael.
+
+### Alterado
+- README.md: adicionada a seção do Planejamento em Sprints com a responsabilidade pelas seções 1 a 4 e o link para docs/sprints.md. Rene.
+- README.md: adicionada a responsabilidade pelas seções 5 a 8 do Planejamento em Sprints. Rafael.
