@@ -1,3 +1,63 @@
+# Projeto Unidade II: Planejamento do Desenvolvimento em Sprints
+ 
+Projeto Respira, aplicativo de saúde mental e apoio emocional
+Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Questão 01 d) iii) (parte de 1,0 ponto)
+ 
+| Campo | Preenchimento |
+|---|---|
+| Seção | Planejamento do desenvolvimento em sprints (Q1 d) iii) |
+| Autores desta seção | Rene Mendonça Marinho (seções 1 a 4) e Rafael Menezes Gonçalves (seções 5 a 8) |
+| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Base | Enunciado do Projeto II, docs/escopo.md, docs/eap.md, docs/requisitos.md e a divisão de telas da Atividade 04 no README |
+ 
+O planejamento distribui os pacotes de trabalho de docs/eap.md em quatro sprints semanais, alinhadas aos checkpoints semanais exigidos pelo Projeto II (observação 1 e Q1 c) iii). Os códigos entre parênteses (ex.: 1.5.3) remetem à EAP.
+ 
+## 1. Premissas do planejamento
+ 
+- Sprints de uma semana, de terça a segunda-feira, com checkpoint toda terça-feira, no dia da aula.
+- As apresentações acontecem em 24/11/2026 e 01/12/2026. Como o grupo pode apresentar já no dia 24/11, *o app precisa compilar e executar ao fim da Sprint 3 (23/11/2026)*. A Sprint 4 completa e estabiliza o que faltar.
+- A implementação de cada tela fica com o integrante que desenhou essa tela no protótipo de baixa fidelidade (README, Atividade 04), para aproveitar o conhecimento já adquirido e dar evidência de código a todos (Q1 c) i).
+- Cada integrante registra no CHANGELOG o que fez e atualiza o status no README no mesmo commit da entrega (Q1 c) ii).
+- Cada integrante registra em docs/uso-de-ia.md os prompts, erros e soluções da própria parte (Q1 b) vi).
+ 
+## 2. Calendário
+ 
+| Sprint | Período | Checkpoint de abertura | Objetivo |
+|---|---|---|---|
+| Sprint 1 | 03/11/2026 a 09/11/2026 | 03/11/2026 | Adaptar a documentação existente ao Firebase |
+| Sprint 2 | 10/11/2026 a 16/11/2026 | 10/11/2026 | Planejamento e modelagem: escopo, EAP, sprints, casos de uso, classes e banco de dados |
+| Sprint 3 | 17/11/2026 a 23/11/2026 | 17/11/2026 | App mínimo executável: Firebase, base visual e funcionalidades essenciais |
+| Sprint 4 | 24/11/2026 a 30/11/2026 | 24/11/2026 (1ª apresentação) | Funcionalidades restantes, qualidade, documentação final e apresentação |
+| Entrega | 01/12/2026 | 01/12/2026 (2ª apresentação) | Defesa oral e link do repositório no Teams |
+ 
+## 3. Sprint 1 (03/11/2026 a 09/11/2026): Firebase na documentação
+ 
+*Objetivo:* endossar a decisão por Firebase Authentication anônimo e Cloud Firestore com persistência offline em todos os documentos existentes (1.2.1).
+ 
+| Integrante | Tarefas | Pacote EAP |
+|---|---|---|
+| Franck Patrick Hora Vasconcelos | Endosso em estudo de caso (seção 1), benchmark, RF11, RF12, RF13 e novo RF17 em requisitos, seção 7 de justificativas e README | 1.2.1 |
+| Murilo Pedral Mota | Endosso em estudo de caso (seção 3), pesquisa (3.2, 3.4 e síntese), RNF03, RNF06 e RNF07, seção "Serviços de nuvem" em arquitetura | 1.2.1 |
+| Rafael Menezes Gonçalves | Endosso na persona 1, CRUD ligado às coleções do Firestore e reposicionamento do RF16, seção 4 de justificativas | 1.2.1 |
+| Rene Mendonça Marinho | Endosso em estudo de caso (seções 6, 7 e 8.1), persona 2, F05 a F08, seção 8 de justificativas | 1.2.1 |
+ 
+*Pronto quando:* nenhum documento afirma "não existe conta" sem qualificar como conta anônima, e nenhum cita Hive ou SQLite como armazenamento principal.
+ 
+## 4. Sprint 2 (10/11/2026 a 16/11/2026): planejamento e modelagem
+ 
+*Objetivo:* fechar o planejamento (Q1 d) e a modelagem (Q1 b) i a iv) antes de escrever código.
+ 
+| Integrante | Tarefas | Pacote EAP | Item do Projeto II |
+|---|---|---|---|
+| Murilo Pedral Mota | Escopo do projeto (docs/escopo.md); Diagrama de Classes (docs/diagrama-classes.md) | 1.1.1; 1.2.3 | Q1 d) i; Q1 b) ii |
+| Franck Patrick Hora Vasconcelos | EAP simplificada (docs/eap.md); Diagrama de Casos de Uso (docs/diagrama-casos-de-uso.md) | 1.1.2; 1.2.2 | Q1 d) ii; Q1 b) i |
+| Rene Mendonça Marinho | Planejamento em sprints, seções 1 a 4 (docs/sprints.md); mapeamento das classes Dart para o Firestore | 1.1.3; 1.2.5 | Q1 d) iii; Q1 b) iv |
+| Rafael Menezes Gonçalves | Planejamento em sprints, seções 5 a 8 (docs/sprints.md); modelagem das coleções e documentos do Firestore | 1.1.3; 1.2.4 | Q1 d) iii; Q1 b) iii |
+ 
+*Dependências internas:* o Diagrama de Classes (Murilo) é a entrada do mapeamento Dart → Firestore (Rene) e deve ficar pronto até quinta-feira, 12/11. A modelagem do Firestore (Rafael) e o mapeamento (Rene) precisam usar os mesmos nomes de coleção.
+ 
+*Pronto quando:* os quatro diagramas e modelagens estão em docs/, com nomes de entidades e coleções coerentes entre si e com docs/requisitos.md.
+
 ## 5. Sprint 3 (17/11/2026 a 23/11/2026): app mínimo executável
  
 *Objetivo:* ter o app compilando, autenticando de forma anônima, gravando no Firestore e cobrindo as funcionalidades essenciais (F01, F02, F04, F05, F06, F08), pronto para a apresentação de 24/11.
