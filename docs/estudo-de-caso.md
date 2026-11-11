@@ -131,7 +131,7 @@ As restrições abaixo foram estabelecidas pelo estudo de caso e funcionam como 
 | Consumo de energia | O consumo de bateria deve ser mínimo, já que a tela de respiração pode ficar aberta por vários minutos. |
 | Acessibilidade e estímulos | Sem vibração excessiva, com silêncio total permitido. Não são aceitas animações rápidas nem pop-ups. |
 | Ambiente de utilização | Ambientes internos, casa e trabalho, além de momentos de crise. A tela precisa ser suave para leitura noturna. |
-| Animação | As animações de respiração duram de 4 a 7 segundos por etapa, com gradiente do roxo profundo ao azul claro. |
+| Animação | As animações de respiração duram de 4 a 7 segundos por etapa, com gradiente do roxo profundo ao azul claro. No app, prevalece o padrão 4-7-8 do RF05 (4s, 7s e 8s), conforme `docs/regras-de-negocio.md`, RN13. |
 | Documentação | A pasta /docs do repositório deve manter o documento de requisitos, as personas, as pesquisas com as fontes de validade do PHQ-9 e do GAD-7, a justificativa das decisões visuais ligadas à redução da ansiedade e o CHANGELOG.md. |
 
 ## 8. Pontos de atenção

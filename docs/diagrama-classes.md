@@ -1,5 +1,3 @@
-diagrama-classes.md
- 
 # Projeto Unidade II: Diagrama de Classes (Modelos de Domínio)
  
 _Projeto Respira, aplicativo de saúde mental e apoio emocional_
@@ -10,91 +8,102 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 | Seção | Diagrama de Classes, modelos de domínio (Q1 b) ii) |
 | Autor desta seção | Murilo Pedral Mota |
 | Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
-| Base | `docs/requisitos.md` (RF01 a RF16 e CRUD), `docs/diagrama-casos-de-uso.md`, `docs/escopo.md` e a decisão por Firebase da Sprint 1 |
+| Base | `docs/requisitos.md` (RF01 a RF20 e CRUD), `docs/diagrama-casos-de-uso.md`, `docs/escopo.md` e a decisão por Firebase da Sprint 1 |
  
 O diagrama mostra as principais entidades do domínio do Respira, com atributos, métodos principais e relacionamentos. As classes seguem a tabela de CRUD de `docs/requisitos.md`, seção 4: cada informação que o usuário cria, consulta, atualiza ou exclui virou uma classe. Os métodos `toMap()` e `fromMap()` indicam onde cada classe se converte em documento do Firestore; o mapeamento completo fica na modelagem do banco (Q1 b) iv).
  
 ## 1. Diagrama
 
-    class Usuario {
-        -String uid
-        -bool anonimo
-        -DateTime criadoEm
-        +entrarAnonimamente() Future~Usuario~$
-        +apagarTodosOsDados() Future~void~
-        +toMap() Map~String, dynamic~
-        +fromMap(String uid, Map~String, dynamic~ dados) Usuario$
-    }
- 
-    class RegistroHumor {
-        -String id
-        -NivelHumor humor
-        -String? nota
-        -DateTime criadoEm
-        +validar() bool
-        +toMap() Map~String, dynamic~
-        +fromMap(String id, Map~String, dynamic~ dados) RegistroHumor$
-    }
- 
-    class NivelHumor {
-        <<enumeration>>
-        muitoMal
-        mal
-        neutro
-        bem
-        muitoBem
-    }
- 
-    class RespostaPHQ9 {
-        -String id
-        -List~int~ respostas
-        -int escore
-        -DateTime respondidoEm
-        +responder(int pergunta, int valor) void
-        +estaCompleta() bool
-        +calcularEscore() int
-        +toMap() Map~String, dynamic~
-        +fromMap(String id, Map~String, dynamic~ dados) RespostaPHQ9$
-    }
- 
-    class Configuracoes {
-        -bool temaEscuro
-        -bool notificacoesAtivas
-        +alternarTema() void
-        +alternarNotificacoes() void
-        +redefinir() void
-        +toMap() Map~String, dynamic~
-        +fromMap(Map~String, dynamic~ dados) Configuracoes$
-    }
- 
-    class ContatoEmergencia {
-        <<constante>>
-        +String nome = "CVV"
-        +String numero = "188"
-        +ligar() Future~void~
-    }
- 
-    class Criptografia {
-        <<serviço>>
-        +cifrar(String texto) String
-        +decifrar(String textoCifrado) String
-    }
- 
-    Usuario "1" *-- "0..*" RegistroHumor : registra
-    Usuario "1" *-- "0..*" RespostaPHQ9 : responde
-    Usuario "1" *-- "1" Configuracoes : possui
-    RegistroHumor --> NivelHumor : classifica
-    RegistroHumor ..> Criptografia : nota cifrada
-    RespostaPHQ9 ..> Criptografia : respostas cifradas
-    Usuario ..> ContatoEmergencia : aciona
+@startuml
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide empty members
 
-Representação Visual Feita com o site: PlantText
+class Usuario {
+  -String uid
+  -bool anonimo
+  -String? email
+  -String? nomeUsuario
+  -String? fotoPerfil
+  -DateTime criadoEm
+  +{static} entrarAnonimamente() : Future<Usuario>
+  +{static} entrar(String email, String senha) : Future<Usuario>
+  +{static} recuperarSenha(String email) : Future<void>
+  +cadastrar(String email, String senha) : Future<void>
+  +atualizarPerfil(String? nomeUsuario, String? fotoPerfil) : Future<void>
+  +sair() : Future<void>
+  +apagarTodosOsDados() : Future<void>
+  +toMap() : Map<String, dynamic>
+  +{static} fromMap(String uid, Map<String, dynamic> dados) : Usuario
+}
+
+class RegistroHumor {
+  -String id
+  -NivelHumor humor
+  -String? nota
+  -DateTime criadoEm
+  +validar() : bool
+  +toMap() : Map<String, dynamic>
+  +{static} fromMap(String id, Map<String, dynamic> dados) : RegistroHumor
+}
+
+enum NivelHumor {
+  muitoMal
+  mal
+  neutro
+  bem
+  muitoBem
+}
+
+class RespostaPHQ9 {
+  -String id
+  -List<int> respostas
+  -int escore
+  -DateTime respondidoEm
+  +responder(int pergunta, int valor) : void
+  +estaCompleta() : bool
+  +calcularEscore() : int
+  +toMap() : Map<String, dynamic>
+  +{static} fromMap(String id, Map<String, dynamic> dados) : RespostaPHQ9
+}
+
+class Configuracoes {
+  -bool temaEscuro
+  -bool notificacoesAtivas
+  +alternarTema() : void
+  +alternarNotificacoes() : void
+  +redefinir() : void
+  +toMap() : Map<String, dynamic>
+  +{static} fromMap(Map<String, dynamic> dados) : Configuracoes
+}
+
+class ContatoEmergencia <<constante>> {
+  +String nome = "CVV"
+  +String numero = "188"
+  +ligar() : Future<void>
+}
+
+class Criptografia <<serviço>> {
+  +cifrar(String texto) : String
+  +decifrar(String textoCifrado) : String
+}
+
+Usuario "1" *-- "0..*" RegistroHumor : registra
+Usuario "1" *-- "0..*" RespostaPHQ9 : responde
+Usuario "1" *-- "1" Configuracoes : possui
+RegistroHumor --> NivelHumor : classifica
+RegistroHumor ..> Criptografia : nota cifrada
+RespostaPHQ9 ..> Criptografia : respostas cifradas
+Usuario ..> ContatoEmergencia : aciona
+@enduml
+
+Diagrama em PlantUML, que pode ser renderizado no site [PlantText](https://www.planttext.com/). Versão renderizada: [`docs/diagrama-classes.pdf`](diagrama-classes.pdf).
 
 ## 2. Descrição das classes
  
 | Classe | Responsabilidade | Requisitos |
 |---|---|---|
-| `Usuario` | Representa a conta anônima criada no Firebase Authentication. Guarda só o `uid` e a data de criação, sem nome, e-mail ou telefone. `apagarTodosOsDados()` implementa o Botão de Pânico. | F06, F08, RF11, RF13, RF17 |
+| `Usuario` | Representa a conta no Firebase Authentication: anônima, para quem usa sem cadastro, ou com e-mail e senha, no cadastro opcional. Sem cadastro, guarda só o `uid` e a data de criação. Com cadastro, tem também o e-mail e, se o usuário quiser, nome de usuário e foto. `apagarTodosOsDados()` implementa o Botão de Pânico. | F06, F08, F11, RF11, RF13, RF17 a RF20 |
 | `RegistroHumor` | Um registro do diário, com o nível de humor, a nota opcional e a data e hora. Não tem método de edição, porque o registro não pode ser alterado depois de salvo. | F01, RF01 a RF04 |
 | `NivelHumor` | As cinco opções de humor exibidas como emojis, de muito mal a muito bem. | RF01 |
 | `RespostaPHQ9` | Uma aplicação semanal do PHQ-9, com as nove respostas, o escore calculado e a data. Não tem método de edição nem de exclusão individual. | F03, RF06, RF07, RF08 |
@@ -107,8 +116,12 @@ Representação Visual Feita com o site: PlantText
 | Classe | Membro | Detalhe |
 |---|---|---|
 | `Usuario` | `entrarAnonimamente()` | Método estático. Reaproveita a sessão se já existir; senão, cria a conta anônima. |
-| `Usuario` | `apagarTodosOsDados()` | Apaga primeiro o cache local, depois os documentos do usuário no Firestore e, por fim, a conta anônima. |
-| `RegistroHumor` | `nota` | Opcional (`String?`) e curta (RF02). Vai cifrada para o Firestore. |
+| `Usuario` | `cadastrar()` | Cria a conta com e-mail e senha. Se a sessão atual for anônima, vincula a conta anônima à nova, mantendo o mesmo `uid` e todos os dados. |
+| `Usuario` | `entrar()` e `recuperarSenha()` | Entra em uma conta já cadastrada e envia o link de redefinição de senha ao e-mail informado. |
+| `Usuario` | `email` | Vem do Firebase Authentication e não é gravado no Firestore, para não duplicar dado pessoal. |
+| `Usuario` | `atualizarPerfil()` | Define, altera ou remove o nome de usuário e a foto, ambos opcionais e só para usuários cadastrados. |
+| `Usuario` | `apagarTodosOsDados()` | Apaga primeiro o cache local, depois os documentos do usuário no Firestore e, por fim, a conta (anônima ou cadastrada). |
+| `RegistroHumor` | `nota` | Opcional (`String?`), com até 10.000 caracteres (RF02, RN16). Vai cifrada para o Firestore. |
 | `RegistroHumor` | `validar()` | Confere se o humor foi escolhido e se a nota respeita o tamanho máximo. |
 | `RespostaPHQ9` | `respostas` | Lista com as nove respostas, uma por pergunta, na escala do instrumento (0 a 3). Vai cifrada para o Firestore. |
 | `RespostaPHQ9` | `estaCompleta()` | Só permite calcular o escore quando as nove perguntas foram respondidas. |

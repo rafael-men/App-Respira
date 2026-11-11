@@ -14,7 +14,7 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 ## 1. Funcionalidades
 
 ### F01 — Diário de humor com emojis
-**Descrição:** tela em que o usuário registra como está se sentindo tocando em um emoji grande (de muito ruim a muito bem), podendo adicionar uma nota curta opcional. O registro é salvo com data e hora, consultável depois em um histórico.
+**Descrição:** tela em que o usuário registra como está se sentindo tocando em um emoji grande (de muito ruim a muito bem), podendo adicionar uma nota opcional, sem limite prático de tamanho. O registro é salvo com data e hora, consultável depois em um histórico.
 **Necessidade do usuário que atende:** Marina precisa de um registro rápido, de baixo esforço mental, mesmo em estado de atenção reduzida; Lucas quer acompanhar sua evolução emocional ao longo do semestre sem burocracia.
 **Justificativa:** o estudo de caso já define essa funcionalidade como núcleo do produto (seção 6). O benchmark mostra que o Daylio valida esse formato de registro rápido e sem cadastro, mas sem os diferenciais de privacidade e integração que o Respira propõe.
 
@@ -29,7 +29,7 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 **Justificativa:** a pesquisa confirma validade científica do PHQ-9 no Brasil, com sensibilidade de 77,5% e especificidade de 86,7% no ponto de corte 9 (`docs/pesquisa.md`, seção 3.3); nenhuma das soluções do benchmark oferece instrumento de rastreio validado.
 
 ### F04 — Acesso de emergência ao CVV (188) em 1 toque
-**Descrição:** botão fixo, vermelho, na AppBar, visível em qualquer tela do aplicativo, que disca diretamente para o 188 com um único toque.
+**Descrição:** botão fixo, vermelho, na AppBar, visível em qualquer tela do aplicativo, que com um único toque abre a confirmação de chamada (Tela 07) e disca para o 188 depois que o usuário confirma.
 **Necessidade do usuário que atende:** Marina, em crise, precisa de ajuda humana imediata sem navegar por menus.
 **Justificativa:** o CVV realizou cerca de 2 milhões de atendimentos em 2025 (`docs/pesquisa.md`, seção 3.5); o benchmark confirma que nenhuma das soluções analisadas oferece emergência de um toque de graça, o que o estudo de caso já apontava como o maior risco do produto caso essa funcionalidade falhe (seção 8.2).
 
@@ -39,7 +39,7 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 **Justificativa:** 10,9% da população brasileira ainda está digitalmente excluída, e o custo do serviço é o motivo mais citado para não ter internet em casa (`docs/pesquisa.md`, seção 3.2), o que torna o offline requisito não negociável, e não otimização.
 
 ### F06 — Uso anônimo, sem cadastro obrigatório
-**Descrição:** todas as funcionalidades básicas (diário, respiração, PHQ-9, CVV) funcionam sem exigir criação de conta, e-mail ou senha.
+**Descrição:** todas as funcionalidades básicas (diário, respiração, PHQ-9, CVV) funcionam sem exigir criação de conta, e-mail ou senha. Sem cadastro, os dados ficam vinculados a uma conta anônima do aparelho e se perdem se o app for desinstalado; quem quiser mantê-los pode fazer o cadastro opcional (F11).
 **Necessidade do usuário que atende:** reduzir o medo de exposição e julgamento, presente nas duas personas.
 **Justificativa:** estudos citados na pesquisa mostram que o estigma pesa mais do que barreiras estruturais na busca por ajuda (`docs/pesquisa.md`, seção 3.1); o benchmark reforça esse padrão de baixa fricção observado no Daylio.
 
@@ -63,25 +63,35 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 **Necessidade do usuário que atende:** uso discreto à noite ou em ambientes com pouca luz, comum às duas personas.
 **Justificativa:** o estudo de caso exige explicitamente uma tela suave para leitura noturna como parte do contexto de uso (seção 3), e a identidade visual calma é descrita como parte do mecanismo da solução, não como acabamento (seção 5.2).
 
+### F11 — Cadastro opcional com e-mail e senha
+**Descrição:** o usuário que quiser pode criar uma conta com e-mail e senha, entrar nela depois e recuperar a senha por e-mail. Ao se cadastrar, os dados já registrados de forma anônima passam para a conta, e o histórico fica preservado mesmo se o app for reinstalado ou usado em outro aparelho. Nome de usuário e foto de perfil são opcionais. Nenhum dado da conta é compartilhado com outras pessoas.
+**Necessidade do usuário que atende:** Lucas quer acompanhar a evolução ao longo do semestre sem correr o risco de perder o histórico ao trocar de aparelho; Marina pode continuar usando o app sem cadastro.
+**Justificativa:** o Projeto II exige autenticação de usuários no Firebase e a tela de login (observação 8; Q1 a) ii e e) i). Manter o cadastro opcional preserva o uso anônimo (F06), que a pesquisa aponta como decisivo contra o estigma (`docs/pesquisa.md`, seção 3.1).
+
 ## 2. Requisitos funcionais
 
 | Nº | Nome | Descrição |
 |---|---|---|
 | RF01 | Registro de humor | O sistema deve permitir que o usuário registre seu humor selecionando um emoji entre ao menos cinco opções, salvando data e hora automaticamente. |
-| RF02 | Nota opcional no diário | O sistema deve permitir que o usuário adicione uma nota de texto curta e opcional a cada registro de humor. |
+| RF02 | Nota opcional no diário | O sistema deve permitir que o usuário adicione uma nota de texto opcional a cada registro de humor, com até 10.000 caracteres, limite alto o bastante para não restringir o que o usuário quer escrever (`docs/regras-de-negocio.md`, RN16). |
 | RF03 | Histórico do diário | O sistema deve exibir o histórico de registros de humor em ordem cronológica, consultável pelo usuário a qualquer momento. |
 | RF04 | Exclusão de registro do diário | O sistema deve permitir que o usuário exclua individualmente um registro do diário de humor. |
 | RF05 | Animação de respiração 4-7-8 | O sistema deve exibir uma animação de um círculo que se expande e contrai nos tempos de 4s (inspirar), 7s (segurar) e 8s (expirar), iniciando automaticamente ao abrir a tela e repetindo os ciclos até o usuário tocar em "Voltar". |
 | RF06 | Questionário PHQ-9 | O sistema deve apresentar as nove perguntas do questionário PHQ-9, uma por tela, permitindo que o usuário responda semanalmente. |
 | RF07 | Cálculo do escore do PHQ-9 | O sistema deve calcular automaticamente o escore total do PHQ-9 ao final do questionário e armazená-lo vinculado à data de resposta. |
 | RF08 | Gráfico de evolução do PHQ-9 | O sistema deve exibir um gráfico com a evolução dos escores do PHQ-9 ao longo do tempo. |
-| RF09 | Acesso rápido ao CVV | O sistema deve exibir um botão fixo, vermelho, no topo de todas as telas, que disque diretamente para o número 188 com um único toque. |
+| RF09 | Acesso rápido ao CVV | O sistema deve exibir um botão fixo, vermelho, no topo de todas as telas, que com um único toque abra a confirmação de chamada (Tela 07) e disque para o número 188 depois que o usuário confirmar. |
 | RF10 | Cache local do número do CVV | O sistema deve armazenar o número do CVV localmente, de modo que a discagem funcione mesmo sem conexão à internet. |
-| RF11 | Uso sem cadastro | O sistema deve permitir o uso das funcionalidades de diário, respiração, PHQ-9 e CVV sem exigir criação de conta, e-mail ou senha. |
-| RF12 | Criptografia dos dados | O sistema deve armazenar os dados do diário de humor e das respostas do PHQ-9 de forma criptografada, tanto localmente quanto em eventual sincronização com a nuvem. |
-| RF13 | Botão de Pânico | O sistema deve oferecer, a partir de qualquer tela, uma opção que exclua permanentemente todos os dados locais e da nuvem associados ao uso do aplicativo, mediante confirmação do usuário. |
+| RF11 | Uso sem cadastro | O sistema deve permitir o uso das funcionalidades de diário, respiração, PHQ-9 e CVV sem exigir criação de conta, e-mail ou senha. O cadastro é opcional (RF18). |
+| RF12 | Criptografia dos dados | O sistema deve cifrar no aparelho a nota do diário de humor e as respostas do PHQ-9 antes de gravá-las, tanto no cache local quanto no Cloud Firestore. O nível de humor e o escore do PHQ-9 ficam sem cifra, protegidos pelas regras de acesso do Firestore, porque o usuário os revisita no histórico e no gráfico de evolução (`docs/regras-de-negocio.md`, RN10). |
+| RF13 | Botão de Pânico | O sistema deve oferecer, a partir de qualquer tela, uma opção que exclua permanentemente todos os dados locais e da nuvem associados ao uso do aplicativo, inclusive a conta (anônima ou cadastrada), mediante confirmação do usuário. |
 | RF14 | Notificações motivacionais configuráveis | O sistema deve permitir o envio de notificações push motivacionais e não invasivas, que o usuário possa ativar ou desativar. |
 | RF15 | Alternância de tema | O sistema deve permitir a alternância entre tema claro e tema escuro, adequado à leitura noturna. |
+| RF16 | Funcionamento offline do diário | O sistema deve permitir a criação e a consulta de registros do diário de humor mesmo sem conexão à internet, sincronizando os dados quando a conexão for restabelecida. |
+| RF17 | Autenticação anônima | Quando o usuário escolher continuar sem cadastro, o sistema deve autenticá-lo no Firebase Authentication pelo provedor anônimo, sem pedir e-mail, nome, senha ou telefone, e reaproveitar a sessão nos acessos seguintes. |
+| RF18 | Cadastro opcional com e-mail e senha | O sistema deve permitir que o usuário crie uma conta com e-mail e senha no Firebase Authentication. Se ele já usava o app de forma anônima, a conta anônima deve ser vinculada à nova conta, preservando os dados já registrados. |
+| RF19 | Login e recuperação de senha | O sistema deve permitir que o usuário cadastrado entre com e-mail e senha, saia da conta e redefina a senha por um link enviado ao e-mail cadastrado ("Esqueci minha senha"). |
+| RF20 | Perfil opcional | O sistema deve permitir que o usuário cadastrado defina, altere ou remova um nome de usuário e uma foto de perfil, ambos opcionais e visíveis só para ele. |
 
 ## 3. Requisitos não funcionais
 
@@ -89,10 +99,10 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 |---|---|---|
 | RNF01 | Usabilidade | O usuário deve conseguir acessar a funcionalidade principal (respiração guiada) em, no máximo, três interações a partir da tela inicial. |
 | RNF02 | Acessibilidade | O sistema não deve utilizar vibração excessiva, animações rápidas ou pop-ups, permitindo uso com feedback háptico desativado e em silêncio total. |
-| RNF03 | Segurança e privacidade (LGPD) | O sistema deve tratar dados de humor e de saúde mental como dados sensíveis nos termos da LGPD (Lei 13.709/2018), coletando o mínimo necessário, sem compartilhamento com terceiros sem consentimento explícito, e oferecendo ao usuário meio de exclusão total dos dados. |
+| RNF03 | Segurança e privacidade (LGPD) | O sistema deve tratar dados de humor e de saúde mental como dados sensíveis nos termos da LGPD (Lei 13.709/2018), coletando o mínimo necessário, sem compartilhamento com terceiros sem consentimento explícito, e oferecendo ao usuário meio de exclusão total dos dados. O e-mail, o nome de usuário e a foto, quando informados, servem só para login e personalização e nunca são compartilhados. |
 | RNF04 | Desempenho | A tela de respiração deve manter consumo de bateria mínimo mesmo em sessões contínuas de vários minutos, evitando redesenhos desnecessários e processamento em segundo plano. |
 | RNF05 | Compatibilidade | O aplicativo deve funcionar de forma estável em Android e iOS via Flutter, incluindo smartphones de entrada com especificações básicas de processamento e memória. |
-| RNF06 | Armazenamento de dados | Os dados do diário de humor e do PHQ-9 devem ser armazenados localmente por padrão, com sincronização em nuvem opcional e sempre criptografada. |
+| RNF06 | Armazenamento de dados | Os dados do diário de humor e do PHQ-9 devem ser armazenados no Cloud Firestore com persistência offline: toda gravação vai primeiro para o cache local do aparelho e é sincronizada com a nuvem quando houver conexão. Os campos sensíveis são cifrados no aparelho antes da gravação (RF12). |
 | RNF07 | Conectividade | Nenhuma funcionalidade crítica (diário de humor, número do CVV) pode depender de conexão de rede ativa para funcionar. |
 | RNF08 | Dispositivos e sistema operacional | O aplicativo deve ser testado em pelo menos um dispositivo Android real de entrada, além de emuladores, garantindo desempenho aceitável fora de um ambiente ideal. |
 
@@ -104,8 +114,8 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 | Resposta do questionário PHQ-9 | Sim | Sim | Não | Não | Cada aplicação semanal gera um novo registro de escore (RF06, RF07); respostas não são editáveis nem excluíveis individualmente, para preservar a integridade do histórico usado no gráfico de evolução (RF08). A única forma de remover esses dados é a exclusão total pelo Botão de Pânico (RF13). |
 | Configurações do usuário (tema, notificações) | Sim (na primeira configuração) | Sim | Sim | Não aplicável | Preferências como tema e notificações (RF14, RF15) são sempre atualizáveis; não fazem sentido "excluídas" isoladamente, apenas redefinidas para o padrão. |
 | Número de emergência do CVV (188) | Não aplicável | Sim | Não aplicável | Não aplicável | É uma informação fixa, definida pela equipe de desenvolvimento, não pelo usuário (RF09, RF10). O usuário apenas consulta e disca; alterar, atualizar ou excluir esse dado exigiria mudança de código, não uma ação dentro do app. |
-| Todos os dados do usuário (uso local) | Sim (implicitamente, ao usar o app) | Sim | Não aplicável | Sim | Como não existe conta ou login (RF11), não há "atualização de perfil"; a única operação de escrita ampla sobre o conjunto de dados é a exclusão total via Botão de Pânico (RF13). |
-| RF16 | Funcionamento offline do diário | O sistema deve permitir a criação e a consulta de registros do diário de humor mesmo sem conexão à internet, sincronizando os dados quando a conexão for restabelecida. |
+| Perfil do usuário cadastrado (nome de usuário e foto) | Sim (opcional, após o cadastro) | Sim | Sim | Sim | Os dois campos são opcionais (RF20). O usuário pode defini-los, alterá-los ou removê-los a qualquer momento; o usuário sem cadastro não tem perfil. |
+| Todos os dados do usuário (conta anônima ou cadastrada) | Sim (implicitamente, ao usar o app ou ao se cadastrar) | Sim | Não aplicável | Sim | O uso sem cadastro não pede dados pessoais (RF11, RF17); o cadastro pede só e-mail e senha (RF18). A única operação de escrita ampla sobre o conjunto de dados é a exclusão total via Botão de Pânico (RF13), que apaga os dados locais, os documentos do usuário no Cloud Firestore e a conta no Firebase Authentication. |
 
 ## 5. Priorização
 
@@ -117,6 +127,7 @@ Este documento transforma em funcionalidades e requisitos o que já foi levantad
 - F06 — Uso anônimo, sem cadastro obrigatório
 - F07 — Criptografia de ponta a ponta
 - F08 — Botão de Pânico
+- F11 — Cadastro opcional com e-mail e senha (exigido pelo Projeto II: autenticação e tela de login)
 
 **Importantes** (agregam valor, mas não são fundamentais):
 - F03 — Questionário PHQ-9 semanal com gráfico de progresso

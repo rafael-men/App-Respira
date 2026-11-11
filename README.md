@@ -86,7 +86,7 @@ Decisão: Firebase Authentication anônimo e Cloud Firestore com persistência o
 | Integrante | Responsabilidade no Tópico 01 | Status |
 |---|---|---|
 | Franck Patrick Hora Vasconcelos | Endosso do Firebase em estudo-de-caso (seção 1), benchmark, RF11, RF12, RF13 e novo RF17 em requisitos, seção 7 de justificativas e README | Pendente |
-| Murilo Pedral Mota | Endosso em estudo-de-caso (seção 3), pesquisa (3.2, 3.4 e síntese), RNF03, RNF06 e RNF07 em requisitos, seção "Serviços de nuvem" em arquitetura | Pendente |
+| Murilo Pedral Mota | Endosso em estudo-de-caso (seção 3), pesquisa (3.2, 3.4 e síntese), RNF03, RNF06 e RNF07 em requisitos, serviços de nuvem (Firebase) na seção 8 de justificativas (Arquitetura do sistema) | Pendente |
 | Rafael Menezes Gonçalves | Endosso na persona 1, mapeamento do CRUD para coleções do Firestore e reposicionamento do RF16 em requisitos, seção 4 de justificativas | Pendente |
 | Rene Mendonça Marinho | Endosso em estudo-de-caso (seções 6, 7 e 8.1), persona 2, F05 a F08 em requisitos, seção 8 de justificativas | Pendente |
 
@@ -120,7 +120,7 @@ O diagrama de casos de uso da Unidade II está em [`docs/diagrama-casos-de-uso.m
 
 | Atividade | Responsável |
 | --- | --- |
-| Adicionar [`docs/eap.md`](docs/eap.md), com a EAP simplificada: diagrama em Mermaid com 7 pacotes principais e dicionário com entregável e origem de cada pacote | Franck Patrick Hora Vasconcelos |
+| Adicionar [`docs/eap.md`](docs/eap.md), com a EAP simplificada: diagrama em PlantUML com 7 pacotes principais e dicionário com entregável e origem de cada pacote | Franck Patrick Hora Vasconcelos |
 
 A EAP do projeto da Unidade II está em [`docs/eap.md`](docs/eap.md).
 
@@ -156,3 +156,31 @@ O mapeamento das classes Dart para o Firestore está em [`docs/mapeamento-dart-f
 | Adicionar as seções 5 a 8 de [`docs/sprints.md`](docs/sprints.md): Sprint 3, Sprint 4, riscos e ritual dos checkpoints | Rafael Menezes Gonçalves |
 
 O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprints.md).
+
+# Projeto Unidade II: Regras de Negócio (Questão 01 a) iv e b) i)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/regras-de-negocio.md`](docs/regras-de-negocio.md), com as regras de negócio consolidadas (RN01 a RN21): conta e privacidade, diário, PHQ-9, respiração, emergência, falhas de conexão e exclusão | Franck Patrick Hora Vasconcelos |
+
+# Projeto Unidade II: Registro de Uso de IA (Questão 01 b) vi)
+
+| Atividade | Responsável |
+| --- | --- |
+| Adicionar [`docs/uso-de-ia.md`](docs/uso-de-ia.md), com a tabela de inconsistências encontradas na revisão da documentação, as correções aplicadas e as decisões do grupo | Franck Patrick Hora Vasconcelos |
+
+# Projeto Unidade II: Revisão e correção da documentação
+
+Franck Patrick Hora Vasconcelos revisou a documentação da Unidade II e fez correções em documentos de outros integrantes, para manter os documentos coerentes entre si. **As correções não substituem a autoria original:** o conteúdo de cada documento continua sendo do integrante indicado na coluna "Autoria original", e os commits originais de cada um continuam valendo como evidência da sua participação. Os commits dessas correções saem da conta de Franck porque foi ele quem as fez.
+
+| Documento | Autoria original | Correções feitas por Franck Patrick Hora Vasconcelos |
+| --- | --- | --- |
+| [`docs/escopo.md`](docs/escopo.md) | Murilo Pedral Mota | Formatação restaurada (tabelas, caminhos e datas que tinham perdido os caracteres `\|` e `/`); telas de conta e cadastro opcional (F11); quatro telas principais; aditivo; critérios de aceitação. |
+| [`docs/diagrama-classes.md`](docs/diagrama-classes.md) e `.pdf` | Murilo Pedral Mota | Arquivo renomeado (antes `Diagrama de Classes.md`); código convertido de sintaxe Mermaid para PlantUML válido; métodos de conta e perfil na classe `Usuario`; PDF renderizado novamente. |
+| [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md) e `.pdf` | Rafael Menezes Gonçalves | Arquivo renomeado (antes `modelagem_firestore.md`); formatação restaurada; sintaxe das Security Rules corrigida; campos de perfil, cadastro e tamanho da nota; decisão sobre criptografia (seção 9); PDF renderizado novamente. |
+| [`docs/mapeamento-dart-firestore.md`](docs/mapeamento-dart-firestore.md) e `.pdf` | Rene Mendonça Marinho | Arquivos renomeados (antes `mapeamento_dart_firestore.md` e `mapeamento-firestore.pdf`); blocos de código restaurados; atributos privados no código de referência; campos de conta e perfil; chamadas de cadastro, login e recuperação de senha. |
+| [`docs/sprints.md`](docs/sprints.md) | Rene Mendonça Marinho (seções 1 a 4) e Rafael Menezes Gonçalves (seções 5 a 8) | Referência à "arquitetura" apontada para a seção 8 de justificativas; tarefas de conta e perfil; riscos do aditivo e do login; rótulos em negrito. |
+| [`docs/requisitos.md`](docs/requisitos.md) | Rene, Franck, Murilo e Rafael (Atividade 03) | RF09 (confirmação antes de discar), RF02 (nota até 10.000 caracteres), RF12, RNF03, RNF06, RF16 reposicionado, novos F11 e RF17 a RF20, CRUD. |
+| [`docs/justificativas.md`](docs/justificativas.md) | Murilo, Rafael, Franck e Rene (Atividade 04) | Seção 8 atualizada para Firebase (sem Hive ou SQLite) e para o cadastro opcional; texto do botão do CVV (seção 6). |
+| [`docs/estudo-de-caso.md`](docs/estudo-de-caso.md) | Franck, Murilo, Rafael e Rene (Atividade 01) | Nota na restrição de animação: prevalece o padrão 4-7-8 do RF05. |
+| [`docs/eap.md`](docs/eap.md) e `.pdf`, [`docs/diagrama-casos-de-uso.md`](docs/diagrama-casos-de-uso.md) e `.pdf` | Franck Patrick Hora Vasconcelos | Telas de conta, autenticação anônima e por e-mail e senha, casos de uso UC15 a UC18; PDFs renderizados novamente. |

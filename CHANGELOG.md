@@ -120,3 +120,23 @@
 ### Alterado
 - README.md: adicionada a seção do Planejamento em Sprints com a responsabilidade pelas seções 1 a 4 e o link para docs/sprints.md. Rene.
 - README.md: adicionada a responsabilidade pelas seções 5 a 8 do Planejamento em Sprints. Rafael.
+
+## [10/11/2026] Revisão e correção da documentação da Unidade II
+
+As correções abaixo foram feitas por Franck em documentos de outros integrantes, para manter a documentação coerente. A autoria original de cada documento continua com o integrante indicado entre parênteses, e os commits originais continuam valendo como evidência da participação de cada um.
+
+### Adicionado
+- Regras de negócio consolidadas em docs/regras-de-negocio.md (Q1 a) iv e b) i): RN01 a RN21, sem aditivo oficial. Franck.
+- Primeira entrada de docs/uso-de-ia.md (Q1 b) vi): tabela das 24 inconsistências encontradas na revisão da documentação, com a correção aplicada, e as decisões do grupo. Franck.
+- Cadastro opcional com e-mail e senha: F11 e RF17 a RF20 em docs/requisitos.md (autoria original da Atividade 03: Rene, Franck, Murilo e Rafael) e casos de uso UC15 a UC18 em docs/diagrama-casos-de-uso.md. Franck.
+
+### Alterado
+- Renomeados para o padrão de nomes do repositório: `Diagrama de Classes.md`/`.pdf` → docs/diagrama-classes.md/.pdf (Murilo), `modelagem_firestore.md` → docs/modelagem-firestore.md (Rafael), `mapeamento_dart_firestore.md` → docs/mapeamento-dart-firestore.md e `mapeamento-firestore.pdf` → docs/mapeamento-dart-firestore.pdf (Rene). Correção de Franck.
+- docs/escopo.md (Murilo): formatação restaurada, telas de conta, cadastro opcional, quatro telas principais e critérios de aceitação. Correção de Franck.
+- docs/diagrama-classes.md e .pdf (Murilo): código convertido para PlantUML válido, métodos de conta e perfil, PDF renderizado novamente. Correção de Franck.
+- docs/modelagem-firestore.md e .pdf (Rafael): formatação restaurada, Security Rules corrigidas, campos de perfil, tamanho da nota, decisão sobre criptografia, PDF renderizado novamente. Correção de Franck.
+- docs/mapeamento-dart-firestore.md (Rene): blocos de código restaurados, atributos privados, campos e chamadas de conta e perfil. Correção de Franck.
+- docs/sprints.md (Rene, seções 1 a 4; Rafael, seções 5 a 8): referência à arquitetura, tarefas de conta e perfil, riscos atualizados, rótulos em negrito. Correção de Franck.
+- docs/requisitos.md, docs/justificativas.md e docs/estudo-de-caso.md (autoria coletiva das Atividades 01, 03 e 04): Firebase no lugar de Hive e SQLite, RF09 com confirmação, RF02, RF12, RNF03, RNF06, RF16 reposicionado e nota sobre o padrão 4-7-8. Correção de Franck.
+- docs/eap.md e .pdf e docs/diagrama-casos-de-uso.md e .pdf: telas de conta e autenticação por e-mail e senha; o diagrama da EAP é em PlantUML (a entrada de 10/11/2026 acima o descreve como Mermaid por engano). Franck.
+- README.md: seção de Regras de Negócio, seção "Revisão e correção da documentação" com a autoria original de cada documento, EAP descrita como PlantUML e referência à arquitetura corrigida. Franck.

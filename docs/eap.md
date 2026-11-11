@@ -14,7 +14,6 @@ A EAP decompõe o escopo definido em `docs/escopo.md` em pacotes de trabalho ent
 
 ## 1. Diagrama da EAP
 
-```plantuml
 @startwbs
 * 1. App Respira (Unidade II)
 
@@ -35,12 +34,12 @@ A EAP decompõe o escopo definido em `docs/escopo.md` em pacotes de trabalho ent
 *** 1.2.7 Registro de uso de IA
 
 ** 1.3 Prototipação
-*** 1.3.1 Tela de entrada (login)
+*** 1.3.1 Telas de conta (sem protótipo)
 *** 1.3.2 Revisão do fluxo de navegação
 
 ** 1.4 Infraestrutura Firebase
 *** 1.4.1 Projeto Firebase e FlutterFire
-*** 1.4.2 Autenticação anônima
+*** 1.4.2 Autenticação (anônima e e-mail/senha)
 *** 1.4.3 Firestore com persistência offline
 *** 1.4.4 Security Rules
 *** 1.4.5 Criptografia no cliente
@@ -56,6 +55,7 @@ A EAP decompõe o escopo definido em `docs/escopo.md` em pacotes de trabalho ent
 *** 1.5.8 Botão de Pânico
 *** 1.5.9 Notificações
 *** 1.5.10 Tema escuro
+*** 1.5.11 Conta e perfil
 
 ** 1.6 Qualidade
 *** 1.6.1 Validações e controle de acesso
@@ -66,7 +66,6 @@ A EAP decompõe o escopo definido em `docs/escopo.md` em pacotes de trabalho ent
 *** 1.7.1 Apresentação e defesa oral
 *** 1.7.2 Link do repositório no Teams
 @endwbs
-```
 
 Diagrama gerado no [PlantText](https://www.planttext.com/). Versão renderizada: [`docs/eap.pdf`](eap.pdf).
 
@@ -81,19 +80,19 @@ Diagrama gerado no [PlantText](https://www.planttext.com/). Versão renderizada:
 | 1.1.4 | Checkpoints semanais | Revisão de cada sprint registrada no README | Q1 c) iii; observação 1 |
 | 1.1.5 | README e CHANGELOG | Responsabilidades reais e histórico atualizados a cada entrega | Q1 c) ii |
 | **1.2** | **Documentação e modelagem** | | |
-| 1.2.1 | Endosso do Firebase nos documentos existentes | Estudo de caso, pesquisa, personas, benchmark, requisitos (RF17), justificativas e arquitetura atualizados | Q1 a) ii |
-| 1.2.2 | Diagrama de Casos de Uso | Diagrama atualizado com as regras de negócio do aditivo | Q1 b) i |
+| 1.2.1 | Endosso do Firebase nos documentos existentes | Estudo de caso, pesquisa, personas, benchmark, requisitos (RF17) e justificativas, incluindo a seção 8 (Arquitetura do sistema), atualizados | Q1 a) ii |
+| 1.2.2 | Diagrama de Casos de Uso | Diagrama atualizado com as regras de negócio (`docs/regras-de-negocio.md`) | Q1 b) i |
 | 1.2.3 | Diagrama de Classes | Entidades de domínio com atributos, métodos e relacionamentos | Q1 b) ii |
 | 1.2.4 | Modelagem do Firestore | Estrutura de coleções e documentos | Q1 b) iii |
 | 1.2.5 | Mapeamento Dart → Firestore | Correspondência entre classes Dart e documentos | Q1 b) iv |
 | 1.2.6 | Fluxo de navegação real | Diagrama de como as telas se conectam no app implementado | Q1 b) v |
 | 1.2.7 | Registro de uso de IA | `docs/uso-de-ia.md` com prompts, erros, soluções e justificativa das bibliotecas | Q1 b) vi; observação 7 |
 | **1.3** | **Prototipação** | | |
-| 1.3.1 | Tela de entrada (login) | Baixa e alta fidelidade da tela de entrada, sem campos de e-mail ou senha | Q1 e) i; RF11 |
-| 1.3.2 | Revisão do fluxo de navegação | Fluxo do protótipo incluindo a tela de entrada | Q1 e) iv |
+| 1.3.1 | Telas de conta (sem protótipo) | Login, cadastro, recuperação de senha e perfil registrados nos documentos. Essas telas ficam fora do escopo de prototipação | Q1 e) i; RF18 a RF20; RN11 |
+| 1.3.2 | Revisão do fluxo de navegação | Fluxo do protótipo com a tela de login indicada como ponto de entrada no primeiro acesso | Q1 e) iv; RN18 |
 | **1.4** | **Infraestrutura Firebase** | | |
 | 1.4.1 | Projeto Firebase e FlutterFire | App Flutter conectado ao projeto Firebase | Observação 8 |
-| 1.4.2 | Autenticação anônima | Login anônimo automático e sessão reaproveitada | F06; RF11; RF17 |
+| 1.4.2 | Autenticação (anônima e e-mail/senha) | Uso sem cadastro pelo provedor anônimo; cadastro, login e recuperação de senha por e-mail e senha; vinculação da conta anônima à cadastrada | F06; F11; RF11; RF17 a RF19 |
 | 1.4.3 | Firestore com persistência offline | Leitura e escrita funcionando sem rede | F05; RF16; RNF06; RNF07 |
 | 1.4.4 | Security Rules | Acesso restrito ao próprio `uid` | RNF03; Q1 a) iv |
 | 1.4.5 | Criptografia no cliente | Nota do diário e respostas do PHQ-9 cifradas antes do envio | F07; RF12 |
@@ -105,9 +104,10 @@ Diagrama gerado no [PlantText](https://www.planttext.com/). Versão renderizada:
 | 1.5.5 | PHQ-9 e gráfico | Telas 05 e 06; escore e gráfico de evolução | F03; RF06 a RF08 |
 | 1.5.6 | CVV | Tela 07; discagem do 188 com número embutido | F04; RF09; RF10 |
 | 1.5.7 | Configurações | Tela 08; tema e notificações gravados no Firestore | RF14; RF15 |
-| 1.5.8 | Botão de Pânico | Tela 09; exclusão local, no Firestore e da conta anônima | F08; RF13 |
+| 1.5.8 | Botão de Pânico | Tela 09; exclusão local, no Firestore e da conta (anônima ou cadastrada) | F08; RF13 |
 | 1.5.9 | Notificações | Lembretes opcionais e não invasivos | F09; RF14 |
 | 1.5.10 | Tema escuro | Variante escura fiel ao protótipo | F10; RF15 |
+| 1.5.11 | Conta e perfil | Telas de login, cadastro, recuperação de senha e perfil (nome de usuário e foto opcionais) | F11; RF18 a RF20 |
 | **1.6** | **Qualidade** | | |
 | 1.6.1 | Validações e controle de acesso | Entradas validadas e Security Rules testadas | Q1 a) iv; RNF03 |
 | 1.6.2 | Falhas de conexão | Mensagens não alarmistas e operação offline sem travar a tela | Q1 a) iv; RNF07 |
@@ -119,7 +119,7 @@ Diagrama gerado no [PlantText](https://www.planttext.com/). Versão renderizada:
 ## 3. Observações
 
 - A EAP é simplificada, como pede o Projeto II: vai até o nível de pacote de trabalho, sem detalhar tarefas internas. As tarefas e os responsáveis ficam em `docs/sprints.md`.
-- O pacote 1.3.1 existe porque o Projeto II exige protótipo da tela de login (Q1 e) i), enquanto o RF11 proíbe cadastro obrigatório. A tela prevista é de entrada, sem campos de e-mail ou senha, e dispara a autenticação anônima.
+- O pacote 1.3.1 existe porque o Projeto II pede a tela de login (Q1 e) i), enquanto o RF11 proíbe cadastro obrigatório. A solução é um cadastro opcional com e-mail e senha (F11): quem não quiser se cadastrar continua sem cadastro, de forma anônima (RF17). As telas de conta ficam fora do escopo de prototipação e são registradas apenas nos documentos (RN11).
 - O número do CVV não aparece em 1.4 de propósito: ele não depende do Firebase (RF10).
 
 ---
