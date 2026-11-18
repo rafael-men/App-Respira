@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/pages/cadastro_page.dart';
 import '../../auth/pages/login_page.dart';
+import '../../cvv/pages/confirmacao_cvv_page.dart';
 import '../../respiracao/pages/respiracao_page.dart';
 import '../widgets/feature_card.dart';
 import '../widgets/identity_card.dart';
 import '../widgets/mood_selector.dart';
-import '../widgets/sos_cvv_button.dart';
 import '../widgets/user_avatar_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,8 +32,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _ligarCvv() {
-    // A ligação para o 188 ainda não está implementada.
-    _emBreve();
+    // Um toque abre a confirmação (Tela 07); a discagem só acontece depois
+    // de confirmar (RN09).
+    ConfirmacaoCvvPage.abrir(context);
   }
 
   void _abrirConta() {
@@ -106,12 +108,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Respira'),
-        actions: [
-          UserAvatarButton(onPressed: _abrirConta),
-          SosCvvButton(onPressed: _ligarCvv),
-        ],
+      appBar: RespiraAppBar(
+        titulo: 'Respira',
+        mostrarVoltar: false,
+        acoes: [UserAvatarButton(onPressed: _abrirConta)],
+        onSos: _ligarCvv,
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),

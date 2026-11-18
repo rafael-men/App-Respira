@@ -61,3 +61,38 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 | Criptografia | Nota e respostas cifradas; humor e escore sem cifra, protegidos pelas Security Rules. |
 | Diagrama de classes | Atributos privados; diagrama em PlantUML. |
 | Créditos | Correções em documentos de outros integrantes registradas no README e no CHANGELOG, com a autoria original preservada. |
+
+## 2. Sprint 4: AppBar padrão com SOS e Tela 07 CVV (18/11/2026)
+
+| Campo | Preenchimento |
+|---|---|
+| Responsável por esta entrada | Rene Mendonça Marinho |
+| Sprint | Sprint 4 (17/11/2026 a 23/11/2026) |
+| Atividade registrada | Tarefas R1 (AppBar padrão com SOS, ajuste A5) e R2 (Tela 07 Confirmação de chamada ao CVV) |
+| Ferramenta | Claude, com acesso à pasta do repositório |
+
+### 2.1 Prompts que funcionaram
+
+- O bloco "Contexto fixo do projeto Respira" no início de cada pedido (seção 3 do guia da Sprint 4). Ele evitou que a IA usasse o Firebase direto nas telas, criasse componentes repetidos ou fugisse dos tamanhos mínimos de toque e de texto.
+- Os prompts das tarefas R1 e R2 com a API da AppBar já combinada com Murilo e Rafael (`RespiraAppBar(titulo:, mostrarVoltar:, transparente:)`) e os textos exatos da Tela 07. Com os textos prontos, a tela saiu igual ao protótipo sem precisar de várias rodadas.
+- Pedir que a IA lesse antes o código existente (`SosCvvButton`, `DangerButton`, Telas 04 e 09 e os testes de Franck), e não só a descrição da tarefa.
+
+### 2.2 Problemas encontrados e como foram resolvidos
+
+| # | Problema | Como foi resolvido |
+|---|---|---|
+| 1 | O guia pede o "188" e os títulos em Poppins, mas o app ainda usa Libre Baskerville; a troca da tipografia é o ajuste A4, de Murilo. | Os textos usam a fonte do tema (`AppTheme`), só com o peso e o tamanho do protótipo. Quando Murilo trocar a fonte no tema, a Tela 07 e a AppBar mudam junto. |
+| 2 | Se a Tela 07 usasse a AppBar padrão com SOS, o SOS abriria outra Tela 07 por cima dela. O protótipo também não mostra o SOS nessa tela. | Parâmetro opcional `mostrarSos` na `RespiraAppBar`, usado com `false` só na Tela 07. |
+| 3 | A Início precisa do ícone de conta ao lado do SOS, e a API combinada não tinha onde colocar ícones extras. | Parâmetro opcional `acoes`, mostrado antes do SOS. A API combinada não mudou. |
+| 4 | O `DangerButton` não aceitava ícone, e o protótipo mostra um telefone em "Ligar agora". | Parâmetro opcional `icone` no `DangerButton`, sem mudar o "Apagar tudo" da Tela 09. |
+| 5 | O diagrama de classes define `ligar()` como `Future<void>`, mas a tela precisa saber se o discador abriu para orientar o usuário no navegador. | `ligar()` devolve `Future<bool>`, como no guia; o diagrama deve ser atualizado. |
+| 6 | O teste de Franck "sem a Tela 07, o SOS avisa que está em breve" passaria a falhar, porque a Tela 07 agora existe. | O teste foi trocado por "o SOS abre a confirmação do CVV". Como a respiração anima sem parar, o teste avança só o tempo da transição em vez de usar `pumpAndSettle`. |
+| 7 | O guia pede só a ação DIAL no AndroidManifest, mas o url_launcher abre o `tel:` com a ação VIEW. | As duas ações foram declaradas em `<queries>`. |
+| 8 | A IA não consegue rodar o Flutter no computador do grupo. | Rene roda `flutter analyze` e `flutter test` com um script local (fora do Git) e repassa a saída para a IA corrigir o que falhar. |
+| 9 | Erro da IA: o aviso "Ligue 188 pelo telefone do aparelho." usava `const Semantics(...)`, mas o construtor de `Semantics` não é `const` no Flutter 3.50. O `flutter analyze` acusou `const_with_non_const`, e os testes que importam a Tela 07 nem compilaram. | O `const` saiu do `Semantics` e ficou só no `Text`. |
+| 10 | No Flutter 3.50, `package:flutter/material.dart` aparece como obsoleto (`deprecated_member_use`, aviso do tipo info) em todos os arquivos do projeto, não só nos novos. | Nada mudou nesta tarefa, porque o contexto fixo do guia manda usar esse import. A troca para `package:material_ui` fica para o grupo decidir. |
+
+### 2.3 Escolha das bibliotecas
+
+- **url_launcher** (Tela 07): pacote oficial da equipe do Flutter, que abre o discador com o número já digitado no Android, no iOS e no navegador. Não precisa da permissão `CALL_PHONE`, porque quem inicia a chamada é o usuário no próprio discador, o que mantém a confirmação da RN09. Funciona sem internet, já que o número está no código (RN08). Pacotes que ligam direto, como o flutter_phone_direct_caller, foram descartados por pularem essa confirmação e exigirem uma permissão sensível.
+- **fl_chart** (Tela 06, tarefa R3): gráfico de linha feito só em Dart, sem código nativo, que funciona sem internet e aceita traço em gradiente e pontos personalizados, como no protótipo. Alternativas descartadas: o charts_flutter, que foi descontinuado, e o Syncfusion, que exige licença.

@@ -202,3 +202,20 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - README.md: status da Sprint 4 de Franck e linha das alterações no código de Rafael na seção "Revisão e correção da documentação". Franck.
 - .gitignore: exceção para versionar respira_main/pubspec.lock, para todo o grupo usar as mesmas versões dos pacotes. Franck.
 - docs/modelagem-firestore.md, seção 8 (Rafael), e docs/regras-de-negocio.md (RN07 e RN15): ordem do Botão de Pânico com a confirmação da senha antes de tudo e a exclusão da conta só depois da confirmação da nuvem. Correção de Franck.
+
+## [18/11/2026] Unidade II, Sprint 4: AppBar padrão e Tela 07
+
+### Adicionado
+
+- AppBar padrão `RespiraAppBar` em respira_main/lib/core/widgets/respira_app_bar.dart, com o botão SOS do CVV em todas as telas (ajuste A5, RF09, RN18). Parâmetros combinados com Murilo e Rafael: `titulo`, `mostrarVoltar` (seta "‹", padrão `true`) e `transparente` (Tela 04, padrão `false`). Parâmetros opcionais acrescentados: `acoes` (ícones antes do SOS, como o de conta da Início), `onSos` (troca a ação do SOS, que por padrão abre a Tela 07) e `mostrarSos` (só a própria Tela 07 esconde o SOS). Rene.
+- Tela 07 Confirmação de chamada ao CVV (`ConfirmacaoCvvPage`, F04, RF09, RF10, RN08, RN09), em respira_main/lib/features/cvv: círculo vermelho com o 188, texto do atendimento, selo "disponível mesmo sem conexão à internet", botão "Ligar agora" com ícone de telefone e "Cancelar" no rodapé, sem seta de voltar. Classe `ContatoEmergencia` com o nome e o número fixos no código (nada vem do Firestore nem da internet) e discagem pelo pacote url_launcher; quando não há discador, como no navegador do computador, a tela mostra "Ligue 188 pelo telefone do aparelho.". Rene.
+- Consulta ao discador declarada no Android (`<queries>` com as ações DIAL e VIEW e o esquema `tel` no AndroidManifest.xml) e no iOS (`LSApplicationQueriesSchemes` com `tel` no Info.plist). Rene.
+- Testes test/respira_app_bar_test.dart (título, SOS, SOS abrindo a Tela 07, seta de voltar, `mostrarVoltar: false`, `transparente` e ordem das ações) e test/cvv_test.dart (número fixo, textos da Tela 07, sem seta nem SOS, "Cancelar" fechando a tela, "Ligar agora" chamando o discador e a orientação sem discador). Rene.
+
+### Alterado
+
+- respira_main/pubspec.yaml: dependência url_launcher. Rene.
+- respira_main/lib/core/widgets/danger_button.dart (autoria original: Franck): parâmetro opcional `icone`, para o telefone de "Ligar agora". O "Apagar tudo" da Tela 09 continua igual. Rene.
+- respira_main/lib/features/main/pages/home_page.dart (autoria original: Rafael): AppBar trocada pela `RespiraAppBar`, mantendo o título "Respira", o ícone de conta e a ausência de seta; o SOS deixa de mostrar "Disponível em breve." e passa a abrir a Tela 07 (`_ligarCvv`). Rene.
+- respira_main/lib/features/respiracao/pages/respiracao_page.dart e respira_main/lib/features/panico/pages/panico_page.dart (autoria original: Franck): AppBar trocada pela `RespiraAppBar` (transparente na Tela 04 e sem seta na Tela 09); o SOS abre a Tela 07 no lugar de `avisarEmBreve`. O parâmetro `onSos` das duas telas continua existindo. Rene.
+- respira_main/test/telas_franck_test.dart (autoria original: Franck): o teste "sem a Tela 07, o SOS avisa que está em breve" virou "o SOS abre a confirmação do CVV", porque a Tela 07 agora existe. Rene.
