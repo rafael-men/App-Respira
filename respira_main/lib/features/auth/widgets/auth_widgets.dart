@@ -107,7 +107,7 @@ class AvisoPrivacidade extends StatelessWidget {
         SizedBox(width: 8),
         Expanded(
           child: Text(
-            'Seus dados ficam salvos apenas neste aparelho. O app não usa internet.',
+            'Sem conta, seus dados ficam vinculados a este aparelho. Com conta, você recupera seu histórico se reinstalar o app. Nada é compartilhado.',
             style: TextStyle(
               color: AppColors.textSecondary,
               fontFamily: AppTheme.fontFamily,

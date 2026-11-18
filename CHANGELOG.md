@@ -1,5 +1,13 @@
 # Changelog
 
+## [10/11/2026]
+### Adicionado
+- Respostas do onboarding salvas no aparelho com shared_preferences, com a marcação de onboarding concluído. Rafael.
+- Testes de PreferenciasUsuario, AuthValidators e das telas do onboarding e do aviso de privacidade. Rafael.
+### Alterado
+- Aviso de privacidade das telas de login e cadastro reescrito, sem afirmar que o app não usa internet. Rafael.
+- Correção de digitação no terceiro slide do onboarding ("questionário"). Rafael.
+
 ## [08/09/2026]
 
 ### Adicionado

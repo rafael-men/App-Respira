@@ -8,7 +8,7 @@ import '../widgets/onboarding_slide.dart';
 import '../widgets/opcao_resposta.dart';
 import 'home_page.dart';
 
-/// Apresentação do app 
+/// Apresentação do app
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({
     super.key,
@@ -92,7 +92,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
     setState(() => _respostas[indicePergunta] = indiceOpcao);
   }
 
-  void _concluir() {
+
+  Future<void> _concluir() async {
     final p = widget.preferencias;
 
     final objetivo = _respostas[0];
@@ -109,7 +110,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
     if (lembretes != null) {
       p.receberLembretes = lembretes == 0;
     }
+    p.onboardingConcluido = true;
+    await p.salvar();
 
+    if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (_) => HomePage(authRepository: widget.authRepository),
@@ -165,8 +169,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             tamanhoIlustracao,
           ),
           titulo: 'Acompanhe sua evolução',
-          texto:
-              'Registre seu humor e responda o quesrionário toda semana.',
+          texto: 'Registre seu humor e responda o questionário toda semana.',
         ),
       ),
       for (var i = 0; i < _perguntas.length; i++)
