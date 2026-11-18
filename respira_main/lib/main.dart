@@ -18,12 +18,12 @@ Future<void> main() async {
   final dependencias = await _montarDependencias();
   final auth = dependencias.auth;
 
-  // Nos acessos seguintes, abre direto na Início (RN18).
-  final sessaoExistente = auth.temSessao;
+  final preferencias = await PreferenciasUsuario.carregar();
+  final temSessao = auth.temSessao;
   final preparo = auth.aguardarSessao();
   // Uma falha depois do limite de espera vira só um aviso no log.
   unawaited(preparo.catchError((Object _) {}));
-  if (sessaoExistente) {
+  if (temSessao) {
     // Carrega a chave antes de abrir a Início. A leitura vem do cache do
     // aparelho; o limite evita prender a abertura se algo demorar.
     try {
@@ -35,12 +35,16 @@ Future<void> main() async {
   // No primeiro acesso, a conta anônima é criada enquanto o usuário vê o
   // onboarding. Sem internet, ela é criada no próximo uso (RN18).
 
+  // Nos acessos seguintes, abre direto na Início (RN18). O onboarding só
+  // aparece no primeiro acesso, ou quando a sessão ainda não existe.
+  final abrirNaInicio = temSessao && preferencias.onboardingConcluido;
+
   runApp(
     MyApp(
       authRepository: auth,
-      preferencias: PreferenciasUsuario(),
+      preferencias: preferencias,
       dependencias: dependencias,
-      sessaoExistente: sessaoExistente,
+      sessaoExistente: abrirNaInicio,
     ),
   );
 }
