@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Modelagem do Banco de Dados, mapeamento das classes de domínio Dart para o Firestore (Q1 b) iv) |
 | Autor desta seção | Rene Mendonça Marinho |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | docs/diagrama-classes.md (classes e métodos toMap()/fromMap()) e docs/modelagem-firestore.md (coleções, campos e Security Rules) |
  
 Este documento liga as duas pontas: as classes de domínio definidas em docs/diagrama-classes.md e os documentos definidos em docs/modelagem-firestore.md. Para cada classe, mostra onde ela é gravada, como cada atributo vira um campo e qual conversão acontece no caminho.
@@ -86,6 +86,7 @@ O nome do campo no Firestore é o mesmo do atributo Dart, exceto nos campos cifr
 | email | String? | *Não é gravado* | — | Lido de FirebaseAuth.instance.currentUser?.email (fica só no Firebase Authentication) |
 | nomeUsuario | String? | nomeUsuario | string ou null | Direto; só para usuário cadastrado |
 | fotoPerfil | String? | fotoPerfil | string ou null | Foto reduzida no aparelho e convertida em Base64 |
+| — | — | chaveCriptografia | string | Gerada na criação do documento por Criptografia.gerarChave() e carregada com Criptografia.instancia.definirChave() a cada login (docs/modelagem-firestore.md, seção 9) |
 | criadoEm | DateTime | criadoEm | timestamp | Timestamp.fromDate / toDate() |
 | — | — | configuracoes | map | Gravado junto na criação com Configuracoes().toMap() |
  
@@ -116,7 +117,7 @@ O nome do campo no Firestore é o mesmo do atributo Dart, exceto nos campos cifr
  
 ## 4. Implementação de referência em Dart
  
-O código abaixo é uma implementação de referência: mostra como os métodos toMap() e fromMap() do diagrama de classes devem ficar quando o app for implementado, a partir da Sprint 3 (docs/sprints.md, seção 5). Ele ainda não existe no código-fonte do app. Os demais métodos de cada classe foram omitidos. O serviço Criptografia é acessado por uma instância única (Criptografia.instancia), já que o diagrama define cifrar e decifrar como métodos de instância.
+O código abaixo é a implementação de referência dos métodos toMap() e fromMap() do diagrama de classes. A implementação real está em respira_main/lib (Sprint 4): RegistroHumor em features/diario/domain, RespostaPHQ9 em features/phq9/domain, Usuario em features/auth/domain e Configuracoes em features/configuracoes/domain. Os métodos de conta da classe Usuario no diagrama (entrarAnonimamente, entrar, cadastrar, recuperarSenha, sair) ficam no FirebaseAuthRepository (features/auth/data), e o Criptografia usa AES-GCM síncrono (DartAesGcm), para que toMap() continue síncrono. Os demais métodos de cada classe foram omitidos. O serviço Criptografia é acessado por uma instância única (Criptografia.instancia), já que o diagrama define cifrar e decifrar como métodos de instância.
 
 Os atributos são privados, como no diagrama de classes (marcador `-`). Em Dart, isso corresponde ao prefixo `_` no nome do campo, com um getter público só de leitura para cada atributo. As tabelas da seção 3 usam o nome do atributo sem o `_`.
  

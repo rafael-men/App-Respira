@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Modelagem do Banco de Dados, estrutura de coleções e documentos no Firebase (Q1 b) iii) |
 | Autor desta seção | Rafael Menezes Gonçalves |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | `docs/diagrama-classes.md`, `docs/diagrama-casos-de-uso.md` (regras RN01 a RN08), `docs/requisitos.md` (CRUD, seção 4) e `docs/escopo.md` (escopo técnico) |
  
 Este documento define como os dados do Respira ficam organizados no Cloud Firestore: coleções, documentos, campos, tipos, consultas e regras de acesso. A correspondência campo a campo com as classes Dart está em `docs/mapeamento-dart-firestore.md` (Q1 b) iv).
@@ -22,7 +22,8 @@ Este documento define como os dados do Respira ficam organizados no Cloud Firest
 | Número do CVV fora do banco | É constante no código (`ContatoEmergencia`) e precisa discar sem rede (RF10, RN08). |
 | Mínimo de dados pessoais | Não existe campo de e-mail, telefone ou localização. O e-mail do usuário cadastrado fica só no Firebase Authentication. Nome de usuário e foto são opcionais e só existem para quem se cadastrou (RN01, RN20, RNF03). |
 | Foto de perfil dentro do documento do usuário | A foto é reduzida no aparelho (até 256 × 256 px, JPEG) e gravada como texto Base64 no campo `fotoPerfil`. Isso evita depender do Cloud Storage, que exige o plano pago (Blaze) em projetos novos do Firebase, e a foto é apagada junto com o documento no Botão de Pânico (RF20). |
-| Campos sensíveis cifrados no aparelho | Nota do diário e respostas do PHQ-9 chegam ao Firestore já cifradas (RF12, RN06). |
+| Campos sensíveis cifrados no aparelho | Nota do diário e respostas do PHQ-9 chegam ao Firestore já cifradas com AES-GCM de 256 bits (RF12, RN06). |
+| Chave de criptografia no documento do usuário | A chave é gerada no aparelho no primeiro acesso e guardada em `chaveCriptografia`, protegida pelas Security Rules. Assim, quem se cadastra recupera as notas e as respostas ao reinstalar o app (RN19). Decisão do grupo de 17/11/2026; ver seção 9. |
 | Datas geradas no aparelho, não pelo servidor | Com persistência offline, um registro criado sem rede precisa da data na hora em que foi criado. A data do servidor só existiria depois da sincronização (RF16, RN05). |
 | Nomes de coleção em snake_case e campos em camelCase | Coleções ficam legíveis em português; os campos seguem o mesmo nome dos atributos Dart, o que simplifica o mapeamento. |
  
@@ -93,6 +94,7 @@ usuarios/{uid}
 | `configuracoes.notificacoesAtivas` | boolean | Sim | `false` | RF14. Padrão `false`, para que nenhuma notificação apareça sem o usuário pedir. |
 | `nomeUsuario` | string ou null | Não | `Lu` | Opcional, até 40 caracteres, só para usuário cadastrado (RF20). |
 | `fotoPerfil` | string ou null | Não | `/9j/4AAQ...` | Foto reduzida em Base64, opcional, só para usuário cadastrado (RF20). |
+| `chaveCriptografia` | string | Sim | `k3J...Q=` | Chave AES de 256 bits em Base64 (44 caracteres), gerada no aparelho no primeiro acesso. Não pode ser alterada depois (seção 7). |
  
 ### 3.2 `usuarios/{uid}/registros_humor/{registroId}`
  
@@ -121,7 +123,8 @@ usuarios/{uid}
   "criadoEm": "2026-11-17T09:12:00-03:00",
   "configuracoes": { "temaEscuro": true, "notificacoesAtivas": false },
   "nomeUsuario": "Lu",
-  "fotoPerfil": null
+  "fotoPerfil": null,
+  "chaveCriptografia": "k3J...Q="
 }
  
 // usuarios/Xk2...9aQ/registros_humor/7Hc...p2
@@ -193,6 +196,8 @@ service cloud.firestore {
         && request.resource.data.anonimo == sessaoAnonima()
         && request.resource.data.configuracoes.temaEscuro is bool
         && request.resource.data.configuracoes.notificacoesAtivas is bool
+        && request.resource.data.chaveCriptografia is string
+        && request.resource.data.chaveCriptografia.size() == 44
         && perfilValido(request.resource.data);
       allow update: if dono(uid)
         && request.resource.data.diff(resource.data).affectedKeys()
@@ -247,13 +252,17 @@ A regra de `delete` em `respostas_phq9` existe só para que o Botão de Pânico 
  
 O Firestore não apaga subcoleções quando o documento pai é apagado. Por isso o Botão de Pânico (UC12, RF13) segue esta ordem:
  
-1. Apaga os dados locais do aparelho, sem esperar a nuvem (RN07).
+0. Usuário cadastrado confirma a senha. O Firebase exige um login recente para excluir a conta, e a confirmação vem antes de tudo, para uma senha errada não apagar os dados e manter a conta (RN07). Essa confirmação precisa de internet.
+1. Apaga os dados locais do aparelho, sem esperar a nuvem (RN07): a exclusão dos passos 2 e 3 é aplicada primeiro no cache, e os dados somem da tela na hora.
 2. Apaga todos os documentos de `registros_humor` e `respostas_phq9` do usuário.
 3. Apaga o documento `usuarios/{uid}`.
-4. Exclui a conta no Firebase Authentication. Para usuário cadastrado, o Firebase exige um login recente; por isso o app pede a senha de novo antes de excluir (RN07).
+4. Exclui a conta no Firebase Authentication, **só depois que a nuvem confirma os passos 2 e 3**. Excluir a conta antes deixaria a fila do Firestore sem permissão e os dados órfãos na nuvem.
  
-Se não houver internet, os passos 2 e 3 ficam na fila do Firestore e são enviados quando a conexão voltar. O passo 4 depende de rede; até lá, a conta fica sem dados (RN15).
+O app espera até 10 segundos pela confirmação da nuvem. Sem internet, os passos 2 e 3 ficam na fila do Firestore, a conta anônima é mantida vazia para a fila ainda ter permissão de apagar quando a conexão voltar, e o app avisa que a exclusão na nuvem termina quando houver conexão (RN15).
  
 ## 9. Decisão sobre criptografia
+
+A chave de criptografia fica no documento do usuário (`chaveCriptografia`), e não só no aparelho. Com a chave apenas no aparelho, quem se cadastra perderia as notas e as respostas ao reinstalar o app, o que contraria a RN19. A contrapartida é uma proteção mais fraca: os campos cifrados protegem contra leitura dos documentos fora do app, mas quem tiver acesso administrativo ao projeto Firebase consegue ler a chave. O grupo aceitou essa contrapartida em 17/11/2026 pelo prazo do projeto; uma evolução seria guardar a chave cifrada com a senha do usuário.
+
  
 A nota do diário e as respostas do PHQ-9 são cifradas no aparelho antes do envio. O nível de humor e o escore ficam sem cifra no banco, protegidos pelas Security Rules (só a própria conta lê), porque são os dados que o usuário revisita no histórico do diário (Tela 03) e no gráfico de evolução do PHQ-9 (Tela 06). A decisão foi tomada pelo grupo e está registrada em `docs/regras-de-negocio.md` (RN10), em `docs/requisitos.md` (RF12) e em `docs/mapeamento-dart-firestore.md`.

@@ -77,7 +77,7 @@ Esta etapa cobre apenas o protótipo de baixa fidelidade (estrutura e fluxo das 
 
 Stack obrigatória: Dart, Flutter e Firebase (Autenticação e Banco de Dados). Apresentações em 24/11/2026 e 01/12/2026.
 
-## Sprint 1 (03/11/2026 a 09/11/2026)
+## Sprint 1 (27/10/2026 a 03/11/2026)
 
 ### Tópico 01: Q1 a) ii) Firebase (Autenticação e Banco de Dados)
 
@@ -157,6 +157,24 @@ O mapeamento das classes Dart para o Firestore está em [`docs/mapeamento-dart-f
 
 O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprints.md).
 
+## Sprint 3 (10/11/2026 a 17/11/2026): revisão da documentação e primeiras telas
+
+| Integrante | Entregas da Sprint 3 | Status |
+|---|---|---|
+| Franck Patrick Hora Vasconcelos | Revisão e correção da documentação, regras de negócio, cadastro opcional nos documentos e docs/uso-de-ia.md | Concluído |
+| Rafael Menezes Gonçalves | Onboarding, login, cadastro e Tela 01 Início (commit `67f627a`) | Concluído |
+
+## Sprint 4 (17/11/2026 a 23/11/2026): implementação das telas
+
+Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 (24/11 a 01/12) é dedicada a testes, validações e acabamento. O plano completo, com os marcos diários, está em [`docs/sprints.md`](docs/sprints.md), seções 6 e 7.
+
+| Integrante | Entregas da Sprint 4 | Status |
+|---|---|---|
+| Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico | Pendente |
+| Murilo Pedral Mota | Tipografia Poppins e Inter, Telas 02 e 03 Diário de humor, Tela 08 Configurações, tema escuro, perfil opcional e lembretes | Pendente |
+| Rene Mendonça Marinho | AppBar padrão com SOS, Tela 07 CVV, Telas 05 e 06 PHQ-9 e recuperação de senha | Pendente |
+| Rafael Menezes Gonçalves | Ajustes A1 a A3 e A9 da revisão do código entregue na Sprint 3 | Pendente |
+
 # Projeto Unidade II: Regras de Negócio (Questão 01 a) iv e b) i)
 
 | Atividade | Responsável |
@@ -175,12 +193,13 @@ Franck Patrick Hora Vasconcelos revisou a documentação da Unidade II e fez cor
 
 | Documento | Autoria original | Correções feitas por Franck Patrick Hora Vasconcelos |
 | --- | --- | --- |
-| [`docs/escopo.md`](docs/escopo.md) | Murilo Pedral Mota | Formatação restaurada (tabelas, caminhos e datas que tinham perdido os caracteres `\|` e `/`); telas de conta e cadastro opcional (F11); quatro telas principais; aditivo; critérios de aceitação. |
+| [`docs/escopo.md`](docs/escopo.md) | Murilo Pedral Mota | Formatação restaurada (tabelas, caminhos e datas que tinham perdido os caracteres `\|` e `/`); telas de conta e cadastro opcional (F11); quatro telas principais; aditivo; critérios de aceitação; fluxo de entrada pelo onboarding (17/11/2026). |
 | [`docs/diagrama-classes.md`](docs/diagrama-classes.md) e `.pdf` | Murilo Pedral Mota | Arquivo renomeado (antes `Diagrama de Classes.md`); código convertido de sintaxe Mermaid para PlantUML válido; métodos de conta e perfil na classe `Usuario`; PDF renderizado novamente. |
-| [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md) e `.pdf` | Rafael Menezes Gonçalves | Arquivo renomeado (antes `modelagem_firestore.md`); formatação restaurada; sintaxe das Security Rules corrigida; campos de perfil, cadastro e tamanho da nota; decisão sobre criptografia (seção 9); PDF renderizado novamente. |
-| [`docs/mapeamento-dart-firestore.md`](docs/mapeamento-dart-firestore.md) e `.pdf` | Rene Mendonça Marinho | Arquivos renomeados (antes `mapeamento_dart_firestore.md` e `mapeamento-firestore.pdf`); blocos de código restaurados; atributos privados no código de referência; campos de conta e perfil; chamadas de cadastro, login e recuperação de senha. |
-| [`docs/sprints.md`](docs/sprints.md) | Rene Mendonça Marinho (seções 1 a 4) e Rafael Menezes Gonçalves (seções 5 a 8) | Referência à "arquitetura" apontada para a seção 8 de justificativas; tarefas de conta e perfil; riscos do aditivo e do login; rótulos em negrito. |
+| [`docs/modelagem-firestore.md`](docs/modelagem-firestore.md) e `.pdf` | Rafael Menezes Gonçalves | Arquivo renomeado (antes `modelagem_firestore.md`); formatação restaurada; sintaxe das Security Rules corrigida; campos de perfil, cadastro e tamanho da nota; decisão sobre criptografia (seção 9); PDF renderizado novamente. Em 17/11/2026: campo `chaveCriptografia` e regra que impede trocá-la; decisão de guardar a chave no documento do usuário (seção 9); ordem do Botão de Pânico com a senha confirmada antes e a conta excluída só depois da confirmação da nuvem (seção 8). |
+| [`docs/mapeamento-dart-firestore.md`](docs/mapeamento-dart-firestore.md) e `.pdf` | Rene Mendonça Marinho | Arquivos renomeados (antes `mapeamento_dart_firestore.md` e `mapeamento-firestore.pdf`); blocos de código restaurados; atributos privados no código de referência; campos de conta e perfil; chamadas de cadastro, login e recuperação de senha. Em 17/11/2026: campo `chaveCriptografia` e indicação de onde está a implementação real no app; PDF renomeado para `mapeamento-dart-firestore.pdf`. |
+| [`docs/sprints.md`](docs/sprints.md) | Rene Mendonça Marinho (premissas, calendário, Sprints 1 e 2) e Rafael Menezes Gonçalves (sprints de implementação, riscos e ritual) | Referência à "arquitetura" apontada para a seção 8 de justificativas; tarefas de conta e perfil; riscos do aditivo e do login; rótulos em negrito. |
 | [`docs/requisitos.md`](docs/requisitos.md) | Rene, Franck, Murilo e Rafael (Atividade 03) | RF09 (confirmação antes de discar), RF02 (nota até 10.000 caracteres), RF12, RNF03, RNF06, RF16 reposicionado, novos F11 e RF17 a RF20, CRUD. |
 | [`docs/justificativas.md`](docs/justificativas.md) | Murilo, Rafael, Franck e Rene (Atividade 04) | Seção 8 atualizada para Firebase (sem Hive ou SQLite) e para o cadastro opcional; texto do botão do CVV (seção 6). |
 | [`docs/estudo-de-caso.md`](docs/estudo-de-caso.md) | Franck, Murilo, Rafael e Rene (Atividade 01) | Nota na restrição de animação: prevalece o padrão 4-7-8 do RF05. |
+| [`docs/sprints.md`](docs/sprints.md), replanejamento de 17/11/2026 | Rene Mendonça Marinho (premissas, calendário, Sprints 1 e 2) e Rafael Menezes Gonçalves (sprints de implementação, riscos e ritual) | Calendário corrigido (Sprint 1 de 27/10 a 03/11 até a Sprint 5 de 24/11 a 01/12) e premissas atualizadas; nova seção da Sprint 3 (revisão da documentação e primeiras telas); Sprint 4 de implementação (revisão do código entregue por Rafael, entregas por integrante e plano diário) e Sprint 5 de testes; riscos atualizados. Ajustes A1 a A9 da revisão do código, com o A9 (botão SOS no onboarding, no login e no cadastro) para Rafael. |
 | [`docs/eap.md`](docs/eap.md) e `.pdf`, [`docs/diagrama-casos-de-uso.md`](docs/diagrama-casos-de-uso.md) e `.pdf` | Franck Patrick Hora Vasconcelos | Telas de conta, autenticação anônima e por e-mail e senha, casos de uso UC15 a UC18; PDFs renderizados novamente. |

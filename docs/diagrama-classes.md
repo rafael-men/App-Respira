@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Diagrama de Classes, modelos de domínio (Q1 b) ii) |
 | Autor desta seção | Murilo Pedral Mota |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | `docs/requisitos.md` (RF01 a RF20 e CRUD), `docs/diagrama-casos-de-uso.md`, `docs/escopo.md` e a decisão por Firebase da Sprint 1 |
  
 O diagrama mostra as principais entidades do domínio do Respira, com atributos, métodos principais e relacionamentos. As classes seguem a tabela de CRUD de `docs/requisitos.md`, seção 4: cada informação que o usuário cria, consulta, atualiza ou exclui virou uma classe. Os métodos `toMap()` e `fromMap()` indicam onde cada classe se converte em documento do Firestore; o mapeamento completo fica na modelagem do banco (Q1 b) iv).
