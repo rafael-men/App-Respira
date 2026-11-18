@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Diagrama de Casos de Uso atualizado com as novas regras de negócio (Q1 b) i) |
 | Autor desta seção | Franck Patrick Hora Vasconcelos |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | `docs/requisitos.md` (F01 a F11, RF01 a RF20, CRUD), `docs/escopo.md`, `docs/justificativas.md` (seções 4 e 8) e a decisão por Firebase da Sprint 1 |
 
 O diagrama representa o que o usuário faz no Respira e quais sistemas externos participam de cada ação. Ele atualiza a visão da Unidade I com as regras de negócio da Unidade II: autenticação no Firebase (anônima, para quem usa sem cadastro, ou com e-mail e senha, no cadastro opcional), gravação no Cloud Firestore com funcionamento offline, controle de acesso por usuário e exclusão também na nuvem pelo Botão de Pânico.
@@ -26,7 +26,7 @@ O diagrama representa o que o usuário faz no Respira e quais sistemas externos 
 
 | Caso de uso | Descrição | Requisitos |
 |---|---|---|
-| UC01 Entrar no app | No primeiro acesso, a tela de login oferece entrar, criar conta ou continuar sem cadastro. Quem continua sem cadastro é autenticado pelo provedor anônimo, sem informar dados pessoais. Nos acessos seguintes, o app reaproveita a sessão e abre direto no Início. | F06, RF11, RF17 |
+| UC01 Entrar no app | No primeiro acesso, o app mostra o onboarding (apresentação e três perguntas opcionais, com a opção de pular). Ao concluir ou pular, o usuário é autenticado pelo provedor anônimo, sem informar dados pessoais, e chega à Tela 01 Início. Nos acessos seguintes, o app reaproveita a sessão e abre direto na Início. Entrar ou criar conta é opcional, pelo ícone de conta da Início (UC15, UC16). | F06, RF11, RF17 |
 | UC02 Registrar humor | O usuário escolhe um entre cinco emojis e, se quiser, escreve uma nota curta. Data e hora são gravadas automaticamente. | F01, RF01, RF02 |
 | UC03 Consultar histórico do diário | Lista os registros em ordem cronológica, inclusive sem internet. | RF03, RF16 |
 | UC04 Excluir registro de humor | Remove um registro específico do diário. | RF04 |

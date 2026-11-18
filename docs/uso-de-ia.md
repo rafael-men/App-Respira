@@ -7,8 +7,8 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Registro de Uso de IA (Q1 b) vi) |
 | Responsável por esta entrada | Franck Patrick Hora Vasconcelos |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
-| Atividade registrada | Análise da documentação de `docs/` e correção das inconsistências |
+| Sprint | Sprint 3 (10/11/2026 a 17/11/2026) |
+| Atividade registrada | Análise da documentação de `docs/` e correção das inconsistências (10/11/2026) |
 
 ## 1. Revisão da documentação (10/11/2026)
 
@@ -35,7 +35,7 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 | 15 | `docs/estudo-de-caso.md` × `docs/escopo.md` | Estudo de caso limita a "até 4 telas principais"; o escopo lista 9 telas. | Escopo passa a definir 4 telas principais e as demais como secundárias (RN12). |
 | 16 | `docs/modelagem_firestore.md`, seção 9 × RF12 | Humor e escore sem cifra no banco, enquanto o RF12 pedia criptografia dos dados do diário e do PHQ-9. | Decisão registrada: humor e escore sem cifra para histórico e gráfico; RF12 ajustado (RN10). |
 | 17 | `docs/diagrama-classes.md` × `docs/mapeamento_dart_firestore.md` | Atributos privados no diagrama e públicos no código Dart de referência. | Código de referência com atributos privados (`_campo`) e getters. |
-| 18 | `docs/mapeamento_dart_firestore.md`, seção 4 | Código de referência podia ser lido como código já implementado. | Indicado que é referência e que a implementação começa na Sprint 3. |
+| 18 | `docs/mapeamento_dart_firestore.md`, seção 4 | Código de referência podia ser lido como código já implementado. | Indicado que é referência e que a implementação começa na Sprint 4. |
 | 19 | `docs/escopo.md`, `docs/eap.md`, `docs/sprints.md` | Tela de login descrita sem campos de e-mail e senha e com protótipo previsto. | Cadastro opcional com e-mail e senha (F11, RF18 a RF20, UC15 a UC18); telas de conta fora do escopo de prototipação (RN11). |
 | 20 | `docs/requisitos.md` × decisão do grupo | Autenticação só anônima, sem forma de manter o histórico ao reinstalar o app. | Uso anônimo mantido; cadastro opcional vincula a conta anônima e preserva os dados (RN19). |
 | 21 | Vários documentos | Regras do "aditivo" citadas, mas sem aditivo oficial no repositório. | Regras consolidadas em `docs/regras-de-negocio.md` (RN01 a RN21), sem aditivo oficial. |
@@ -53,6 +53,7 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 | Banco de dados | Cloud Firestore com persistência offline, no lugar de Hive ou SQLite. |
 | Autenticação | Uso sem cadastro (conta anônima) ou cadastro opcional com e-mail e senha, com recuperação de senha. |
 | Telas de conta | Login, cadastro, recuperação de senha e perfil existem no app, sem protótipo. |
+| Fluxo de entrada (ajuste de 17/11/2026) | Primeiro acesso pelo onboarding e depois a Tela 01 Início, sem cadastro; login e cadastro opcionais pelo ícone de conta da Início, como no código entregue na Sprint 3 (RN18). |
 | Perfil | Nome de usuário e foto opcionais, só para cadastrados e não compartilhados. |
 | CVV | Um toque abre a confirmação; a discagem só acontece depois de confirmar. |
 | Respiração | Padrão 4-7-8 do RF05. |

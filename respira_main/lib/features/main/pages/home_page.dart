@@ -5,6 +5,7 @@ import '../../../core/widgets/gradient_button.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/pages/cadastro_page.dart';
 import '../../auth/pages/login_page.dart';
+import '../../respiracao/pages/respiracao_page.dart';
 import '../widgets/feature_card.dart';
 import '../widgets/identity_card.dart';
 import '../widgets/mood_selector.dart';
@@ -155,7 +156,11 @@ class _HomePageState extends State<HomePage> {
                 icone: Icons.air,
                 titulo: 'Respiração 4-7-8',
                 descricao: 'Alívio em poucos minutos',
-                onTap: _emBreve,
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => RespiracaoPage(onSos: _ligarCvv),
+                  ),
+                ),
               ),
               FeatureCard(
                 icone: Icons.assignment_outlined,

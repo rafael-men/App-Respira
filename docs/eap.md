@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Estrutura Analítica do Projeto simplificada (Q1 d) ii) |
 | Autor desta seção | Franck Patrick Hora Vasconcelos |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | `docs/escopo.md`, `docs/requisitos.md`, `docs/justificativas.md`, `docs/prototipoAltaFidelidade.pdf` e o enunciado do Projeto II |
 
 A EAP decompõe o escopo definido em `docs/escopo.md` em pacotes de trabalho entregáveis. Cada pacote está ligado a uma funcionalidade (F), a um requisito (RF/RNF) ou a um item do Projeto II, para que nada seja feito sem origem documentada. A distribuição dos pacotes por integrante e por sprint está em `docs/sprints.md`.
@@ -88,8 +88,8 @@ Diagrama gerado no [PlantText](https://www.planttext.com/). Versão renderizada:
 | 1.2.6 | Fluxo de navegação real | Diagrama de como as telas se conectam no app implementado | Q1 b) v |
 | 1.2.7 | Registro de uso de IA | `docs/uso-de-ia.md` com prompts, erros, soluções e justificativa das bibliotecas | Q1 b) vi; observação 7 |
 | **1.3** | **Prototipação** | | |
-| 1.3.1 | Telas de conta (sem protótipo) | Login, cadastro, recuperação de senha e perfil registrados nos documentos. Essas telas ficam fora do escopo de prototipação | Q1 e) i; RF18 a RF20; RN11 |
-| 1.3.2 | Revisão do fluxo de navegação | Fluxo do protótipo com a tela de login indicada como ponto de entrada no primeiro acesso | Q1 e) iv; RN18 |
+| 1.3.1 | Telas de conta (sem protótipo) | Onboarding, login, cadastro, recuperação de senha e perfil registrados nos documentos. Essas telas ficam fora do escopo de prototipação | Q1 e) i; RF18 a RF20; RN11 |
+| 1.3.2 | Revisão do fluxo de navegação | Fluxo do protótipo com o onboarding no primeiro acesso, seguido da Tela 01 Início, e com o login e o cadastro acessados pelo ícone de conta da Início | Q1 e) iv; RN18 |
 | **1.4** | **Infraestrutura Firebase** | | |
 | 1.4.1 | Projeto Firebase e FlutterFire | App Flutter conectado ao projeto Firebase | Observação 8 |
 | 1.4.2 | Autenticação (anônima e e-mail/senha) | Uso sem cadastro pelo provedor anônimo; cadastro, login e recuperação de senha por e-mail e senha; vinculação da conta anônima à cadastrada | F06; F11; RF11; RF17 a RF19 |

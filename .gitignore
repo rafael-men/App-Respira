@@ -1,6 +1,8 @@
 # Miscellaneous
 *.class
 *.lock
+# O app versiona o pubspec.lock para todos usarem as mesmas versões dos pacotes.
+!respira_main/pubspec.lock
 *.log
 *.pyc
 *.swp

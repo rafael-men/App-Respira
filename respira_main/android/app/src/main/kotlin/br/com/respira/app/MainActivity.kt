@@ -1,4 +1,4 @@
-package com.example.respira_main
+package br.com.respira.app
 
 import io.flutter.embedding.android.FlutterActivity
 

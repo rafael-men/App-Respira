@@ -7,7 +7,7 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
 |---|---|
 | Seção | Escopo do projeto (Q1 d) i) |
 | Autor desta seção | Murilo Pedral Mota |
-| Sprint | Sprint 2 (10/11/2026 a 16/11/2026) |
+| Sprint | Sprint 2 (03/11/2026 a 10/11/2026) |
 | Base | `docs/estudo-de-caso.md`, `docs/pesquisa.md`, `docs/personas.md`, `docs/benchmark.md`, `docs/requisitos.md`, `docs/justificativas.md`, `docs/prototipoAltaFidelidade.pdf` |
  
 Este documento delimita o que o Respira vai entregar na Unidade II. Nenhuma funcionalidade nova é criada aqui: o escopo é recortado a partir das funcionalidades F01 a F11 e dos requisitos RF01 a RF20 e RNF01 a RNF08 já definidos em `docs/requisitos.md`, das personas Marina Souza e Lucas Andrade (`docs/personas.md`) e da stack obrigatória do Projeto II (Dart, Flutter e Firebase).
@@ -53,9 +53,9 @@ Os quatro públicos do estudo de caso (adultos, universitários, professores e p
  
 F10 permanece no escopo, mesmo sendo secundária, porque o protótipo de alta fidelidade já traz a variante escura da Tela 01 (`docs/justificativas.md`, seção 7) e o Projeto II exige telas fiéis ao protótipo (Q1 a) iii). Por ser secundária, é a última funcionalidade do cronograma.
  
-Telas no escopo, conforme o protótipo de alta fidelidade: 01 Início (home), 02 Diário (registro), 03 Diário (histórico), 04 Respiração Guiada, 05 PHQ-9 (pergunta), 06 PHQ-9 (resultado), 07 Confirmação de chamada ao CVV, 08 Configurações e 09 Confirmação do Botão de Pânico. Além delas, o app terá as telas de conta: login (e-mail e senha, com as opções "Criar conta", "Esqueci minha senha" e "Continuar sem cadastro"), cadastro, recuperação de senha e perfil (nome de usuário e foto, opcionais). A tela de login atende ao Projeto II (Q1 e) i; `docs/eap.md`, pacote 1.3.1). As telas de conta não fazem parte do escopo de prototipação: não terão protótipo de baixa nem de alta fidelidade e ficam registradas apenas nos documentos (`docs/regras-de-negocio.md`, RN11).
+Telas no escopo, conforme o protótipo de alta fidelidade: 01 Início (home), 02 Diário (registro), 03 Diário (histórico), 04 Respiração Guiada, 05 PHQ-9 (pergunta), 06 PHQ-9 (resultado), 07 Confirmação de chamada ao CVV, 08 Configurações e 09 Confirmação do Botão de Pânico. Além delas, o app terá o onboarding, mostrado só no primeiro acesso antes da Tela 01 Início, e as telas de conta: login (e-mail e senha, com "Esqueci minha senha"), cadastro, recuperação de senha e perfil (nome de usuário e foto, opcionais). O usuário entra sem cadastro, de forma anônima, ao concluir ou pular o onboarding; o login e o cadastro são opcionais e ficam no ícone de conta da Início (`docs/regras-de-negocio.md`, RN18). A tela de login atende ao Projeto II (Q1 e) i; `docs/eap.md`, pacote 1.3.1). O onboarding e as telas de conta não fazem parte do escopo de prototipação: não terão protótipo de baixa nem de alta fidelidade e ficam registradas apenas nos documentos (`docs/regras-de-negocio.md`, RN11).
 
-As telas principais são quatro, conforme a restrição do estudo de caso (`docs/estudo-de-caso.md`, seção 7): Diário de humor, Respiração Guiada, PHQ-9 e acesso ao CVV. As demais (telas de conta, Início, histórico do diário, resultado do PHQ-9, confirmações e Configurações) são telas secundárias ou de confirmação (`docs/regras-de-negocio.md`, RN12).
+As telas principais são quatro, conforme a restrição do estudo de caso (`docs/estudo-de-caso.md`, seção 7): Diário de humor, Respiração Guiada, PHQ-9 e acesso ao CVV. As demais (onboarding, telas de conta, Início, histórico do diário, resultado do PHQ-9, confirmações e Configurações) são telas secundárias ou de confirmação (`docs/regras-de-negocio.md`, RN12).
  
 ## 5. Escopo técnico
  
@@ -115,7 +115,8 @@ As telas principais são quatro, conforme a restrição do estudo de caso (`docs
  
 ## 10. Critérios de aceitação do escopo
  
-- [ ] As 9 telas do protótipo de alta fidelidade e as telas de conta estão implementadas e navegáveis.
+- [ ] As 9 telas do protótipo de alta fidelidade, o onboarding e as telas de conta estão implementados e navegáveis.
+- [ ] O onboarding aparece só no primeiro acesso e leva à Tela 01 Início, sem exigir cadastro.
 - [ ] Quem escolhe continuar sem cadastro usa o app de forma anônima, sem informar dados pessoais.
 - [ ] O usuário consegue criar conta com e-mail e senha, entrar, sair, recuperar a senha e manter o histórico depois de reinstalar o app.
 - [ ] Diário e PHQ-9 gravam e leem do Firestore e funcionam em modo avião.
