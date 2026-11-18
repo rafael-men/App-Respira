@@ -1,22 +1,38 @@
 # Changelog
 
+## [10/11/2026]
+
+### Adicionado
+
+- Respostas do onboarding salvas no aparelho com shared_preferences, com a marcação de onboarding concluído. A Início abre direto só quando há sessão e o onboarding já foi concluído. Rafael.
+- Testes de PreferenciasUsuario, AuthValidators e das telas do onboarding e do aviso de privacidade. Rafael.
+
+### Alterado
+
+- Aviso de privacidade das telas de login e cadastro reescrito, sem afirmar que o app não usa internet. Rafael.
+- Correção de digitação no terceiro slide do onboarding ("questionário"). Rafael.
+
 ## [08/09/2026]
 
 ### Adicionado
+
 - Benchmark de 3 soluções existentes (Daylio, Calm e CVV) em docs/benchmark.md, com funcionalidades, pontos fortes/fracos, experiência de uso e o que o Respira pode aproveitar ou fazer diferente (Atividade 02). Franck.
 
 ### Alterado
+
 - README.md: adicionada a tabela de responsabilidades da Atividade 02, com Franck no benchmark, Murilo na pesquisa e no slide da apresentação, Rafael na persona 1 e Rene na persona 2. Franck.
 
 ## [02/09/2026]
 
 ### Alterado
+
 - docs/estudo-de-caso.md: removida a observação final sobre o escopo do documento. Murilo.
 - README.md: ajuste na tabela de responsabilidades da Atividade 01 (Franck com a análise do problema e consolidação; Murilo com a estrutura do repositório, público e usuários, e contexto de uso). Murilo.
 
 ## [01/09/2026]
 
 ### Adicionado
+
 - Criação do projeto Flutter base do App Respira (app-criado). Rafael.
 - Estrutura de diretórios e arquivos essenciais do repositório: CHANGELOG.md, pubspec.yaml e esqueletos de docs/estudo-de-caso.md, docs/pesquisa.md, docs/personas.md, docs/requisitos.md, docs/arquitetura.md, docs/decisoes-visuais.md. Murilo.
 - README.md com identificação do projeto, turma, integrantes e responsabilidades da Atividade 01. Franck.
@@ -28,24 +44,28 @@
 ## [14/09/2026]
 
 ### Adicionado
+
 - Documento completo de funcionalidades e requisitos em docs/requisitos.md (Atividade 03): 10 funcionalidades com nome, descrição, necessidade do usuário e justificativa; 16 requisitos funcionais (RF01–RF16); 8 requisitos não funcionais (RNF01–RNF08); tabela de CRUD; priorização em essenciais, importantes e secundárias; e a funcionalidade mais importante com justificativa. Rene, Franck, Murilo e Rafael.
 - Slides de apresentação da Atividade 03 em docs/apresentacaoRequisitos.pdf, cobrindo funcionalidades, requisitos funcionais e não funcionais, exemplo de CRUD, priorização e a funcionalidade mais importante. Franck.
 
 ### Alterado
+
 - README.md: adicionada a tabela de responsabilidades da Atividade 03
 
 ## [21/09/2026]
 
 ### Adicionado
+
 - Protótipo de baixa fidelidade em docs/prototipoBaixaFidelidade.pdf (Atividade 04): wireframes de 9 telas principais (Início, Diário de Humor - Registro e Histórico, Respiração Guiada, Questionário PHQ-9 - Pergunta e Resultado, Confirmação de Chamada ao CVV, Configurações e Confirmação do Botão de Pânico), uma tela por página, com estrutura e fluxo de navegação entre elas.
 
 ### Alterado
-- README.md: adicionada a seção da Atividade 04 com a lista das telas do protótipo de baixa fidelidade e responsáveis a definir.
 
+- README.md: adicionada a seção da Atividade 04 com a lista das telas do protótipo de baixa fidelidade e responsáveis a definir.
 
 ## [05/10/2026]
 
 ### Adicionado
+
 - Apresentação Final da Unidade I em docs/apresentacaoFinalUnidadeI.pdf (Atividade 05). Murilo.
 - Protótipo de alta fidelidade em PDF em docs/prototipoAltaFidelidade.pdf (Atividade 04). Murilo.
 - Seções 1, 2 e 3 de justificativas em docs/justificativas.md. Murilo.
@@ -54,70 +74,86 @@
 - Seções 8 e 9 de justificativas em docs/justificativas.md. Rene.
 
 ### Alterado
+
 - README.md: adicionadas as seções da Atividade 04 (Prototipação 3/3, protótipo de alta fidelidade e justificativas) e da Atividade 05 (Apresentação Final da Unidade I), com as respectivas responsabilidades. Murilo.
 - CHANGELOG.md: registrado o acréscimo dos documentos e das justificativas das Atividades 04 e 05. Murilo.
 
 ## [03/11/2026] Unidade II, Sprint 1
 
 ### Alterado
+
 - README.md: adicionada a seção da Unidade II com a Sprint 1, a tabela de responsabilidades do Tópico 01 e a stack (Dart, Flutter e Firebase) na descrição do projeto. Franck.
 - .gitignore: adicionada a pasta docs/unidade-ii/, de documentos internos de planejamento que não devem ser versionados. Franck.
 
 ## [05/11/2026]
 
 ### Adicionado
+
 - Escopo do projeto em docs/escopo.md (Projeto Unidade II, Q1 d) i): objetivo, justificativa, público e personas, escopo do produto (F01 a F10) e técnico, entregáveis, fora do escopo, premissas, restrições e critérios de aceitação. Murilo.
 
 ### Alterado
+
 - README.md: adicionada a seção do Projeto Unidade II (Escopo do Projeto) com a responsabilidade e o link para docs/escopo.md. Murilo.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - Diagrama de Casos de Uso em docs/diagrama-casos-de-uso.md e docs/diagrama-casos-de-uso.pdf (Projeto Unidade II, Q1 b) i): atores, 14 casos de uso (UC01 a UC14), regras de negócio RN01 a RN08 e código-fonte em PlantUML. Franck.
 
 ### Alterado
+
 - README.md: adicionada a seção do Diagrama de Casos de Uso com a responsabilidade e os links para docs/diagrama-casos-de-uso.md e docs/diagrama-casos-de-uso.pdf. Franck.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - EAP simplificada em docs/eap.md (Projeto Unidade II, Q1 d) ii): diagrama em Mermaid e dicionário dos pacotes de trabalho (gerenciamento, documentação e modelagem, prototipação, infraestrutura Firebase, funcionalidades, qualidade e entrega), cada um ligado a funcionalidade, requisito ou item do Projeto II. Franck.
 
 ### Alterado
+
 - README.md: adicionada a seção da EAP com a responsabilidade e o link para docs/eap.md. Franck.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - Diagrama de Classes em docs/diagrama-classes.md e docs/diagrama-classes.pdf (Projeto Unidade II, Q1 b) ii): classes Usuario, RegistroHumor, NivelHumor, RespostaPHQ9, Configuracoes, ContatoEmergencia e Criptografia, com descrição das classes, métodos principais e relacionamentos. Murilo.
 
 ### Alterado
+
 - README.md: adicionada a seção do Diagrama de Classes com a responsabilidade e os links para docs/diagrama-classes.md e docs/diagrama-classes.pdf. Murilo.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - Modelagem do banco de dados em docs/modelagem-firestore.md (Projeto Unidade II, Q1 b) iii): estrutura de coleções e documentos no Cloud Firestore (usuarios, registros_humor e respostas_phq9), campos e tipos, exemplos, CRUD por coleção, consultas e índices, Security Rules e ordem de exclusão do Botão de Pânico. Rafael.
 
 ### Alterado
+
 - README.md: adicionada a seção da Modelagem do Firestore com a responsabilidade e o link para docs/modelagem-firestore.md. Rafael.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - Mapeamento das classes Dart para o Firestore em docs/mapeamento-dart-firestore.md (Projeto Unidade II, Q1 b) iv): correspondência das classes Usuario, Configuracoes, RegistroHumor, NivelHumor e RespostaPHQ9 com as coleções, regras de conversão (DateTime, enum, campos cifrados), implementação de referência de toMap()/fromMap(), withConverter por coleção e comportamento offline. Rene.
 
 ### Alterado
+
 - README.md: adicionada a seção do Mapeamento Dart para Firestore com a responsabilidade e o link para docs/mapeamento-dart-firestore.md. Rene.
 
 ## [10/11/2026]
 
 ### Adicionado
+
 - Planejamento em sprints em docs/sprints.md, seções 1 a 4 (Projeto Unidade II, Q1 d) iii): premissas do planejamento, calendário das sprints até as apresentações de 24/11 e 01/12, e tarefas da Sprint 1 (Firebase na documentação) e da Sprint 2 (escopo, EAP, sprints, casos de uso, classes e modelagem do Firestore). Rene.
 - Planejamento em sprints em docs/sprints.md, seções 5 a 8 (Projeto Unidade II, Q1 d) iii): Sprint 3 (app mínimo executável), Sprint 4 (conclusão, qualidade e apresentação), riscos e respostas, e ritual dos checkpoints semanais. Rafael.
 
 ### Alterado
+
 - README.md: adicionada a seção do Planejamento em Sprints com a responsabilidade pelas seções 1 a 4 e o link para docs/sprints.md. Rene.
 - README.md: adicionada a responsabilidade pelas seções 5 a 8 do Planejamento em Sprints. Rafael.
 
@@ -126,11 +162,13 @@
 As correções abaixo foram feitas por Franck em documentos de outros integrantes, para manter a documentação coerente. A autoria original de cada documento continua com o integrante indicado entre parênteses, e os commits originais continuam valendo como evidência da participação de cada um.
 
 ### Adicionado
+
 - Regras de negócio consolidadas em docs/regras-de-negocio.md (Q1 a) iv e b) i): RN01 a RN21, sem aditivo oficial. Franck.
 - Primeira entrada de docs/uso-de-ia.md (Q1 b) vi): tabela das 24 inconsistências encontradas na revisão da documentação, com a correção aplicada, e as decisões do grupo. Franck.
 - Cadastro opcional com e-mail e senha: F11 e RF17 a RF20 em docs/requisitos.md (autoria original da Atividade 03: Rene, Franck, Murilo e Rafael) e casos de uso UC15 a UC18 em docs/diagrama-casos-de-uso.md. Franck.
 
 ### Alterado
+
 - Renomeados para o padrão de nomes do repositório: `Diagrama de Classes.md`/`.pdf` → docs/diagrama-classes.md/.pdf (Murilo), `modelagem_firestore.md` → docs/modelagem-firestore.md (Rafael), `mapeamento_dart_firestore.md` → docs/mapeamento-dart-firestore.md e `mapeamento-firestore.pdf` → docs/mapeamento-dart-firestore.pdf (Rene). Correção de Franck.
 - docs/escopo.md (Murilo): formatação restaurada, telas de conta, cadastro opcional, quatro telas principais e critérios de aceitação. Correção de Franck.
 - docs/diagrama-classes.md e .pdf (Murilo): código convertido para PlantUML válido, métodos de conta e perfil, PDF renderizado novamente. Correção de Franck.
@@ -144,6 +182,7 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 ## [17/11/2026] Unidade II, Sprint 4
 
 ### Adicionado
+
 - Integração com o Firebase em respira_main (Sprint 4): dependências firebase_core, firebase_auth, cloud_firestore e cryptography; inicialização com persistência offline do Firestore; `FirebaseAuthRepository` com uso sem cadastro (anônimo), cadastro com vínculo da conta anônima, login, recuperação de senha, saída e exclusão de conta; `lib/firebase_options.dart` provisório (o app usa repositórios em memória até o `flutterfire configure`). Franck.
 - Modelos de domínio (`Usuario`, `Configuracoes`, `RegistroHumor`, `RespostaPHQ9`) e repositórios de diário, PHQ-9 e usuário, cada um com versão Firestore e versão em memória, disponíveis às telas por `DependenciasScope`; `ColecoesRespira`, com as referências às coleções convertidas por `withConverter`; serviço `Criptografia` (AES-GCM de 256 bits, chave no documento do usuário). Franck.
 - Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico, com o serviço `ExclusaoDadosService` (exclusão do diário, do PHQ-9, do documento do usuário e da conta, com senha para usuário cadastrado); botão de perigo reutilizável (`DangerButton`). Franck.
@@ -153,6 +192,7 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - Correções da revisão do código: a abertura do app espera a sessão salva (inclusive no navegador) e a chave de criptografia antes de mostrar a Início, e os repositórios aguardam a conta antes de ler ou gravar (`aguardarSessao`); o Botão de Pânico só exclui a conta depois que a nuvem confirma a exclusão dos dados e, offline, mantém a conta anônima vazia até sincronizar; erros das gravações em segundo plano vão para o log; sair da conta sem internet não mostra erro; o SOS das Telas 04 e 09 avisa "Disponível em breve." (`avisarEmBreve`) até a Tela 07 existir. Franck.
 
 ### Alterado
+
 - docs/sprints.md (Rene: premissas, calendário, Sprints 1 e 2; Rafael: sprints de implementação, riscos e ritual): calendário corrigido para Sprint 1 (27/10 a 03/11), Sprint 2 (03/11 a 10/11), Sprint 3 (10/11 a 17/11), Sprint 4 (17/11 a 23/11) e Sprint 5 (24/11 a 01/12); nova seção da Sprint 3 (revisão da documentação e primeiras telas); Sprint 4 passa a implementar todas as telas, com revisão do código entregue por Rafael (ajustes A1 a A9, com o novo A9 para Rafael: botão SOS no onboarding, no login e no cadastro), entregas de tela divididas entre Franck, Murilo e Rene e plano de entregas diário; Sprint 5 passa a ser só de testes, validações e acabamento. A autoria original das seções continua com Rene e Rafael. Correção de Franck.
 - Cabeçalho "Sprint" corrigido para o novo calendário em docs/escopo.md (Murilo), docs/diagrama-classes.md (Murilo), docs/modelagem-firestore.md (Rafael), docs/mapeamento-dart-firestore.md (Rene), docs/eap.md, docs/diagrama-casos-de-uso.md, docs/regras-de-negocio.md e docs/uso-de-ia.md. Correção de Franck.
 - RN18 ajustada ao fluxo implementado por Rafael: primeiro acesso pelo onboarding, depois a Tela 01 Início sem cadastro, com login e cadastro opcionais pelo ícone de conta. Atualizados docs/regras-de-negocio.md (RN11 e RN18), docs/diagrama-casos-de-uso.md (UC01), docs/eap.md (pacotes 1.3.1 e 1.3.2), docs/escopo.md (Murilo; telas no escopo e critérios de aceitação) e docs/uso-de-ia.md. Correção de Franck.
