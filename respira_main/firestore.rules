@@ -1,0 +1,67 @@
+// Security Rules do Cloud Firestore do Respira.
+// Fonte: docs/modelagem-firestore.md, seção 7. Publicar com:
+//   firebase deploy --only firestore:rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function dono(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function sessaoAnonima() {
+      return request.auth.token.firebase.sign_in_provider == 'anonymous';
+    }
+
+    function perfilValido(d) {
+      return (d.get('nomeUsuario', null) == null
+                || (d.nomeUsuario is string && d.nomeUsuario.size() <= 40))
+          && (d.get('fotoPerfil', null) == null
+                || (d.fotoPerfil is string && d.fotoPerfil.size() <= 150000))
+          && (d.anonimo == false
+                || (d.get('nomeUsuario', null) == null && d.get('fotoPerfil', null) == null));
+    }
+
+    match /usuarios/{uid} {
+      allow read, delete: if dono(uid);
+      allow create: if dono(uid)
+        && request.resource.data.anonimo == sessaoAnonima()
+        && request.resource.data.configuracoes.temaEscuro is bool
+        && request.resource.data.configuracoes.notificacoesAtivas is bool
+        && request.resource.data.chaveCriptografia is string
+        && request.resource.data.chaveCriptografia.size() == 44
+        && perfilValido(request.resource.data);
+      allow update: if dono(uid)
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['configuracoes', 'anonimo', 'nomeUsuario', 'fotoPerfil'])
+        && request.resource.data.anonimo == sessaoAnonima()
+        && perfilValido(request.resource.data);
+
+      match /registros_humor/{registroId} {
+        allow read, delete: if dono(uid);
+        allow create: if dono(uid)
+          && request.resource.data.humor in ['muitoMal', 'mal', 'neutro', 'bem', 'muitoBem']
+          && request.resource.data.criadoEm is timestamp
+          && (request.resource.data.notaCifrada == null
+              || (request.resource.data.notaCifrada is string
+                  && request.resource.data.notaCifrada.size() <= 60000));
+        allow update: if false;
+      }
+
+      match /respostas_phq9/{respostaId} {
+        allow read, delete: if dono(uid);
+        allow create: if dono(uid)
+          && request.resource.data.respostasCifradas is string
+          && request.resource.data.escore is int
+          && request.resource.data.escore >= 0
+          && request.resource.data.escore <= 27
+          && request.resource.data.respondidoEm is timestamp;
+        allow update: if false;
+      }
+    }
+
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}
