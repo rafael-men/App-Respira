@@ -1,5 +1,8 @@
 # App Respira
 
+<img width="500" height="500" alt="respira" src="https://github.com/user-attachments/assets/9cfdc2c6-d238-4b43-833c-a639f0100588" />
+
+
 Aplicativo de saúde mental e apoio emocional, com diário de humor, respiração guiada (padrão 4-7-8), rastreio por questionário (PHQ-9) e acesso rápido ao CVV (188) em situações de crise.
 
 ## Turma
