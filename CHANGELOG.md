@@ -206,9 +206,14 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 ## [21/11/2026] Unidade II, Sprint 4 (replanejamento e tarefas de Franck)
 
 ### Adicionado
+- Serviço de lembretes motivacionais (`LembretesService`, com versão em memória e versão real `LocalLembretesService` com flutter_local_notifications): um lembrete por dia, sem som e sem vibração, disponível em `DependenciasScope.of(context).lembretes` para a Tela 08 (N11). Franck.
 - Regras de negócio RN22 a RN25 em docs/regras-de-negocio.md, com as decisões do grupo de 21/11 (faixas do PHQ-9, cartão de apoio da pergunta 9, aviso antes de trocar de conta e diferenças aceitas em relação ao protótipo) (T06). Franck.
+- Testes de `PreferenciasUsuario.limpar()` e do serviço de lembretes; o teste do Botão de Pânico passa a conferir que as preferências e os lembretes também são apagados. Franck.
 
 ### Alterado
 - docs/sprints.md (Rene: premissas, calendário, Sprints 1 e 2; Rafael: sprints de implementação, riscos e ritual): seção 6.4 com o replanejamento de 21/11/2026 depois da auditoria do código (lista única de tarefas, responsáveis, ordem de integração e risco de prazo); tabela da Sprint 5 e riscos atualizados. A autoria original das seções continua com Rene e Rafael. Correção de Franck.
 - README.md: responsabilidades e status da Sprint 4 conforme o replanejamento; regras de negócio até RN25; linhas novas na seção "Revisão e correção da documentação". Franck.
+- Botão de Pânico também apaga as preferências do onboarding salvas no aparelho e desliga os lembretes (T02, RN07). Inclui o método `PreferenciasUsuario.limpar()` em respira_main/lib/features/main/data/preferencias_usuario.dart (autoria original: Rafael). Franck.
+- Ambiente padronizado no Flutter 3.50.0 com o respira_main/pubspec.lock regenerado (T01). Para compilar para Android com essa versão: Gradle 9.3.1, Android Gradle Plugin 9.1.1 e `compileSdk` 37 (exigido pelos lembretes), além de permissões e receptores de notificação no AndroidManifest.xml (configuração original do projeto: Rafael). Franck.
+- App compilado (APK de depuração) e executado num emulador Android (API 35): onboarding, Início, Tela 04 e sessão mantida ao fechar e reabrir o app (V01). Franck.
 - docs/diagrama-casos-de-uso.md: descrição do UC16 com o aviso da RN24. docs/uso-de-ia.md: decisões P1 a P5 de 21/11/2026. Franck.

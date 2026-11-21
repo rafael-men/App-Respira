@@ -8,6 +8,7 @@ import '../../auth/data/firebase_auth_repository.dart';
 import '../../auth/domain/usuario.dart';
 import '../../configuracoes/data/usuario_repository.dart';
 import '../../diario/data/diario_repository.dart';
+import '../../main/data/preferencias_usuario.dart';
 import '../../phq9/data/phq9_repository.dart';
 
 /// Exclusão total pelo Botão de Pânico (UC12, RF13), na ordem de
@@ -42,6 +43,10 @@ class FirestoreExclusaoDadosService implements ExclusaoDadosService {
     //    uma senha errada não apagar os dados e manter a conta (RN07). Essa
     //    confirmação precisa de internet.
     await _auth.confirmarSenha(senha);
+
+    // Preferências do onboarding salvas no aparelho: somem na hora, mesmo
+    // offline (RN07).
+    await PreferenciasUsuario.limpar();
     await _colecoes.aguardarSessao();
 
     final uid = _colecoes.uid;
@@ -106,6 +111,7 @@ class MemoriaExclusaoDadosService implements ExclusaoDadosService {
       throw const AuthException('Digite sua senha para confirmar.');
     }
     await auth.excluirConta(senha: senha);
+    await PreferenciasUsuario.limpar();
     diario.limpar();
     phq9.limpar();
     // Usuário vazio, como no primeiro acesso.

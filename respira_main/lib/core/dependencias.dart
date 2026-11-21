@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../features/auth/data/auth_repository.dart';
 import '../features/auth/data/firebase_auth_repository.dart';
+import '../features/configuracoes/data/lembretes_service.dart';
 import '../features/configuracoes/data/usuario_repository.dart';
 import '../features/diario/data/diario_repository.dart';
 import '../features/panico/data/exclusao_dados_service.dart';
@@ -17,6 +18,7 @@ class Dependencias {
     required this.diario,
     required this.phq9,
     required this.exclusao,
+    required this.lembretes,
     required this.usandoFirebase,
   });
 
@@ -30,6 +32,7 @@ class Dependencias {
       diario: FirestoreDiarioRepository(colecoes: colecoes),
       phq9: FirestorePhq9Repository(colecoes: colecoes),
       exclusao: FirestoreExclusaoDadosService(auth: auth, colecoes: colecoes),
+      lembretes: LocalLembretesService(),
       usandoFirebase: true,
     );
   }
@@ -50,6 +53,7 @@ class Dependencias {
         phq9: phq9,
         usuarios: usuarios,
       ),
+      lembretes: MemoriaLembretesService(),
       usandoFirebase: false,
     );
   }
@@ -59,6 +63,9 @@ class Dependencias {
   final DiarioRepository diario;
   final Phq9Repository phq9;
   final ExclusaoDadosService exclusao;
+
+  /// Lembretes motivacionais (F09). Ligado e desligado pela Tela 08.
+  final LembretesService lembretes;
   final bool usandoFirebase;
 }
 
