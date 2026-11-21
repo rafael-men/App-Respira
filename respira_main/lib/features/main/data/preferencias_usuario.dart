@@ -49,6 +49,16 @@ class PreferenciasUsuario {
     await prefs.setBool(_chaveOnboardingConcluido, onboardingConcluido);
   }
 
+  /// Apaga do aparelho todas as preferências do onboarding. Usado pelo
+  /// Botão de Pânico, que precisa apagar também os dados locais (RN07).
+  static Future<void> limpar() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_chaveObjetivo);
+    await prefs.remove(_chaveFrequencia);
+    await prefs.remove(_chaveLembretes);
+    await prefs.remove(_chaveOnboardingConcluido);
+  }
+
   static Future<void> _gravarOuRemover(
     SharedPreferences prefs,
     String chave,

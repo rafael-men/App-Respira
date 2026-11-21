@@ -168,9 +168,14 @@ O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprint
 
 ## Sprint 4 (17/11/2026 a 23/11/2026): implementação das telas
 
-Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 (24/11 a 01/12) é dedicada a testes, validações e acabamento. O plano completo, com os marcos diários, está em [`docs/sprints.md`](docs/sprints.md), seções 6 e 7.
+Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 (24/11 a 01/12) é dedicada a testes, validações e acabamento. O plano completo, com os marcos diários, está em [`docs/sprints.md`](docs/sprints.md), seções 6 e 7. Em 21/11/2026, a Sprint 4 foi replanejada depois da auditoria do código (seção 6.4), com a lista única de tarefas T01 a T08, N01 a N12 e V01 a V04.
 
 | Integrante | Entregas da Sprint 4 | Status |
+|---|---|---|
+| Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico. Replanejamento de 21/11: T01 (Flutter 3.50.0 e lock), T02 (Pânico apaga as preferências locais), T04, T06 (regras RN22 a RN25), N11 (lembretes) e V01 (emulador Android) | Entregas de 17/11 concluídas. De 21/11: T01, T02, T06, N11 (código; teste real dos lembretes depende da Tela 08) e V01 (APK no emulador Android) concluídos; T04 pendente (depende de N01 e N03 de Rene) |
+| Murilo Pedral Mota | T05 (tipografia Poppins e Inter), N05 (Telas 02 e 03 Diário de humor), N06 (Tela 08 Configurações), T08 (classe Criptografia no Diagrama de Classes) e V03 (diário no Firebase real) | Pendente |
+| Rene Mendonça Marinho | N01 (AppBar padrão com SOS), N02 (Tela 07 CVV), N03 (SOS ligado à Tela 07), N07 (Telas 05 e 06 PHQ-9) e V04 (PHQ-9 no Firebase real) | Pendente |
+| Rafael Menezes Gonçalves | Ajustes A1 a A3; T03 (aviso antes de trocar de conta), T07 (CHANGELOG e README), N04 (SOS nas telas de entrada), N08 (recuperação de senha), N09 (sair da conta), N10 (perfil), N12 (tema escuro) e V02 (cadastro com vínculo pelo app) | A1 a A3 concluídos; demais pendentes |
 | --- | --- | --- |
 | Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico | Código entregue; projeto Firebase `respira-71159` configurado (Android, iOS e web) e Security Rules publicadas; falta testar em emulador e em Android real |
 | Murilo Pedral Mota | Tipografia Poppins e Inter, Telas 02 e 03 Diário de humor, Tela 08 Configurações, tema escuro, perfil opcional e lembretes | Pendente |
@@ -181,7 +186,7 @@ Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 
 
 | Atividade | Responsável |
 | --- | --- |
-| Adicionar [`docs/regras-de-negocio.md`](docs/regras-de-negocio.md), com as regras de negócio consolidadas (RN01 a RN21): conta e privacidade, diário, PHQ-9, respiração, emergência, falhas de conexão e exclusão | Franck Patrick Hora Vasconcelos |
+| Adicionar [`docs/regras-de-negocio.md`](docs/regras-de-negocio.md), com as regras de negócio consolidadas (RN01 a RN25): conta e privacidade, diário, PHQ-9, respiração, emergência, falhas de conexão e exclusão | Franck Patrick Hora Vasconcelos |
 
 # Projeto Unidade II: Registro de Uso de IA (Questão 01 b) vi)
 
@@ -204,5 +209,7 @@ Franck Patrick Hora Vasconcelos revisou a documentação da Unidade II e fez cor
 | [`docs/justificativas.md`](docs/justificativas.md) | Murilo, Rafael, Franck e Rene (Atividade 04) | Seção 8 atualizada para Firebase (sem Hive ou SQLite) e para o cadastro opcional; texto do botão do CVV (seção 6). |
 | [`docs/estudo-de-caso.md`](docs/estudo-de-caso.md) | Franck, Murilo, Rafael e Rene (Atividade 01) | Nota na restrição de animação: prevalece o padrão 4-7-8 do RF05. |
 | Código do app: `respira_main/lib/main.dart`, `features/auth/data/auth_repository.dart`, `features/main/pages/home_page.dart` e identificador do app (Android, iOS, macOS, Linux e Windows) | Rafael Menezes Gonçalves | Inicialização do Firebase, espera da sessão salva e da chave de criptografia e escolha da tela inicial (onboarding ou Início); interface `AuthRepository` ampliada com uso sem cadastro, `aguardarSessao`, recuperação de senha, saída e exclusão de conta, mantendo a implementação em memória; card "Respiração 4-7-8" ligado à Tela 04; identificador `br.com.respira.app`. |
+| `respira_main/lib/features/main/data/preferencias_usuario.dart` e configuração Android (`android/settings.gradle.kts`, `android/gradle/wrapper/gradle-wrapper.properties`, `android/app/build.gradle.kts`, `AndroidManifest.xml`) | Rafael Menezes Gonçalves | 21/11/2026: método `PreferenciasUsuario.limpar()`, usado pelo Botão de Pânico; Gradle 9.3.1, Android Gradle Plugin 9.1.1 e `compileSdk` 37, exigidos pelo Flutter 3.50.0 e pelos lembretes; permissões e receptores de notificação. |
+| [`docs/sprints.md`](docs/sprints.md), replanejamento de 21/11/2026 (seção 6.4) | Rene Mendonça Marinho (premissas, calendário, Sprints 1 e 2) e Rafael Menezes Gonçalves (sprints de implementação, riscos e ritual) | Replanejamento da Sprint 4 depois da auditoria do código: lista única de tarefas T01 a T08, N01 a N12 e V01 a V04, responsáveis, ordem de integração, donos dos arquivos compartilhados e risco de prazo; tabela da Sprint 5 e riscos atualizados. |
 | [`docs/sprints.md`](docs/sprints.md), replanejamento de 17/11/2026 | Rene Mendonça Marinho (premissas, calendário, Sprints 1 e 2) e Rafael Menezes Gonçalves (sprints de implementação, riscos e ritual) | Calendário corrigido (Sprint 1 de 27/10 a 03/11 até a Sprint 5 de 24/11 a 01/12) e premissas atualizadas; nova seção da Sprint 3 (revisão da documentação e primeiras telas); Sprint 4 de implementação (revisão do código entregue por Rafael, entregas por integrante e plano diário) e Sprint 5 de testes; riscos atualizados. Ajustes A1 a A9 da revisão do código, com o A9 (botão SOS no onboarding, no login e no cadastro) para Rafael. |
 | [`docs/eap.md`](docs/eap.md) e `.pdf`, [`docs/diagrama-casos-de-uso.md`](docs/diagrama-casos-de-uso.md) e `.pdf` | Franck Patrick Hora Vasconcelos | Telas de conta, autenticação anônima e por e-mail e senha, casos de uso UC15 a UC18; PDFs renderizados novamente. |
