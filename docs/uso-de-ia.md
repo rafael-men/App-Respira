@@ -4,7 +4,7 @@ _Projeto Respira, aplicativo de saúde mental e apoio emocional_
 Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Questão 01 b) vi)
 
 | Campo | Preenchimento |
-|---|---|
+| --- | --- |
 | Seção | Registro de Uso de IA (Q1 b) vi) |
 | Responsável por esta entrada | Franck Patrick Hora Vasconcelos |
 | Sprint | Sprint 3 (10/11/2026 a 17/11/2026) |
@@ -17,7 +17,7 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 ### 1.1 Inconsistências encontradas e correções
 
 | # | Documento | Inconsistência encontrada | Correção aplicada |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | `docs/escopo.md` | Formatação corrompida: tabelas sem `\|`, caminhos sem `/` (`docsrequisitos.md`) e datas sem barras (`10112026`). | Tabelas, caminhos e datas restaurados, sem alterar o conteúdo. |
 | 2 | `docs/modelagem_firestore.md` | Mesma corrupção de formatação; diagrama, JSON e regras sem blocos de código. | Formatação e blocos de código restaurados; arquivo renomeado para `docs/modelagem-firestore.md`. |
 | 3 | `docs/modelagem_firestore.md`, seção 7 | Security Rules inválidas: `match` sem barras, `allow ... if` sem dois-pontos, `\|\|` ausente e `<=`/`>=` virando `=`. | Sintaxe das regras corrigida. |
@@ -46,7 +46,7 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 ### 1.2 Decisões tomadas pelo grupo durante a revisão
 
 | Tema | Decisão |
-|---|---|
+| --- | --- |
 | Documentos de referência | Enunciado do Projeto II e Atividade 05 (Unidade I). |
 | Documentos de arquitetura e decisões visuais | Não são exigidos como arquivos próprios; o conteúdo está em `docs/justificativas.md`. |
 | Nomes de arquivos | Padrão em minúsculas com hífen, igual aos links do README. |
@@ -61,3 +61,23 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 | Criptografia | Nota e respostas cifradas; humor e escore sem cifra, protegidos pelas Security Rules. |
 | Diagrama de classes | Atributos privados; diagrama em PlantUML. |
 | Créditos | Correções em documentos de outros integrantes registradas no README e no CHANGELOG, com a autoria original preservada. |
+
+## 2. Sprint 4: contas, perfil e aviso de troca de conta (Rafael Menezes Gonçalves, 21/11/2026)
+
+### 2.1 Pedidos que funcionaram
+
+- Pedir que a IA lesse antes de alterar: `auth_repository.dart`, `login_page.dart`, `home_page.dart` e `dependencias.dart` foram lidos antes de qualquer edição, para reaproveitar `AuthRepository`, `DependenciasScope` e os componentes de autenticação em vez de criar outros.
+- Pedir uma tarefa por vez, com o critério de aceite junto (por exemplo, "e-mail inválido mostra erro e o envio mostra a mensagem genérica da RN21"). Os testes foram escritos a partir desses critérios.
+- Pedir para parar quando uma dependência de outro integrante não estava na branch (a `RespiraAppBar` de Rene para o N04 e os contratos de Murilo para o N12). A IA registrou o bloqueio em vez de criar uma versão paralela.
+
+### 2.2 Erros encontrados e como foram corrigidos
+
+| Situação | Correção |
+| --- | --- |
+| A tarefa pedia Flutter 3.50.0, mas o ambiente tinha 3.44.9. | Mantido o Flutter instalado para o desenvolvimento e registrado no relatório. A versão do grupo precisa ser confirmada antes do merge. |
+| `flutter pub add image_picker` alterou também versões de `matcher`, `meta`, `test_api` e outros pacotes no `pubspec.lock`. | O lock foi mantido como o pub gerou. A alteração precisa ser revisada no merge, porque ele muda pacotes que não são da tarefa. |
+| Sem a chave de Firebase real e sem o aparelho, não dá para confirmar o envio de e-mail de recuperação, o cadastro com vínculo e a galeria. | Essas validações ficaram marcadas como "não verificadas" no relatório, sem declarar que funcionam. |
+
+### 2.3 Justificativa de `image_picker`
+
+A foto do perfil (RF20) é escolhida na galeria com `image_picker`, que é o plugin oficial do Flutter para Android, iOS e web. Os parâmetros `maxWidth: 256`, `maxHeight: 256` e `imageQuality: 70` reduzem a imagem antes de ela ser convertida para Base64 e gravada em `usuarios/{uid}`. Isso mantém o documento pequeno no Firestore, que tem limite de 1 MiB por documento. A permissão de galeria no iOS está descrita em `NSPhotoLibraryUsageDescription`.

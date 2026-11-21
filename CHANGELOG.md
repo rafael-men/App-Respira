@@ -1,17 +1,5 @@
 # Changelog
 
-## [10/11/2026]
-
-### Adicionado
-
-- Respostas do onboarding salvas no aparelho com shared_preferences, com a marcação de onboarding concluído. A Início abre direto só quando há sessão e o onboarding já foi concluído. Rafael.
-- Testes de PreferenciasUsuario, AuthValidators e das telas do onboarding e do aviso de privacidade. Rafael.
-
-### Alterado
-
-- Aviso de privacidade das telas de login e cadastro reescrito, sem afirmar que o app não usa internet. Rafael.
-- Correção de digitação no terceiro slide do onboarding ("questionário"). Rafael.
-
 ## [08/09/2026]
 
 ### Adicionado
@@ -179,6 +167,18 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - docs/eap.md e .pdf e docs/diagrama-casos-de-uso.md e .pdf: telas de conta e autenticação por e-mail e senha; o diagrama da EAP é em PlantUML (a entrada de 10/11/2026 acima o descreve como Mermaid por engano). Franck.
 - README.md: seção de Regras de Negócio, seção "Revisão e correção da documentação" com a autoria original de cada documento, EAP descrita como PlantUML e referência à arquitetura corrigida. Franck.
 
+## [17/11/2026]
+
+### Adicionado
+
+- Respostas do onboarding salvas no aparelho com shared_preferences, com a marcação de onboarding concluído. A Início abre direto só quando há sessão e o onboarding já foi concluído. Rafael.
+- Testes de PreferenciasUsuario, AuthValidators e das telas do onboarding e do aviso de privacidade. Rafael.
+
+### Alterado
+
+- Aviso de privacidade das telas de login e cadastro reescrito, sem afirmar que o app não usa internet. Rafael.
+- Correção de digitação no terceiro slide do onboarding ("questionário"). Rafael.
+
 ## [17/11/2026] Unidade II, Sprint 4
 
 ### Adicionado
@@ -202,3 +202,19 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - README.md: status da Sprint 4 de Franck e linha das alterações no código de Rafael na seção "Revisão e correção da documentação". Franck.
 - .gitignore: exceção para versionar respira_main/pubspec.lock, para todo o grupo usar as mesmas versões dos pacotes. Franck.
 - docs/modelagem-firestore.md, seção 8 (Rafael), e docs/regras-de-negocio.md (RN07 e RN15): ordem do Botão de Pânico com a confirmação da senha antes de tudo e a exclusão da conta só depois da confirmação da nuvem. Correção de Franck.
+
+## [21/11/2026] Unidade II, Sprint 4 (conta)
+
+### Adicionado
+
+- Recuperação de senha com a tela `RecuperarSenhaPage` e o link "Esqueci minha senha" no login. A mensagem de envio é a mesma para qualquer e-mail (RN21). Rafael.
+- Sair da conta pela folha que abre no ícone de conta da Início, com o atalho "Editar perfil" (N09). Rafael.
+- Perfil opcional com `PerfilPage.abrir`: nome de usuário de até 40 caracteres e foto da galeria, reduzida e salva em Base64. Só para conta cadastrada (N10). Rafael.
+- Aviso com confirmação antes de entrar numa conta existente quando há registros feitos sem cadastro (RN24, T03). Rafael.
+- Testes em `respira_main/test/conta_rafael_test.dart` para recuperação de senha, sair da conta, perfil e aviso da RN24. Rafael.
+
+### Alterado
+
+- `respira_main/pubspec.yaml`: dependência `image_picker`. Rafael.
+- `respira_main/ios/Runner/Info.plist`: chave `NSPhotoLibraryUsageDescription` para a galeria. Rafael.
+- `respira_main/lib/features/main/pages/home_page.dart`: somente o método `_abrirConta` e a folha que ele abre. Rafael.
