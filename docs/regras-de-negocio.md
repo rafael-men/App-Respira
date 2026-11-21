@@ -49,3 +49,14 @@ A numeração continua a de `docs/diagrama-casos-de-uso.md`, para não existirem
 | RN09 | Um toque no botão do CVV abre a confirmação de chamada (Tela 07); a discagem para o 188 só acontece depois que o usuário confirma. | Decisão do grupo (10/11/2026); UC09; protótipo, Tela 07 | RF09 e F04 |
 | RN12 | O app tem quatro telas principais: Diário de humor, Respiração Guiada, PHQ-9 e acesso ao CVV. As demais são telas secundárias, de confirmação ou de conta. | `docs/estudo-de-caso.md`, seção 7; decisão do grupo (10/11/2026) | `docs/escopo.md`, seção 4 |
 | RN15 | Sem conexão, o app não bloqueia nenhuma tela: diário e PHQ-9 gravam no cache local e sincronizam quando a rede volta, com um aviso discreto ("Sem conexão. Seus registros serão sincronizados depois."). Login, cadastro e recuperação de senha precisam de internet e mostram "Sem conexão. Tente de novo quando estiver online.", sem perder o que foi digitado. Se o Botão de Pânico for acionado offline por um usuário sem cadastro, os dados locais são apagados na hora, a exclusão na nuvem acontece quando a conexão voltar e a conta anônima fica vazia até lá; o app avisa que a exclusão na nuvem termina quando houver conexão. | Projeto II, Q1 a) iv; RNF07; decisão do grupo (10/11/2026) | Todas as telas que gravam dados; telas de conta; `docs/eap.md`, pacote 1.6.2 |
+
+## 4. Decisões de 21/11/2026
+
+Regras definidas pelo grupo depois da auditoria do código de 19/11/2026 (decisões P2 a P5).
+
+| ID | Descrição | Origem | Impacto |
+|---|---|---|---|
+| RN22 | O resultado do PHQ-9 usa as faixas padrão do instrumento: 0 a 4 mínima, 5 a 9 leve, 10 a 14 moderada, 15 a 19 moderadamente grave e 20 a 27 grave. A faixa aparece sem linguagem alarmista, junto do aviso de que o resultado não é um diagnóstico. Prevalece sobre o texto "leve a moderada" do protótipo da Tela 06. | Decisão do grupo (21/11/2026, P3); RF07 | Tela 06 |
+| RN23 | Se a resposta da pergunta 9 do PHQ-9 (pensar em se ferir) for maior que zero, o resultado mostra um cartão de apoio com acesso direto à confirmação de chamada ao CVV (Tela 07). | Decisão do grupo (21/11/2026, P4); ampliação de escopo aprovada pelo grupo | Telas 06 e 07; F03, F04 |
+| RN24 | Ao entrar numa conta existente enquanto há registros feitos sem cadastro, o app avisa que esses registros não vão para a conta e pede confirmação. Para guardá-los, o usuário deve criar uma conta em vez de entrar. | Decisão do grupo (21/11/2026, P5); RN19, RF19 | Tela de login; UC16 |
+| RN25 | As Telas 01, 04 e 09 ficam como foram implementadas, e as diferenças em relação ao protótipo de alta fidelidade são decisão do grupo: na Início, o seletor de humor e os textos dos cards; na Tela 04, o título na barra superior e os textos do círculo; na Tela 09, o título "Botão de Pânico" e a senha pedida ao usuário cadastrado no lugar da caixa de confirmação. | Decisão do grupo (21/11/2026, P2); Q1 a) iii | Telas 01, 04 e 09 |

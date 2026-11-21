@@ -41,7 +41,7 @@ O diagrama representa o que o usuário faz no Respira e quais sistemas externos 
 | UC13 Criptografar dados sensíveis | Cifra a nota do diário e as respostas do PHQ-9 no aparelho, antes do envio ao Firestore. | F07, RF12 |
 | UC14 Gravar e sincronizar dados | Grava primeiro no cache local do Firestore e sincroniza quando a conexão volta. | F05, RF16, RNF06, RNF07 |
 | UC15 Criar conta | O usuário informa e-mail e senha. Se já usava o app sem cadastro, a conta anônima é vinculada à nova conta e os dados são mantidos. | F11, RF18 |
-| UC16 Entrar com e-mail e senha | O usuário cadastrado entra na conta, inclusive depois de reinstalar o app ou em outro aparelho, e recupera o histórico. | F11, RF19 |
+| UC16 Entrar com e-mail e senha | O usuário cadastrado entra na conta, inclusive depois de reinstalar o app ou em outro aparelho, e recupera o histórico. Se houver registros feitos sem cadastro no aparelho, o app avisa que eles não vão para a conta e pede confirmação antes de entrar (RN24). | F11, RF19 |
 | UC17 Recuperar senha | O usuário informa o e-mail e recebe um link para redefinir a senha. | F11, RF19 |
 | UC18 Editar perfil | O usuário cadastrado define, altera ou remove o nome de usuário e a foto, ambos opcionais. | F11, RF20 |
 

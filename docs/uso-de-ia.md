@@ -54,6 +54,11 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 | Autenticação | Uso sem cadastro (conta anônima) ou cadastro opcional com e-mail e senha, com recuperação de senha. |
 | Telas de conta | Login, cadastro, recuperação de senha e perfil existem no app, sem protótipo. |
 | Fluxo de entrada (ajuste de 17/11/2026) | Primeiro acesso pelo onboarding e depois a Tela 01 Início, sem cadastro; login e cadastro opcionais pelo ícone de conta da Início, como no código entregue na Sprint 3 (RN18). |
+| Versão do Flutter (21/11/2026, P1) | Todos usam o Flutter 3.50.0, e o `pubspec.lock` é regenerado uma vez e versionado. |
+| Telas já implementadas (21/11/2026, P2) | As Telas 01, 04 e 09 ficam como estão; as diferenças do protótipo são decisão do grupo (RN25). |
+| Faixas do PHQ-9 (21/11/2026, P3) | Faixas padrão do instrumento (RN22). |
+| Apoio na pergunta 9 do PHQ-9 (21/11/2026, P4) | Cartão de apoio com acesso ao CVV quando a resposta for maior que zero (RN23). |
+| Troca de conta (21/11/2026, P5) | Aviso com confirmação antes de entrar numa conta existente quando há registros sem cadastro (RN24). |
 | Perfil | Nome de usuário e foto opcionais, só para cadastrados e não compartilhados. |
 | CVV | Um toque abre a confirmação; a discagem só acontece depois de confirmar. |
 | Respiração | Padrão 4-7-8 do RF05. |

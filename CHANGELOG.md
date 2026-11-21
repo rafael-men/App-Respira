@@ -202,3 +202,13 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - README.md: status da Sprint 4 de Franck e linha das alterações no código de Rafael na seção "Revisão e correção da documentação". Franck.
 - .gitignore: exceção para versionar respira_main/pubspec.lock, para todo o grupo usar as mesmas versões dos pacotes. Franck.
 - docs/modelagem-firestore.md, seção 8 (Rafael), e docs/regras-de-negocio.md (RN07 e RN15): ordem do Botão de Pânico com a confirmação da senha antes de tudo e a exclusão da conta só depois da confirmação da nuvem. Correção de Franck.
+
+## [21/11/2026] Unidade II, Sprint 4 (replanejamento e tarefas de Franck)
+
+### Adicionado
+- Regras de negócio RN22 a RN25 em docs/regras-de-negocio.md, com as decisões do grupo de 21/11 (faixas do PHQ-9, cartão de apoio da pergunta 9, aviso antes de trocar de conta e diferenças aceitas em relação ao protótipo) (T06). Franck.
+
+### Alterado
+- docs/sprints.md (Rene: premissas, calendário, Sprints 1 e 2; Rafael: sprints de implementação, riscos e ritual): seção 6.4 com o replanejamento de 21/11/2026 depois da auditoria do código (lista única de tarefas, responsáveis, ordem de integração e risco de prazo); tabela da Sprint 5 e riscos atualizados. A autoria original das seções continua com Rene e Rafael. Correção de Franck.
+- README.md: responsabilidades e status da Sprint 4 conforme o replanejamento; regras de negócio até RN25; linhas novas na seção "Revisão e correção da documentação". Franck.
+- docs/diagrama-casos-de-uso.md: descrição do UC16 com o aviso da RN24. docs/uso-de-ia.md: decisões P1 a P5 de 21/11/2026. Franck.
