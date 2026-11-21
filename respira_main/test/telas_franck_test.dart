@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:respira_main/core/dependencias.dart';
+import 'package:respira_main/features/configuracoes/data/lembretes_service.dart';
 import 'package:respira_main/features/diario/domain/registro_humor.dart';
+import 'package:respira_main/features/main/data/preferencias_usuario.dart';
 import 'package:respira_main/features/panico/pages/panico_page.dart';
 import 'package:respira_main/features/phq9/data/phq9_repository.dart';
 import 'package:respira_main/features/phq9/domain/resposta_phq9.dart';
 import 'package:respira_main/features/respiracao/pages/respiracao_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Widget _app(Dependencias deps, Widget tela) => DependenciasScope(
       dependencias: deps,
@@ -13,6 +16,9 @@ Widget _app(Dependencias deps, Widget tela) => DependenciasScope(
     );
 
 void main() {
+  // O Pânico apaga as preferências do onboarding salvas no aparelho.
+  setUp(() => SharedPreferences.setMockInitialValues({}));
+
   group('Tela 04 Respiração', () {
     testWidgets('começa sozinha e segue o padrão 4-7-8 (RF05)', (tester) async {
       await tester.pumpWidget(_app(Dependencias.memoria(), const RespiracaoPage()));
@@ -42,9 +48,11 @@ void main() {
   group('Tela 09 Botão de Pânico', () {
     testWidgets('usuário sem cadastro apaga tudo sem senha (RF13)',
         (tester) async {
+      SharedPreferences.setMockInitialValues({'onboardingConcluido': true});
       final deps = Dependencias.memoria();
       await deps.auth.entrarSemCadastro();
       await deps.diario.registrar(RegistroHumor(humor: NivelHumor.bem));
+      await deps.lembretes.ativar();
 
       await tester.pumpWidget(_app(deps, const PanicoPage()));
       expect(find.text('Sua conta anônima'), findsOneWidget);
@@ -55,6 +63,10 @@ void main() {
 
       expect(await deps.diario.observarRegistros().first, isEmpty);
       expect(find.byType(PanicoPage), findsNothing);
+      // Dados locais também somem (RN07).
+      final preferencias = await PreferenciasUsuario.carregar();
+      expect(preferencias.onboardingConcluido, isFalse);
+      expect((deps.lembretes as MemoriaLembretesService).ativo, isFalse);
     });
 
     testWidgets('usuário cadastrado precisa da senha certa (RN07)',

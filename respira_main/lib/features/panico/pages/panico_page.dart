@@ -58,6 +58,8 @@ class _PanicoPageState extends State<PanicoPage> {
       final concluida = await deps.exclusao.apagarTudo(
         senha: _senhaController.text,
       );
+      // Lembretes agendados no aparelho também são dados de uso (RN07).
+      await deps.lembretes.desativar();
       if (!mounted) return;
 
       if (!concluida) {

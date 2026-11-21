@@ -9,10 +9,14 @@ plugins {
 
 android {
     namespace = "br.com.respira.app"
-    compileSdk = flutter.compileSdkVersion
+    // flutter_local_notifications (lembretes) e androidx.core 1.19 exigem compilar
+    // contra a API 37. Não muda a versão mínima do Android suportada (minSdk).
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        // Exigido pelo flutter_local_notifications (lembretes).
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -45,4 +49,8 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
