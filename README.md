@@ -2,7 +2,6 @@
 
 <img width="310" height="310" alt="respira" src="https://github.com/user-attachments/assets/9cfdc2c6-d238-4b43-833c-a639f0100588" />
 
-
 Aplicativo de saúde mental e apoio emocional, com diário de humor, respiração guiada (padrão 4-7-8), rastreio por questionário (PHQ-9) e acesso rápido ao CVV (188) em situações de crise.
 
 ## Turma
@@ -12,7 +11,7 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 ## Integrantes
 
 | Integrante | Responsabilidade na Atividade 01 |
-|---|---|
+| --- | --- |
 | Franck Patrick Hora Vasconcelos | Análise do problema (seção 1) e consolidação do documento |
 | Murilo Pedral Mota | Estrutura do repositório (README, CHANGELOG), Análise de público e usuários (seção 2) e contexto de uso (seção 3) |
 | Rafael Menezes Gonçalves | Análise de objetivo/proposta de valor (seção 4) e personalidade/identidade/experiência (seção 5) |
@@ -21,7 +20,7 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 ## Atividade 02: Pesquisa, Benchmark e Personas
 
 | Integrante | Responsabilidade na Atividade 02 |
-|---|---|
+| --- | --- |
 | Franck Patrick Hora Vasconcelos | Benchmark de soluções existentes (docs/benchmark.md) |
 | Murilo Pedral Mota | Pesquisa do projeto (docs/pesquisa.md) e criação do slide da apresentação |
 | Rafael Menezes Gonçalves | Persona 1 (docs/personas.md) |
@@ -30,7 +29,7 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 # Atividade 03: Funcionalidades e Requisitos
 
 | Integrante | Responsabilidade na Atividade 03 |
-|---|---|
+| --- | --- |
 | Franck Patrick Hora Vasconcelos | Requisitos funcionais e consolidação |
 | Murilo Pedral Mota | Requisitos não funcionais, Priorização e Apresentação de Requisitos |
 | Rafael Menezes Gonçalves | CRUD |
@@ -39,7 +38,7 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 # Atividade 04: Prototipação 1/3 (Protótipo de Baixa Fidelidade)
 
 | Tela | Nome | Responsável |
-|---|---|---|
+| --- | --- | --- |
 | 01 | Início | Murilo Pedral Mota |
 | 02 | Diário de Humor — Registro | Murilo Pedral Mota |
 | 03 | Diário de Humor — Histórico | Murilo Pedral Mota |
@@ -87,7 +86,7 @@ Stack obrigatória: Dart, Flutter e Firebase (Autenticação e Banco de Dados). 
 Decisão: Firebase Authentication anônimo e Cloud Firestore com persistência offline, mantendo o uso sem cadastro (RF11) e o funcionamento offline (RF16).
 
 | Integrante | Responsabilidade no Tópico 01 | Status |
-|---|---|---|
+| --- | --- | --- |
 | Franck Patrick Hora Vasconcelos | Endosso do Firebase em estudo-de-caso (seção 1), benchmark, RF11, RF12, RF13 e novo RF17 em requisitos, seção 7 de justificativas e README | Pendente |
 | Murilo Pedral Mota | Endosso em estudo-de-caso (seção 3), pesquisa (3.2, 3.4 e síntese), RNF03, RNF06 e RNF07 em requisitos, serviços de nuvem (Firebase) na seção 8 de justificativas (Arquitetura do sistema) | Pendente |
 | Rafael Menezes Gonçalves | Endosso na persona 1, mapeamento do CRUD para coleções do Firestore e reposicionamento do RF16 em requisitos, seção 4 de justificativas | Pendente |
@@ -163,7 +162,7 @@ O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprint
 ## Sprint 3 (10/11/2026 a 17/11/2026): revisão da documentação e primeiras telas
 
 | Integrante | Entregas da Sprint 3 | Status |
-|---|---|---|
+| --- | --- | --- |
 | Franck Patrick Hora Vasconcelos | Revisão e correção da documentação, regras de negócio, cadastro opcional nos documentos e docs/uso-de-ia.md | Concluído |
 | Rafael Menezes Gonçalves | Onboarding, login, cadastro e Tela 01 Início (commit `67f627a`) | Concluído |
 
@@ -172,11 +171,11 @@ O planejamento em sprints da Unidade II está em [`docs/sprints.md`](docs/sprint
 Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 (24/11 a 01/12) é dedicada a testes, validações e acabamento. O plano completo, com os marcos diários, está em [`docs/sprints.md`](docs/sprints.md), seções 6 e 7.
 
 | Integrante | Entregas da Sprint 4 | Status |
-|---|---|---|
+| --- | --- | --- |
 | Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico | Código entregue; projeto Firebase `respira-71159` configurado (Android, iOS e web) e Security Rules publicadas; falta testar em emulador e em Android real |
 | Murilo Pedral Mota | Tipografia Poppins e Inter, Telas 02 e 03 Diário de humor, Tela 08 Configurações, tema escuro, perfil opcional e lembretes | Pendente |
 | Rene Mendonça Marinho | AppBar padrão com SOS, Tela 07 CVV, Telas 05 e 06 PHQ-9 e recuperação de senha | Pendente |
-| Rafael Menezes Gonçalves | Ajustes A1 a A3 e A9 da revisão do código entregue na Sprint 3 | Pendente |
+| Rafael Menezes Gonçalves | Ajustes A1 a A3 concluídos. Conta concluída no código e testada com repositórios em memória: recuperação de senha, sair da conta, perfil opcional e aviso da RN24 (`respira_main/test/conta_rafael_test.dart`). Pendentes: A9 (SOS nas telas de entrada, depende da AppBar padrão de Rene), validação do cadastro com vínculo no Firebase real (V02) e tema escuro (N12, depende de T05, N05 e N06 de Murilo) | Parcial |
 
 # Projeto Unidade II: Regras de Negócio (Questão 01 a) iv e b) i)
 

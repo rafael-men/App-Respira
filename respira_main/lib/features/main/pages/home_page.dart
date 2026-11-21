@@ -5,6 +5,7 @@ import '../../../core/widgets/gradient_button.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/pages/cadastro_page.dart';
 import '../../auth/pages/login_page.dart';
+import '../../configuracoes/pages/perfil_page.dart';
 import '../../respiracao/pages/respiracao_page.dart';
 import '../widgets/feature_card.dart';
 import '../widgets/identity_card.dart';
@@ -25,9 +26,9 @@ class _HomePageState extends State<HomePage> {
   int? _humor;
 
   void _emBreve() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Disponível em breve.')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Disponível em breve.')));
   }
 
   void _ligarCvv() {
@@ -39,9 +40,7 @@ class _HomePageState extends State<HomePage> {
     final email = widget.authRepository.emailAtual;
 
     if (email != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Conectado como $email.')),
-      );
+      _mostrarFolhaDaConta(email);
       return;
     }
 
@@ -103,6 +102,53 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _mostrarFolhaDaConta(String email) {
+    final mensagens = ScaffoldMessenger.of(context);
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      builder: (ctx) => Padding(
+        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Conectado como $email',
+              style: const TextStyle(
+                color: AppColors.purple900,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 16),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                PerfilPage.abrir(context);
+              },
+              child: const Text('Editar perfil'),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: AppColors.error),
+              onPressed: () async {
+                final navegador = Navigator.of(ctx);
+                try {
+                  await widget.authRepository.sair();
+                  navegador.pop();
+                } on AuthException catch (e) {
+                  mensagens.showSnackBar(SnackBar(content: Text(e.message)));
+                }
+              },
+              child: const Text('Sair da conta'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,9 +165,9 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Como você está se sentindo hoje?',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: AppColors.purple900,
-                  fontWeight: FontWeight.w700,
-                ),
+              color: AppColors.purple900,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 20),
           MoodSelector(
