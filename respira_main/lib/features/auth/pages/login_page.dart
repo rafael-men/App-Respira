@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/dependencias.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../main/pages/home_page.dart';
 import '../data/auth_repository.dart';
 import '../domain/auth_validators.dart';
 import '../widgets/auth_widgets.dart';
 import 'cadastro_page.dart';
+import 'recuperar_senha_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.authRepository});
@@ -32,8 +34,53 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  /// RN24: quem usa o app sem conta e entra numa conta existente perde
+  /// os registros feitos neste aparelho, então o app pede confirmação.
+  Future<bool> _confirmarTrocaDeConta() async {
+    if (!widget.authRepository.anonimo) return true;
+    final deps = DependenciasScope.of(context);
+    if (!await _temRegistrosSemConta(deps)) return true;
+    if (!mounted) return false;
+
+    final confirmou = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Registros sem conta'),
+        content: const Text(
+          'Os registros feitos sem conta neste aparelho não serão levados para a conta em que você vai entrar. Para guardá-los, crie uma conta em vez de entrar.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Entrar mesmo assim'),
+          ),
+        ],
+      ),
+    );
+    return confirmou ?? false;
+  }
+
+  Future<bool> _temRegistrosSemConta(Dependencias deps) async {
+    try {
+      final registros = await deps.diario.observarRegistros().first;
+      if (registros.isNotEmpty) return true;
+      final respostas = await deps.phq9.observarRespostas().first;
+      return respostas.isNotEmpty;
+    } on Object {
+      // Sem como ler os registros, avisa por precaução.
+      return true;
+    }
+  }
+
   Future<void> _entrar() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
+
+    final pode = await _confirmarTrocaDeConta();
+    if (!pode || !mounted) return;
 
     setState(() {
       _carregando = true;
@@ -57,6 +104,12 @@ class _LoginPageState extends State<LoginPage> {
     } finally {
       if (mounted) setState(() => _carregando = false);
     }
+  }
+
+  void _abrirRecuperarSenha() {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const RecuperarSenhaPage()));
   }
 
   void _abrirCadastro() {
@@ -127,6 +180,15 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             validator: AuthValidators.senhaLogin,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: _carregando
+                                  ? null
+                                  : _abrirRecuperarSenha,
+                              child: const Text('Esqueci minha senha'),
+                            ),
                           ),
                           if (_erro != null) ...[
                             const SizedBox(height: 16),
