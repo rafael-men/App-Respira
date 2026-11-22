@@ -267,3 +267,37 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - `respira_main/pubspec.yaml` e `pubspec.lock`: dependência `url_launcher`, acrescentada com o Flutter 3.50.0. Rene.
 - `respira_main/android/app/src/main/AndroidManifest.xml`: no bloco `<queries>`, o discador (ações DIAL e VIEW com o esquema `tel`). `respira_main/ios/Runner/Info.plist`: `LSApplicationQueriesSchemes` com `tel`. Rene.
 - `respira_main/lib/core/widgets/danger_button.dart` (autoria original: Franck): parâmetro opcional `icone`, usado no telefone de "Ligar agora". O "Apagar tudo" da Tela 09 não muda. Rene.
+
+## [22/11/2026] Unidade II, Sprint 4 (SOS nas telas e PHQ-9)
+
+### Adicionado
+
+- N07, Tela 05 PHQ-9 (`Phq9PerguntaPage`, F03, RF06, RN14, RN17) em `respira_main/lib/features/phq9/pages`.
+  - Mostra um indicador de carregamento enquanto confere a última aplicação. Antes de 7 dias, mostra "Você respondeu o PHQ-9 recentemente. A próxima aplicação fica disponível em dd/mm." e o botão "Ver minha evolução".
+  - Senão, mostra uma pergunta por vez com barra de progresso, "Pergunta X de 9" e as opções com `OpcaoResposta`. "Próxima" fica desabilitado até escolher uma opção e vira "Ver resultado" na 9ª pergunta.
+  - A seta e o voltar do aparelho voltam à pergunta anterior mantendo a resposta.
+  - No fim, grava pelo `Phq9Repository` e troca a tela pela Tela 06. `Phq9ForaDoIntervaloException` e `AuthException` aparecem com `MensagemErro`.
+  - Rene.
+- N07, Tela 06 Seu resultado (`Phq9ResultadoPage`, RF07, RF08, RN22, RN23).
+  - Mostra o escore da semana em Poppins Bold, o selo da faixa (RN22) e o aviso de que não é diagnóstico.
+  - Com a pergunta 9 maior que zero, mostra o cartão de apoio com o botão "Falar com o CVV", que abre a Tela 07.
+  - O gráfico "Evolução do escore" (`fl_chart`) usa o eixo X S1, S2... e o eixo Y de 0 a 27, com traço em gradiente roxo-azul. Com uma resposta só, mostra o ponto e "Sua evolução aparece a partir da segunda semana.".
+  - "Voltar ao início" volta à Tela 01. Aberta por "Ver minha evolução", a tela mostra só o gráfico.
+  - Rene.
+- `respira_main/lib/features/phq9/domain/perguntas_phq9.dart` (as 9 perguntas em português e as 4 opções de 0 a 3) e `faixa_phq9.dart` (faixas da RN22). Rene.
+- Testes `respira_main/test/phq9_test.dart` (perguntas e opções, faixas dos escores 0, 4, 5, 9, 10, 14, 15, 19, 20 e 27, "Próxima" desabilitado, seta mantendo a resposta, gravação com escore e faixa, cartão de apoio com e sem a pergunta 9, mensagem da RN17 e evolução sem escore) e `respira_main/test/sos_telas_test.dart` (SOS da Início e da Tela 09 abrindo a Tela 07 e card PHQ-9 abrindo a Tela 05). Rene.
+
+### Alterado
+
+- `respira_main/pubspec.yaml` e `pubspec.lock`: dependência `fl_chart`, acrescentada com o Flutter 3.50.0. Rene.
+- `respira_main/lib/core/widgets/respira_app_bar.dart` e a Tela 07: títulos em Poppins (`AppTheme.fonteTitulos`), agora que a tipografia de Murilo (T05) está na `main`. Rene.
+- `respira_main/lib/features/main/pages/home_page.dart` (autoria original: Rafael; cards e seletor de humor de Murilo):
+  - N03: a barra virou `RespiraAppBar(titulo: 'Respira', mostrarVoltar: false)`, com o ícone de conta em `acoesExtras`, e `_ligarCvv` abre a Tela 07.
+  - N07: o card "PHQ-9" abre a Tela 05.
+  - O método `_emBreve` saiu, porque não tinha mais uso. Os outros cards e o seletor de humor não mudaram.
+  - Rene.
+- `respira_main/lib/features/respiracao/pages/respiracao_page.dart` e `respira_main/lib/features/panico/pages/panico_page.dart` (autoria original: Franck), N03:
+  - Só a barra superior mudou: `RespiraAppBar` transparente na Tela 04 e sem seta na Tela 09. O SOS abre a Tela 07 no lugar de `avisarEmBreve`.
+  - O parâmetro `onSos` continua existindo, sem uso, para não mudar a assinatura das telas.
+  - Rene.
+- `respira_main/test/telas_franck_test.dart` (autoria original: Franck): o teste "sem a Tela 07, o SOS avisa que está em breve" virou "o SOS abre a confirmação do CVV". Rene.

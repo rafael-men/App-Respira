@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/danger_button.dart';
 import '../domain/contato_emergencia.dart';
 
@@ -58,6 +59,7 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
           'Central de Valorização da Vida',
           style: TextStyle(
             color: AppColors.purple900,
+            fontFamily: AppTheme.fonteTitulos,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -78,6 +80,7 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppColors.purple900,
+                        fontFamily: AppTheme.fonteTitulos,
                         fontSize: 20,
                         height: 1.4,
                         fontWeight: FontWeight.w700,
@@ -198,6 +201,7 @@ class _Circulo188 extends StatelessWidget {
               ContatoEmergencia.numero,
               style: TextStyle(
                 color: Colors.white,
+                fontFamily: AppTheme.fonteTitulos,
                 fontSize: 44,
                 fontWeight: FontWeight.w700,
               ),

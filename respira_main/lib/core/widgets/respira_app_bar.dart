@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../features/cvv/pages/confirmacao_cvv_page.dart';
 import '../../features/main/widgets/sos_cvv_button.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_theme.dart';
 
 /// Barra superior padrão do Respira (ajuste A5, N01), com o botão SOS do CVV
 /// sempre por último, em todas as telas (RF09, RN18). Um toque no SOS abre a
@@ -62,6 +63,7 @@ class RespiraAppBar extends StatelessWidget implements PreferredSizeWidget {
         titulo,
         style: TextStyle(
           color: corTexto,
+          fontFamily: AppTheme.fonteTitulos,
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),

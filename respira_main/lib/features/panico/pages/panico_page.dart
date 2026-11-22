@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 
 import '../../../core/dependencias.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/aviso_em_breve.dart';
 import '../../../core/widgets/danger_button.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/widgets/auth_widgets.dart';
 import '../../main/data/preferencias_usuario.dart';
 import '../../main/pages/onboarding_page.dart';
-import '../../main/widgets/sos_cvv_button.dart';
 
 /// Tela 09: confirmação do Botão de Pânico (F08, RF13, RN07).
 ///
@@ -19,7 +18,8 @@ import '../../main/widgets/sos_cvv_button.dart';
 class PanicoPage extends StatefulWidget {
   const PanicoPage({super.key, this.onSos});
 
-  /// Ação do botão SOS (Tela 07, implementada separadamente).
+  /// Sem uso desde o N03: a `RespiraAppBar` sempre abre a Tela 07 no SOS.
+  /// Mantido para não mudar a assinatura de `PanicoPage.abrir`.
   final VoidCallback? onSos;
 
   /// Abre a Tela 09 a partir de qualquer tela (por exemplo, Configurações).
@@ -103,12 +103,9 @@ class _PanicoPageState extends State<PanicoPage> {
     return PopScope(
       canPop: !_carregando,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Botão de Pânico'),
-          automaticallyImplyLeading: false,
-          actions: [
-            SosCvvButton(onPressed: widget.onSos ?? () => avisarEmBreve(context)),
-          ],
+        appBar: const RespiraAppBar(
+          titulo: 'Botão de Pânico',
+          mostrarVoltar: false,
         ),
         body: SafeArea(
           child: Column(
