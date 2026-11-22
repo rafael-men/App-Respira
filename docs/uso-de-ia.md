@@ -136,3 +136,17 @@ Poppins (títulos) e Inter (textos) são distribuídas em `assets/fonts/`, com a
 
 - **`url_launcher`** (Tela 07): pacote oficial da equipe do Flutter, que abre o discador com o número já digitado no Android, no iOS e no navegador. Não precisa da permissão `CALL_PHONE`, porque quem inicia a chamada é o usuário no próprio discador. Isso mantém a confirmação da RN09 e funciona sem internet, já que o número está no código (RN08). Pacotes que ligam direto, como o `flutter_phone_direct_caller`, foram descartados porque pulam essa confirmação e exigem uma permissão sensível.
 - **`fl_chart`** (Tela 06, N07): gráfico de linha feito só em Dart, sem código nativo, que funciona sem internet e aceita traço em gradiente e pontos personalizados, como no protótipo. Foram descartados o `charts_flutter`, que foi descontinuado, e o Syncfusion, que exige licença. Entra no segundo pull request, com as Telas 05 e 06.
+
+### 4.4 Segundo pull request: SOS nas telas e PHQ-9 (N03 e N07)
+
+- **Pedidos que funcionaram:**
+  - Dar à IA os textos exatos das Telas 05 e 06, as faixas da RN22 e o cartão da RN23. Assim nada precisou ser inventado.
+  - Pedir que a IA conferisse a assinatura do `fl_chart` no código-fonte da versão atual (1.3.1) antes de escrever o gráfico.
+- **Decisões tomadas sem pergunta, por seguirem o guia:**
+  - O `onSos` das Telas 04 e 09 ficou sem uso, como Rene escolheu ao manter a assinatura exata da `RespiraAppBar`.
+  - Na Tela 05, a seta de voltar usa um `PopScope`, para voltar à pergunta anterior em vez de sair do questionário.
+  - O número do escore e o selo da faixa têm chaves (`phq9-escore` e `phq9-faixa`) nos testes, porque o "9" também aparece no eixo do gráfico.
+- **Erros da IA, corrigidos depois do primeiro `flutter test`:**
+  - A barra de progresso da Tela 05 recebeu um `semanticsValue` em texto ("Pergunta 1 de 9"). O Flutter só aceita número nesse campo e acusou erro nos testes da tela. O texto saiu desse campo, e o "Pergunta X de 9" continua visível na tela.
+  - O teste do card PHQ-9 da Início tentava tocar num card fora da área visível da tela de teste. Na primeira correção, a IA estreitou a tela para 412 px, e os cards da Início (que não são desta tarefa) estouraram com a fonte de teste. O teste passou a usar a largura padrão (800 px) com uma altura maior.
+- **Não verificado:** a V04 (PHQ-9 no Firebase real) e a discagem num Android dependem do app rodando no navegador ou num aparelho. Não são declaradas como feitas com base nos testes em memória.

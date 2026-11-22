@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:respira_main/core/dependencias.dart';
+import 'package:respira_main/features/cvv/pages/confirmacao_cvv_page.dart';
 import 'package:respira_main/features/configuracoes/data/lembretes_service.dart';
 import 'package:respira_main/features/diario/domain/registro_humor.dart';
 import 'package:respira_main/features/main/data/preferencias_usuario.dart';
@@ -35,13 +36,16 @@ void main() {
       expect(find.text('Inspire'), findsOneWidget);
     });
 
-    testWidgets('sem a Tela 07, o SOS avisa que está em breve', (tester) async {
+    testWidgets('o SOS abre a confirmação do CVV (Tela 07, RN09)',
+        (tester) async {
       await tester.pumpWidget(_app(Dependencias.memoria(), const RespiracaoPage()));
 
       await tester.tap(find.text('SOS'));
+      // A respiração anima sem parar: avança só o tempo da transição.
       await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      expect(find.text('Disponível em breve.'), findsOneWidget);
+      expect(find.byType(ConfirmacaoCvvPage), findsOneWidget);
     });
   });
 

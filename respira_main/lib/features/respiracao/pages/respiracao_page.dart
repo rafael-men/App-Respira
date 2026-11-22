@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../../core/widgets/aviso_em_breve.dart';
-import '../../main/widgets/sos_cvv_button.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 
 /// Tela 04: respiração guiada no padrão 4-7-8 (F02, RF05, RN13).
 ///
@@ -12,7 +11,8 @@ import '../../main/widgets/sos_cvv_button.dart';
 class RespiracaoPage extends StatefulWidget {
   const RespiracaoPage({super.key, this.onSos});
 
-  /// Ação do botão SOS (Tela 07, implementada separadamente).
+  /// Sem uso desde o N03: a `RespiraAppBar` sempre abre a Tela 07 no SOS.
+  /// Mantido para não mudar a assinatura da tela.
   final VoidCallback? onSos;
 
   @override
@@ -78,14 +78,9 @@ class _RespiracaoPageState extends State<RespiracaoPage>
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text('Respiração 4-7-8'),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          SosCvvButton(onPressed: widget.onSos ?? () => avisarEmBreve(context)),
-        ],
+      appBar: const RespiraAppBar(
+        titulo: 'Respiração 4-7-8',
+        transparente: true,
       ),
       body: DecoratedBox(
         // Fundo em tela cheia com a passagem do roxo profundo ao azul claro
