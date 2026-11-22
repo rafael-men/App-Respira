@@ -5,6 +5,9 @@ import '../../../core/widgets/gradient_button.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/pages/cadastro_page.dart';
 import '../../auth/pages/login_page.dart';
+import '../../configuracoes/pages/configuracoes_page.dart';
+import '../../diario/domain/registro_humor.dart';
+import '../../diario/pages/registro_humor_page.dart';
 import '../../configuracoes/pages/perfil_page.dart';
 import '../../respiracao/pages/respiracao_page.dart';
 import '../widgets/feature_card.dart';
@@ -172,7 +175,15 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 20),
           MoodSelector(
             selecionado: _humor,
-            onSelecionado: (i) => setState(() => _humor = i),
+            onSelecionado: (i) {
+              setState(() => _humor = i);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) =>
+                      RegistroHumorPage(humorInicial: NivelHumor.values[i]),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 28),
           const Text(
@@ -196,7 +207,9 @@ class _HomePageState extends State<HomePage> {
                 icone: Icons.edit_note_outlined,
                 titulo: 'Diário de humor',
                 descricao: 'Registre como você está',
-                onTap: _emBreve,
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const RegistroHumorPage()),
+                ),
               ),
               FeatureCard(
                 icone: Icons.air,
@@ -218,7 +231,9 @@ class _HomePageState extends State<HomePage> {
                 icone: Icons.settings_outlined,
                 titulo: 'Configurações',
                 descricao: 'Tema e lembretes',
-                onTap: _emBreve,
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ConfiguracoesPage()),
+                ),
               ),
             ],
           ),

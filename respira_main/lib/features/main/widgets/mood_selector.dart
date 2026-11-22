@@ -61,7 +61,14 @@ class MoodSelector extends StatelessWidget {
                     child: Center(
                       child: Text(
                         humor.emoji,
-                        style: const TextStyle(fontSize: 26),
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontFamilyFallback: [
+                            'Noto Color Emoji',
+                            'Apple Color Emoji',
+                            'Segoe UI Emoji',
+                          ],
+                        ),
                       ),
                     ),
                   ),

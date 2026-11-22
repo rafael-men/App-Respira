@@ -22,6 +22,7 @@ Dependencias _montar({
     diario: base.diario,
     phq9: base.phq9,
     exclusao: base.exclusao,
+    lembretes: base.lembretes,
     usandoFirebase: false,
   );
 }

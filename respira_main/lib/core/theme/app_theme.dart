@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 abstract final class AppTheme {
-  // fonte global
-  static const fontFamily = 'LibreBaskerville';
+  static const fonteTitulos = 'Poppins';
+  static const fonteTexto = 'Inter';
+  static const fontFamily = fonteTexto;
 
   static ThemeData get light {
     final scheme = ColorScheme.fromSeed(
@@ -21,15 +22,28 @@ abstract final class AppTheme {
       borderSide: BorderSide(color: AppColors.purple500.withValues(alpha: 0.3)),
     );
 
+    final texto = ThemeData.light().textTheme.apply(
+      fontFamily: fonteTexto,
+      bodyColor: AppColors.textPrimary,
+      displayColor: AppColors.textPrimary,
+    );
+    TextStyle? titulo(TextStyle? estilo) =>
+        estilo?.copyWith(fontFamily: fonteTitulos);
     return ThemeData(
       useMaterial3: true,
       fontFamily: fontFamily,
       colorScheme: scheme,
       scaffoldBackgroundColor: AppColors.background,
-      textTheme: ThemeData.light().textTheme.apply(
-        fontFamily: fontFamily,
-        bodyColor: AppColors.textPrimary,
-        displayColor: AppColors.textPrimary,
+      textTheme: texto.copyWith(
+        displayLarge: titulo(texto.displayLarge),
+        displayMedium: titulo(texto.displayMedium),
+        displaySmall: titulo(texto.displaySmall),
+        headlineLarge: titulo(texto.headlineLarge),
+        headlineMedium: titulo(texto.headlineMedium),
+        headlineSmall: titulo(texto.headlineSmall),
+        titleLarge: titulo(texto.titleLarge),
+        titleMedium: titulo(texto.titleMedium),
+        titleSmall: titulo(texto.titleSmall),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

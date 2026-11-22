@@ -232,3 +232,24 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - `respira_main/pubspec.yaml`: dependência `image_picker`. Rafael.
 - `respira_main/ios/Runner/Info.plist`: chave `NSPhotoLibraryUsageDescription` para a galeria. Rafael.
 - `respira_main/lib/features/main/pages/home_page.dart`: somente o método `_abrirConta` e a folha que ele abre. Rafael.
+
+## [21/11/2026] Unidade II, Sprint 4 (diário, configurações e tipografia)
+
+### Adicionado
+
+- T05: fontes Poppins para títulos e Inter para textos, incluídas no app com as licenças OFL. Murilo.
+- N05: Telas 02 e 03 com registro do humor e nota opcional, histórico do mais recente ao mais antigo e confirmação de exclusão. Murilo.
+- N06: Tela 08 com preferências de tema e notificações, perfil, Sobre o Respira e Botão de Pânico. A tela usa o perfil de Rafael e o serviço de lembretes de Franck. Murilo.
+- Testes de widget para o diário, as configurações, a tipografia e o layout das três novas telas em 360 px. Murilo.
+
+### Alterado
+
+- Tema, botão com gradiente, componentes de autenticação, cartão de identidade e seletor de humor (Rafael) e botão de alerta (Franck): aplicação da nova tipografia e fontes alternativas para os emojis de humor. Murilo.
+- Início (Rafael): o seletor abre o registro com o humor escolhido, e os cards abrem o Diário de humor e as Configurações. Murilo.
+- Lock de dependências (Franck): correção da sintaxe após o merge e validação com Flutter 3.50.0. Teste de conta (Rafael): atualização para a dependência dos lembretes. Murilo.
+- docs/diagrama-classes.md e .pdf: métodos gerarChave(), definirChave() e limpar() na classe Criptografia, alinhando o diagrama ao código da Sprint 4. Murilo.
+- README.md e docs/uso-de-ia.md: registro da entrega, das verificações e da integração pendente do SOS nas três telas (N01). Murilo.
+
+### Verificado
+
+- V03: no Chrome em localhost:5050, a nota sintética foi gravada com `notaCifrada`, apareceu no histórico após recarregar a página com a mesma sessão e foi excluída pelo app. A gravação e a exclusão foram confirmadas por leitura direta do servidor Firestore. Murilo.

@@ -37,7 +37,10 @@ class DangerButton extends StatelessWidget {
       child: Opacity(
         opacity: ativo ? 1 : 0.6,
         child: DecoratedBox(
-          decoration: const BoxDecoration(gradient: gradiente, borderRadius: raio),
+          decoration: const BoxDecoration(
+            gradient: gradiente,
+            borderRadius: raio,
+          ),
           child: Material(
             color: Colors.transparent,
             child: InkWell(
@@ -60,9 +63,9 @@ class DangerButton extends StatelessWidget {
                           label,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontFamily: AppTheme.fontFamily,
+                            fontFamily: AppTheme.fonteTitulos,
                             fontSize: 16,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                 ),

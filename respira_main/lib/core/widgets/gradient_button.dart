@@ -49,7 +49,7 @@ class GradientButton extends StatelessWidget {
                         label,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontFamily: AppTheme.fontFamily,
+                          fontFamily: AppTheme.fonteTitulos,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),

@@ -86,3 +86,30 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 ### 2.3 Justificativa de `image_picker`
 
 A foto do perfil (RF20) é escolhida na galeria com `image_picker`, que é o plugin oficial do Flutter para Android, iOS e web. Os parâmetros `maxWidth: 256`, `maxHeight: 256` e `imageQuality: 70` reduzem a imagem antes de ela ser convertida para Base64 e gravada em `usuarios/{uid}`. Isso mantém o documento pequeno no Firestore, que tem limite de 1 MiB por documento. A permissão de galeria no iOS está descrita em `NSPhotoLibraryUsageDescription`.
+
+## 3. Sprint 4 (Murilo Pedral Mota, 21/11/2026)
+
+### 3.1 Pedidos que funcionaram
+
+- Conferir os critérios por tarefa na seção 6.4 de `docs/sprints.md` e comparar as três telas com as páginas 2, 3 e 8 do protótipo de alta fidelidade.
+- Reaproveitar `DependenciasScope`, os repositórios e componentes existentes no diário e ligar as configurações a `PerfilPage.abrir` e `LembretesService`.
+- Conferir cada método da classe `Criptografia` com a implementação e renderizar o PlantUML para verificar a assinatura estática no PDF.
+
+### 3.2 Erros e correções
+
+| Situação | Correção |
+| --- | --- |
+| Um estilo explícito no título da barra removia a cor de primeiro plano aplicada pelo Flutter. | A barra usa o estilo de título do tema, com Poppins e a cor definida pelo Flutter ou pela própria tela. |
+| Após o merge, o `pubspec.lock` trazia linhas soltas de uma segunda versão de `test_api`, e o teste de conta construía as dependências sem o serviço de lembretes. | O lock foi corrigido e resolvido com o Flutter 3.50.0. O teste de Rafael passou a receber o serviço em memória. |
+| A barra compartilhada de Rene (N01) ainda estava ausente da base integrada. | As três telas usam a barra do Flutter para navegação de retorno. O botão SOS será integrado pelo contrato de N01. |
+
+### 3.3 Fontes no app
+
+Poppins (títulos) e Inter (textos) são distribuídas em `assets/fonts/`, com as licenças OFL. O Flutter pode carregá-las na primeira abertura sem baixar arquivos ou depender do cache da rede. `AppTheme.fontFamily` aponta para Inter, e os estilos de título usam Poppins.
+
+### 3.4 Verificações
+
+- Flutter 3.50.0 com `flutter pub get --enforce-lockfile`, `flutter analyze --no-fatal-infos` e `flutter test`. Os 64 testes passaram. A análise apontou apenas as informações sobre a descontinuação de `package:flutter/material.dart`, já aceita pelo grupo.
+- As Telas 02, 03 e 08 foram comparadas com o protótipo e verificadas a 360 px. O PDF do diagrama foi renderizado com PlantUML e conferido com os cinco métodos de `Criptografia`. `gerarChave()` está sublinhado.
+- V03 passou no Chrome com o Firebase Respira em `localhost:5050`. Uma sessão anônima de teste gravou uma nota sintética. Uma leitura direta do servidor Firestore confirmou `notaCifrada` sem o texto original. Após recarregar a página, a mesma sessão exibiu a nota no histórico. A exclusão pelo app foi confirmada no servidor.
+- A validação dos lembretes no celular e dos fluxos em modo avião continua para a Sprint 5.
