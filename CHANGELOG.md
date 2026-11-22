@@ -232,3 +232,19 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - `respira_main/pubspec.yaml`: dependência `image_picker`. Rafael.
 - `respira_main/ios/Runner/Info.plist`: chave `NSPhotoLibraryUsageDescription` para a galeria. Rafael.
 - `respira_main/lib/features/main/pages/home_page.dart`: somente o método `_abrirConta` e a folha que ele abre. Rafael.
+
+## [22/11/2026] Unidade II, Sprint 4 (barra superior e Tela 07)
+
+### Adicionado
+
+- Barra superior padrão `RespiraAppBar` em `respira_main/lib/core/widgets/respira_app_bar.dart` (N01, ajuste A5, RF09, RN18), com a assinatura combinada na seção 6.4 de docs/sprints.md: `titulo`, `mostrarVoltar` (seta "‹", padrão `true`), `transparente` (fundo transparente com texto e ícones brancos, padrão `false`) e `acoesExtras` (ícones antes do SOS). O `SosCvvButton` fica sempre por último e abre a Tela 07. Rene.
+- Tela 07 Confirmação de chamada ao CVV (N02, F04, RF09, RF10, RN08, RN09) em `respira_main/lib/features/cvv`. `ConfirmacaoCvvPage.abrir(context)` abre a tela cheia, com o círculo do 188, o texto do atendimento, o selo "disponível mesmo sem conexão à internet", "Ligar agora" com ícone de telefone e "Cancelar" no rodapé. A barra não tem seta nem SOS, como no protótipo. `ContatoEmergencia` guarda o nome e o número no código e abre o discador com o `url_launcher`. Quando não há discador, como no navegador do computador, a tela mostra "Ligue 188 pelo telefone do aparelho.". Rene.
+- Testes `respira_main/test/respira_app_bar_test.dart` (título, SOS abrindo a Tela 07, seta de voltar, `mostrarVoltar: false`, `transparente` e `acoesExtras` antes do SOS) e `respira_main/test/cvv_test.dart` (número fixo, textos da Tela 07, sem seta nem SOS, "Cancelar" fechando a tela, "Ligar agora" chamando o discador e a orientação sem discador). Rene.
+
+### Alterado
+
+- `respira_main/pubspec.yaml` e `pubspec.lock`: dependência `url_launcher`, acrescentada com o Flutter 3.50.0. Rene.
+- `respira_main/pubspec.lock` (autoria original: Franck, T01; pacotes do `image_picker` de Rafael): o merge `dd4d580` deixou quatro linhas soltas na linha 704, e o `flutter pub get --enforce-lockfile` passou a falhar. Também voltaram para versões que não são as do Flutter 3.50.0 o `matcher` (0.12.19), o `meta` (1.18.0) e o `vector_math` (2.2.0). O lock foi refeito como a soma do lock da T01 com os 15 pacotes do `image_picker`, sem mudar nenhuma outra versão, e depois recebeu o `url_launcher`. Rene.
+- `respira_main/android/app/src/main/AndroidManifest.xml`: no bloco `<queries>`, o discador (ações DIAL e VIEW com o esquema `tel`). `respira_main/ios/Runner/Info.plist`: `LSApplicationQueriesSchemes` com `tel`. Rene.
+- `respira_main/lib/core/widgets/danger_button.dart` (autoria original: Franck): parâmetro opcional `icone`, usado no telefone de "Ligar agora". O "Apagar tudo" da Tela 09 não muda. Rene.
+- `respira_main/test/conta_rafael_test.dart` (autoria original: Rafael): o teste não compilava na `main` porque o parâmetro `lembretes` passou a ser obrigatório em `Dependencias` (N11, Franck), e as duas mudanças entraram em paralelo. Só a montagem `_montar` mudou, com a linha `lembretes: base.lembretes`. Rene.

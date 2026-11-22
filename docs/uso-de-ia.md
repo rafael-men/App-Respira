@@ -86,3 +86,28 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 ### 2.3 Justificativa de `image_picker`
 
 A foto do perfil (RF20) é escolhida na galeria com `image_picker`, que é o plugin oficial do Flutter para Android, iOS e web. Os parâmetros `maxWidth: 256`, `maxHeight: 256` e `imageQuality: 70` reduzem a imagem antes de ela ser convertida para Base64 e gravada em `usuarios/{uid}`. Isso mantém o documento pequeno no Firestore, que tem limite de 1 MiB por documento. A permissão de galeria no iOS está descrita em `NSPhotoLibraryUsageDescription`.
+
+## 3. Sprint 4: barra superior com SOS e Tela 07 CVV (Rene Mendonça Marinho, 22/11/2026)
+
+### 3.1 Pedidos que funcionaram
+
+- Colar o guia completo da sprint (papel, contexto vigente, limites e steps) como primeira mensagem. Com os contratos do grupo escritos ali, a IA usou a assinatura exata da `RespiraAppBar` e não criou componentes paralelos.
+- Pedir que a IA perguntasse antes de decidir o que o guia não resolvia. Foram três perguntas, respondidas por Rene: manter a assinatura exata da `RespiraAppBar`, criar uma branch nova a partir da `main` atualizada e dividir o trabalho em dois pull requests (N01 e N02 primeiro; N03 e N07 depois do merge de Murilo na Início).
+- Pedir que a IA lesse o código existente (`SosCvvButton`, `DangerButton`, Telas 04 e 09 e os testes) antes de escrever.
+
+### 3.2 Erros encontrados e como foram corrigidos
+
+| Situação | Correção |
+| --- | --- |
+| A primeira versão (branch `rene-sprint4`, de 18/11) foi feita sobre a `main` antiga e tinha parâmetros que o contrato de 21/11 não prevê (`acoes`, `onSos` e `mostrarSos`). | Refeita na branch `rene-sprint4-v2`, a partir da `main` atualizada, com a assinatura exata: `acoes` virou `acoesExtras`, e `onSos` e `mostrarSos` saíram. A Tela 07 usa uma barra simples, sem SOS, para o SOS não abrir a própria tela. |
+| Erro da IA: o aviso "Ligue 188 pelo telefone do aparelho." usava `const Semantics(...)`, mas o construtor de `Semantics` não é `const` no Flutter 3.50.0. O `flutter analyze` acusou `const_with_non_const` e os testes que importam a Tela 07 não compilaram. | O `const` saiu do `Semantics` e ficou só no `Text`. |
+| No primeiro commit, o README apareceu com o arquivo inteiro alterado, embora só duas linhas tivessem mudado: a IA gravou o arquivo com final de linha CRLF, e o repositório usa LF. | Na branch nova, os arquivos são gravados com LF, como no repositório. |
+| O `pubspec.lock` da `main` (commit `82d4540`) não abria: o merge `dd4d580` deixou quatro linhas soltas na linha 704 e voltou o `matcher`, o `meta` e o `vector_math` para versões que não são as do Flutter 3.50.0. O `flutter pub get --enforce-lockfile` falhou com "Expected a key while parsing a block mapping". | A IA comparou o lock com os dois lados do merge e o refez como a soma do lock da T01 com os pacotes do `image_picker`, sem apagar o arquivo nem mudar outras versões. O lock corrigido passou no `flutter pub get --enforce-lockfile` com o Flutter 3.50.0 antes do `url_launcher` entrar. |
+| Na `main`, o `test/conta_rafael_test.dart` (Rafael) não compilava: `Dependencias` passou a exigir `lembretes` (N11, Franck), e o teste, que entrou em paralelo, não passava esse parâmetro. | Com a autorização de Rene, uma linha (`lembretes: base.lembretes`) na montagem do teste, registrada com a autoria de Rafael. |
+| O guia pede só a ação DIAL no `AndroidManifest.xml`, mas o `url_launcher` abre o `tel:` com a ação VIEW. | As duas ações foram declaradas em `<queries>`. |
+| A IA não consegue rodar o Flutter na máquina de Rene. | Rene roda `flutter analyze` e `flutter test` com um script local (fora do Git) e repassa a saída para a IA corrigir o que falhar. |
+
+### 3.3 Justificativa de `url_launcher` e `fl_chart`
+
+- **`url_launcher`** (Tela 07): pacote oficial da equipe do Flutter, que abre o discador com o número já digitado no Android, no iOS e no navegador. Não precisa da permissão `CALL_PHONE`, porque quem inicia a chamada é o usuário no próprio discador. Isso mantém a confirmação da RN09 e funciona sem internet, já que o número está no código (RN08). Pacotes que ligam direto, como o `flutter_phone_direct_caller`, foram descartados porque pulam essa confirmação e exigem uma permissão sensível.
+- **`fl_chart`** (Tela 06, N07): gráfico de linha feito só em Dart, sem código nativo, que funciona sem internet e aceita traço em gradiente e pontos personalizados, como no protótipo. Foram descartados o `charts_flutter`, que foi descontinuado, e o Syncfusion, que exige licença. Entra no segundo pull request, com as Telas 05 e 06.

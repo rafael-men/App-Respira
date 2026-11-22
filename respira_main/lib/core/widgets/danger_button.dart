@@ -12,11 +12,15 @@ class DangerButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.carregando = false,
+    this.icone,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final bool carregando;
+
+  /// Ícone opcional antes do texto, como o telefone de "Ligar agora".
+  final IconData? icone;
 
   static const gradiente = LinearGradient(
     begin: Alignment.topLeft,
@@ -56,14 +60,23 @@ class DangerButton extends StatelessWidget {
                             color: Colors.white,
                           ),
                         )
-                      : Text(
-                          label,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontFamily: AppTheme.fontFamily,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (icone != null) ...[
+                              Icon(icone, color: Colors.white, size: 22),
+                              const SizedBox(width: 10),
+                            ],
+                            Text(
+                              label,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: AppTheme.fontFamily,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
                         ),
                 ),
               ),
