@@ -87,27 +87,52 @@ A documentação da Unidade II foi analisada em relação ao enunciado do Projet
 
 A foto do perfil (RF20) é escolhida na galeria com `image_picker`, que é o plugin oficial do Flutter para Android, iOS e web. Os parâmetros `maxWidth: 256`, `maxHeight: 256` e `imageQuality: 70` reduzem a imagem antes de ela ser convertida para Base64 e gravada em `usuarios/{uid}`. Isso mantém o documento pequeno no Firestore, que tem limite de 1 MiB por documento. A permissão de galeria no iOS está descrita em `NSPhotoLibraryUsageDescription`.
 
-## 3. Sprint 4: barra superior com SOS e Tela 07 CVV (Rene Mendonça Marinho, 22/11/2026)
+## 3. Sprint 4 (Murilo Pedral Mota, 21/11/2026)
 
 ### 3.1 Pedidos que funcionaram
+
+- Conferir os critérios por tarefa na seção 6.4 de `docs/sprints.md` e comparar as três telas com as páginas 2, 3 e 8 do protótipo de alta fidelidade.
+- Reaproveitar `DependenciasScope`, os repositórios e componentes existentes no diário e ligar as configurações a `PerfilPage.abrir` e `LembretesService`.
+- Conferir cada método da classe `Criptografia` com a implementação e renderizar o PlantUML para verificar a assinatura estática no PDF.
+
+### 3.2 Erros e correções
+
+| Situação | Correção |
+| --- | --- |
+| Um estilo explícito no título da barra removia a cor de primeiro plano aplicada pelo Flutter. | A barra usa o estilo de título do tema, com Poppins e a cor definida pelo Flutter ou pela própria tela. |
+| Após o merge, o `pubspec.lock` trazia linhas soltas de uma segunda versão de `test_api`, e o teste de conta construía as dependências sem o serviço de lembretes. | O lock foi corrigido e resolvido com o Flutter 3.50.0. O teste de Rafael passou a receber o serviço em memória. |
+| A barra compartilhada de Rene (N01) ainda estava ausente da base integrada. | As três telas usam a barra do Flutter para navegação de retorno. O botão SOS será integrado pelo contrato de N01. |
+
+### 3.3 Fontes no app
+
+Poppins (títulos) e Inter (textos) são distribuídas em `assets/fonts/`, com as licenças OFL. O Flutter pode carregá-las na primeira abertura sem baixar arquivos ou depender do cache da rede. `AppTheme.fontFamily` aponta para Inter, e os estilos de título usam Poppins.
+
+### 3.4 Verificações
+
+- Flutter 3.50.0 com `flutter pub get --enforce-lockfile`, `flutter analyze --no-fatal-infos` e `flutter test`. Os 64 testes passaram. A análise apontou apenas as informações sobre a descontinuação de `package:flutter/material.dart`, já aceita pelo grupo.
+- As Telas 02, 03 e 08 foram comparadas com o protótipo e verificadas a 360 px. O PDF do diagrama foi renderizado com PlantUML e conferido com os cinco métodos de `Criptografia`. `gerarChave()` está sublinhado.
+- V03 passou no Chrome com o Firebase Respira em `localhost:5050`. Uma sessão anônima de teste gravou uma nota sintética. Uma leitura direta do servidor Firestore confirmou `notaCifrada` sem o texto original. Após recarregar a página, a mesma sessão exibiu a nota no histórico. A exclusão pelo app foi confirmada no servidor.
+- A validação dos lembretes no celular e dos fluxos em modo avião continua para a Sprint 5.
+
+## 4. Sprint 4: barra superior com SOS e Tela 07 CVV (Rene Mendonça Marinho, 22/11/2026)
+
+### 4.1 Pedidos que funcionaram
 
 - Colar o guia completo da sprint (papel, contexto vigente, limites e steps) como primeira mensagem. Com os contratos do grupo escritos ali, a IA usou a assinatura exata da `RespiraAppBar` e não criou componentes paralelos.
 - Pedir que a IA perguntasse antes de decidir o que o guia não resolvia. Foram três perguntas, respondidas por Rene: manter a assinatura exata da `RespiraAppBar`, criar uma branch nova a partir da `main` atualizada e dividir o trabalho em dois pull requests (N01 e N02 primeiro; N03 e N07 depois do merge de Murilo na Início).
 - Pedir que a IA lesse o código existente (`SosCvvButton`, `DangerButton`, Telas 04 e 09 e os testes) antes de escrever.
 
-### 3.2 Erros encontrados e como foram corrigidos
+### 4.2 Erros encontrados e como foram corrigidos
 
 | Situação | Correção |
 | --- | --- |
 | A primeira versão (branch `rene-sprint4`, de 18/11) foi feita sobre a `main` antiga e tinha parâmetros que o contrato de 21/11 não prevê (`acoes`, `onSos` e `mostrarSos`). | Refeita na branch `rene-sprint4-v2`, a partir da `main` atualizada, com a assinatura exata: `acoes` virou `acoesExtras`, e `onSos` e `mostrarSos` saíram. A Tela 07 usa uma barra simples, sem SOS, para o SOS não abrir a própria tela. |
 | Erro da IA: o aviso "Ligue 188 pelo telefone do aparelho." usava `const Semantics(...)`, mas o construtor de `Semantics` não é `const` no Flutter 3.50.0. O `flutter analyze` acusou `const_with_non_const` e os testes que importam a Tela 07 não compilaram. | O `const` saiu do `Semantics` e ficou só no `Text`. |
 | No primeiro commit, o README apareceu com o arquivo inteiro alterado, embora só duas linhas tivessem mudado: a IA gravou o arquivo com final de linha CRLF, e o repositório usa LF. | Na branch nova, os arquivos são gravados com LF, como no repositório. |
-| O `pubspec.lock` da `main` (commit `82d4540`) não abria: o merge `dd4d580` deixou quatro linhas soltas na linha 704 e voltou o `matcher`, o `meta` e o `vector_math` para versões que não são as do Flutter 3.50.0. O `flutter pub get --enforce-lockfile` falhou com "Expected a key while parsing a block mapping". | A IA comparou o lock com os dois lados do merge e o refez como a soma do lock da T01 com os pacotes do `image_picker`, sem apagar o arquivo nem mudar outras versões. O lock corrigido passou no `flutter pub get --enforce-lockfile` com o Flutter 3.50.0 antes do `url_launcher` entrar. |
-| Na `main`, o `test/conta_rafael_test.dart` (Rafael) não compilava: `Dependencias` passou a exigir `lembretes` (N11, Franck), e o teste, que entrou em paralelo, não passava esse parâmetro. | Com a autorização de Rene, uma linha (`lembretes: base.lembretes`) na montagem do teste, registrada com a autoria de Rafael. |
 | O guia pede só a ação DIAL no `AndroidManifest.xml`, mas o `url_launcher` abre o `tel:` com a ação VIEW. | As duas ações foram declaradas em `<queries>`. |
 | A IA não consegue rodar o Flutter na máquina de Rene. | Rene roda `flutter analyze` e `flutter test` com um script local (fora do Git) e repassa a saída para a IA corrigir o que falhar. |
 
-### 3.3 Justificativa de `url_launcher` e `fl_chart`
+### 4.3 Justificativa de `url_launcher` e `fl_chart`
 
 - **`url_launcher`** (Tela 07): pacote oficial da equipe do Flutter, que abre o discador com o número já digitado no Android, no iOS e no navegador. Não precisa da permissão `CALL_PHONE`, porque quem inicia a chamada é o usuário no próprio discador. Isso mantém a confirmação da RN09 e funciona sem internet, já que o número está no código (RN08). Pacotes que ligam direto, como o `flutter_phone_direct_caller`, foram descartados porque pulam essa confirmação e exigem uma permissão sensível.
 - **`fl_chart`** (Tela 06, N07): gráfico de linha feito só em Dart, sem código nativo, que funciona sem internet e aceita traço em gradiente e pontos personalizados, como no protótipo. Foram descartados o `charts_flutter`, que foi descontinuado, e o Syncfusion, que exige licença. Entra no segundo pull request, com as Telas 05 e 06.

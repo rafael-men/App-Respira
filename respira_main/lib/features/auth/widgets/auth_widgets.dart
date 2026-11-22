@@ -88,7 +88,7 @@ class MensagemErro extends StatelessWidget {
         mensagem,
         style: const TextStyle(
           color: AppColors.error,
-          fontFamily: AppTheme.fontFamily,
+          fontFamily: AppTheme.fonteTexto,
           fontSize: 14,
         ),
       ),
@@ -110,7 +110,7 @@ class AvisoPrivacidade extends StatelessWidget {
             'Sem conta, seus dados ficam vinculados a este aparelho. Com conta, você recupera seu histórico se reinstalar o app. Nada é compartilhado.',
             style: TextStyle(
               color: AppColors.textSecondary,
-              fontFamily: AppTheme.fontFamily,
+              fontFamily: AppTheme.fonteTexto,
               fontSize: 13,
             ),
           ),

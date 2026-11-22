@@ -233,6 +233,27 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 - `respira_main/ios/Runner/Info.plist`: chave `NSPhotoLibraryUsageDescription` para a galeria. Rafael.
 - `respira_main/lib/features/main/pages/home_page.dart`: somente o método `_abrirConta` e a folha que ele abre. Rafael.
 
+## [21/11/2026] Unidade II, Sprint 4 (diário, configurações e tipografia)
+
+### Adicionado
+
+- T05: fontes Poppins para títulos e Inter para textos, incluídas no app com as licenças OFL. Murilo.
+- N05: Telas 02 e 03 com registro do humor e nota opcional, histórico do mais recente ao mais antigo e confirmação de exclusão. Murilo.
+- N06: Tela 08 com preferências de tema e notificações, perfil, Sobre o Respira e Botão de Pânico. A tela usa o perfil de Rafael e o serviço de lembretes de Franck. Murilo.
+- Testes de widget para o diário, as configurações, a tipografia e o layout das três novas telas em 360 px. Murilo.
+
+### Alterado
+
+- Tema, botão com gradiente, componentes de autenticação, cartão de identidade e seletor de humor (Rafael) e botão de alerta (Franck): aplicação da nova tipografia e fontes alternativas para os emojis de humor. Murilo.
+- Início (Rafael): o seletor abre o registro com o humor escolhido, e os cards abrem o Diário de humor e as Configurações. Murilo.
+- Lock de dependências (Franck): correção da sintaxe após o merge e validação com Flutter 3.50.0. Teste de conta (Rafael): atualização para a dependência dos lembretes. Murilo.
+- docs/diagrama-classes.md e .pdf: métodos gerarChave(), definirChave() e limpar() na classe Criptografia, alinhando o diagrama ao código da Sprint 4. Murilo.
+- README.md e docs/uso-de-ia.md: registro da entrega, das verificações e da integração pendente do SOS nas três telas (N01). Murilo.
+
+### Verificado
+
+- V03: no Chrome em localhost:5050, a nota sintética foi gravada com `notaCifrada`, apareceu no histórico após recarregar a página com a mesma sessão e foi excluída pelo app. A gravação e a exclusão foram confirmadas por leitura direta do servidor Firestore. Murilo.
+
 ## [22/11/2026] Unidade II, Sprint 4 (barra superior e Tela 07)
 
 ### Adicionado
@@ -244,7 +265,5 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
 ### Alterado
 
 - `respira_main/pubspec.yaml` e `pubspec.lock`: dependência `url_launcher`, acrescentada com o Flutter 3.50.0. Rene.
-- `respira_main/pubspec.lock` (autoria original: Franck, T01; pacotes do `image_picker` de Rafael): o merge `dd4d580` deixou quatro linhas soltas na linha 704, e o `flutter pub get --enforce-lockfile` passou a falhar. Também voltaram para versões que não são as do Flutter 3.50.0 o `matcher` (0.12.19), o `meta` (1.18.0) e o `vector_math` (2.2.0). O lock foi refeito como a soma do lock da T01 com os 15 pacotes do `image_picker`, sem mudar nenhuma outra versão, e depois recebeu o `url_launcher`. Rene.
 - `respira_main/android/app/src/main/AndroidManifest.xml`: no bloco `<queries>`, o discador (ações DIAL e VIEW com o esquema `tel`). `respira_main/ios/Runner/Info.plist`: `LSApplicationQueriesSchemes` com `tel`. Rene.
 - `respira_main/lib/core/widgets/danger_button.dart` (autoria original: Franck): parâmetro opcional `icone`, usado no telefone de "Ligar agora". O "Apagar tudo" da Tela 09 não muda. Rene.
-- `respira_main/test/conta_rafael_test.dart` (autoria original: Rafael): o teste não compilava na `main` porque o parâmetro `lembretes` passou a ser obrigatório em `Dependencias` (N11, Franck), e as duas mudanças entraram em paralelo. Só a montagem `_montar` mudou, com a linha `lembretes: base.lembretes`. Rene.

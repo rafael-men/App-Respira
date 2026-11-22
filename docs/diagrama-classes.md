@@ -14,6 +14,7 @@ O diagrama mostra as principais entidades do domínio do Respira, com atributos,
  
 ## 1. Diagrama
 
+```plantuml
 @startuml
 skinparam shadowing false
 skinparam classAttributeIconSize 0
@@ -84,8 +85,11 @@ class ContatoEmergencia <<constante>> {
 }
 
 class Criptografia <<serviço>> {
+  +{static} gerarChave() : String
+  +definirChave(String chaveBase64) : void
   +cifrar(String texto) : String
   +decifrar(String textoCifrado) : String
+  +limpar() : void
 }
 
 Usuario "1" *-- "0..*" RegistroHumor : registra
@@ -96,6 +100,7 @@ RegistroHumor ..> Criptografia : nota cifrada
 RespostaPHQ9 ..> Criptografia : respostas cifradas
 Usuario ..> ContatoEmergencia : aciona
 @enduml
+```
 
 Diagrama em PlantUML, que pode ser renderizado no site [PlantText](https://www.planttext.com/). Versão renderizada: [`docs/diagrama-classes.pdf`](diagrama-classes.pdf).
 
@@ -109,7 +114,7 @@ Diagrama em PlantUML, que pode ser renderizado no site [PlantText](https://www.p
 | `RespostaPHQ9` | Uma aplicação semanal do PHQ-9, com as nove respostas, o escore calculado e a data. Não tem método de edição nem de exclusão individual. | F03, RF06, RF07, RF08 |
 | `Configuracoes` | Preferências de tema e de notificações. `redefinir()` volta ao padrão, no lugar de uma exclusão. | RF14, RF15 |
 | `ContatoEmergencia` | O número do CVV, fixo no código. Não é gravado no Firestore e não depende de rede. | F04, RF09, RF10 |
-| `Criptografia` | Cifra e decifra a nota do diário e as respostas do PHQ-9 no aparelho, antes do envio ao Firestore. | F07, RF12 |
+| `Criptografia` | Cifra e decifra a nota do diário e as respostas do PHQ-9 no aparelho, antes do envio ao Firestore, com AES-GCM de 256 bits. A chave é gerada no primeiro acesso (`gerarChave()`), guardada no documento do usuário e carregada a cada login (`definirChave()`); `limpar()` a descarta ao sair ou no Botão de Pânico. | F07, RF12 |
  
 ## 3. Atributos e métodos principais
  
@@ -127,6 +132,8 @@ Diagrama em PlantUML, que pode ser renderizado no site [PlantText](https://www.p
 | `RespostaPHQ9` | `estaCompleta()` | Só permite calcular o escore quando as nove perguntas foram respondidas. |
 | `RespostaPHQ9` | `calcularEscore()` | Soma as nove respostas (RF07). O escore é usado no gráfico de evolução (RF08). |
 | `ContatoEmergencia` | `ligar()` | Abre a discagem nativa para o 188, sem acesso à internet. |
+| `Criptografia` | `gerarChave()` | Método estático. Gera a chave de 256 bits do usuário, em Base64, no primeiro acesso. |
+| `Criptografia` | `definirChave()` e `limpar()` | Carregam a chave lida de `usuarios/{uid}` a cada login e a descartam ao sair ou no Botão de Pânico. |
  
 ## 4. Relacionamentos
  
