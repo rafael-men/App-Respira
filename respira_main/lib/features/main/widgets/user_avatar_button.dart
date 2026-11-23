@@ -15,13 +15,13 @@ class UserAvatarButton extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           shape: BoxShape.circle,
           border: Border.all(color: AppColors.purple500.withValues(alpha: 0.4)),
         ),
-        child: const Icon(
+        child: Icon(
           Icons.person_outline,
-          color: AppColors.purple700,
+          color: Theme.of(context).colorScheme.primary,
           size: 20,
         ),
       ),

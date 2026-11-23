@@ -67,7 +67,7 @@ void main() {
       expect(PerguntasPhq9.perguntas, hasLength(9));
       expect(PerguntasPhq9.opcoes.map((o) => o.texto), [
         'Nenhuma vez',
-        'Vários dias',
+        'Alguns dias',
         'Mais da metade dos dias',
         'Quase todos os dias',
       ]);
@@ -119,7 +119,7 @@ void main() {
         isNull,
       );
 
-      await _tocar(tester, 'Vários dias');
+      await _tocar(tester, 'Alguns dias');
 
       expect(
         tester.widget<GradientButton>(find.byType(GradientButton)).onPressed,
@@ -151,7 +151,7 @@ void main() {
       final deps = Dependencias.memoria();
       await _abrirPhq9(tester, deps);
 
-      await _responderTudo(tester, (_) => 'Vários dias');
+      await _responderTudo(tester, (_) => 'Alguns dias');
 
       expect(find.byType(Phq9ResultadoPage), findsOneWidget);
       expect(find.byType(Phq9PerguntaPage), findsNothing);

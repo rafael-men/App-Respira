@@ -26,7 +26,7 @@ O diagrama representa o que o usuário faz no Respira e quais sistemas externos 
 
 | Caso de uso | Descrição | Requisitos |
 |---|---|---|
-| UC01 Entrar no app | No primeiro acesso, o app mostra o onboarding (apresentação e três perguntas opcionais, com a opção de pular). Ao concluir ou pular, o usuário é autenticado pelo provedor anônimo, sem informar dados pessoais, e chega à Tela 01 Início. Nos acessos seguintes, o app reaproveita a sessão e abre direto na Início. Entrar ou criar conta é opcional, pelo ícone de conta da Início (UC15, UC16). | F06, RF11, RF17 |
+| UC01 Entrar no app | No primeiro acesso, o app mostra o onboarding (apresentação e escolhas opcionais de tema e lembrete diário, com a opção de pular). Ao concluir ou pular, o usuário é autenticado pelo provedor anônimo, sem informar dados pessoais, e chega à Tela 01 Início. Nos acessos seguintes, o app reaproveita a sessão e abre direto na Início. Entrar ou criar conta é opcional, pelo ícone de conta da Início (UC15, UC16). | F06, RF11, RF17 |
 | UC02 Registrar humor | O usuário escolhe um entre cinco emojis e, se quiser, escreve uma nota curta. Data e hora são gravadas automaticamente. | F01, RF01, RF02 |
 | UC03 Consultar histórico do diário | Lista os registros em ordem cronológica, inclusive sem internet. | RF03, RF16 |
 | UC04 Excluir registro de humor | Remove um registro específico do diário. | RF04 |
@@ -34,14 +34,14 @@ O diagrama representa o que o usuário faz no Respira e quais sistemas externos 
 | UC06 Responder PHQ-9 | Apresenta as nove perguntas, uma por tela, na aplicação semanal. | F03, RF06 |
 | UC07 Calcular escore do PHQ-9 | Soma as respostas ao final do questionário e guarda o escore com a data. | RF07 |
 | UC08 Ver evolução do PHQ-9 | Exibe o gráfico dos escores ao longo do tempo. | RF08 |
-| UC09 Ligar para o CVV (188) | Um toque no botão vermelho da AppBar, a partir de qualquer tela, abre a confirmação e disca o 188. O número é embutido no app. | F04, RF09, RF10 |
+| UC09 Ligar para o CVV (188) | Um toque no botão vermelho da AppBar abre a confirmação. A tela oferece confirmar ou cancelar. Ao confirmar, o app abre o discador preenchido com o 188 embutido no código. | F04, RF09, RF10 |
 | UC10 Alternar tema claro/escuro | Liga ou desliga o tema escuro. | F10, RF15 |
-| UC11 Ativar/desativar notificações | Liga ou desliga os lembretes motivacionais. | F09, RF14 |
+| UC11 Ativar/desativar notificações | Oferece lembrete diário no primeiro acesso e permite ativá-lo ou desativá-lo em Configurações. Ao optar por ativar no celular, o app solicita permissão. | F09, RF14 |
 | UC12 Acionar Botão de Pânico | Depois da confirmação, apaga os dados locais, os documentos do usuário no Firestore e a conta (anônima ou cadastrada). | F08, RF13 |
 | UC13 Criptografar dados sensíveis | Cifra a nota do diário e as respostas do PHQ-9 no aparelho, antes do envio ao Firestore. | F07, RF12 |
 | UC14 Gravar e sincronizar dados | Grava primeiro no cache local do Firestore e sincroniza quando a conexão volta. | F05, RF16, RNF06, RNF07 |
 | UC15 Criar conta | O usuário informa e-mail e senha. Se já usava o app sem cadastro, a conta anônima é vinculada à nova conta e os dados são mantidos. | F11, RF18 |
-| UC16 Entrar com e-mail e senha | O usuário cadastrado entra na conta, inclusive depois de reinstalar o app ou em outro aparelho, e recupera o histórico. Se houver registros feitos sem cadastro no aparelho, o app avisa que eles não vão para a conta e pede confirmação antes de entrar (RN24). | F11, RF19 |
+| UC16 Entrar com e-mail e senha | O usuário cadastrado entra pelo menu da Início ou pelo atalho **Já tenho conta** do cadastro, inclusive depois de reinstalar o app ou em outro aparelho, e recupera o histórico. Se houver registros feitos sem cadastro no aparelho, o app avisa que eles não vão para a conta e pede confirmação antes de entrar (RN24). | F11, RF19 |
 | UC17 Recuperar senha | O usuário informa o e-mail e recebe um link para redefinir a senha. | F11, RF19 |
 | UC18 Editar perfil | O usuário cadastrado define, altera ou remove o nome de usuário e a foto, ambos opcionais. | F11, RF20 |
 

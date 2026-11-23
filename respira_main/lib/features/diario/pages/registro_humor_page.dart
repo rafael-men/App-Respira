@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../core/dependencias.dart';
 import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/widgets/auth_widgets.dart';
 import '../../main/widgets/mood_selector.dart';
@@ -62,7 +63,7 @@ class _RegistroHumorPageState extends State<RegistroHumorPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Diário de Humor'), centerTitle: true),
+    appBar: const RespiraAppBar(titulo: 'Diário de Humor'),
     body: SafeArea(
       child: ListView(
         padding: const EdgeInsets.all(24),

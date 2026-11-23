@@ -182,8 +182,10 @@ class _Phq9PerguntaPageState extends State<Phq9PerguntaPage> {
                   child: LinearProgressIndicator(
                     value: numero / total,
                     minHeight: 6,
-                    color: AppColors.purple700,
-                    backgroundColor: AppColors.purple500.withValues(alpha: 0.15),
+                    color: Theme.of(context).colorScheme.primary,
+                    backgroundColor: AppColors.purple500.withValues(
+                      alpha: 0.15,
+                    ),
                     semanticsLabel: 'Progresso do questionário',
                   ),
                 ),
@@ -191,16 +193,16 @@ class _Phq9PerguntaPageState extends State<Phq9PerguntaPage> {
                 Text(
                   'Pergunta $numero de $total',
                   textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: AppColors.textSecondary,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   PerguntasPhq9.textoCompleto(_indice),
-                  style: const TextStyle(
-                    color: AppColors.purple900,
+                  style: TextStyle(
+                    color: AppColors.titulo(context),
                     fontFamily: AppTheme.fonteTitulos,
                     fontSize: 19,
                     height: 1.4,
@@ -251,17 +253,17 @@ class _AvisoIntervalo extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.event_available_outlined,
             size: 48,
-            color: AppColors.purple700,
+            color: Theme.of(context).colorScheme.primary,
           ),
           const SizedBox(height: 16),
           Text(
             mensagem,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: AppColors.textPrimary,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 16,
               height: 1.4,
             ),

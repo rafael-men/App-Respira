@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../main/pages/home_page.dart';
 import '../data/auth_repository.dart';
 import '../domain/auth_validators.dart';
 import '../widgets/auth_widgets.dart';
+import 'login_page.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key, required this.authRepository});
@@ -35,7 +36,7 @@ class _CadastroPageState extends State<CadastroPage> {
   }
 
   Future<void> _cadastrar() async {
-    if (!(_formKey.currentState?.validate() ?? false)) return;
+    if (_carregando || !(_formKey.currentState?.validate() ?? false)) return;
 
     setState(() {
       _carregando = true;
@@ -48,6 +49,11 @@ class _CadastroPageState extends State<CadastroPage> {
         senha: _senhaController.text,
       );
       if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Conta criada. Editar o perfil é opcional.'),
+        ),
+      );
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (_) => HomePage(authRepository: widget.authRepository),
@@ -64,12 +70,7 @@ class _CadastroPageState extends State<CadastroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Criar conta'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: AppColors.purple900,
-      ),
+      appBar: const RespiraAppBar(titulo: 'Criar conta'),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -154,6 +155,18 @@ class _CadastroPageState extends State<CadastroPage> {
                             label: 'Criar conta',
                             carregando: _carregando,
                             onPressed: _cadastrar,
+                          ),
+                          TextButton(
+                            onPressed: _carregando
+                                ? null
+                                : () => Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute<void>(
+                                      builder: (_) => LoginPage(
+                                        authRepository: widget.authRepository,
+                                      ),
+                                    ),
+                                  ),
+                            child: const Text('Já tenho conta'),
                           ),
                         ],
                       ),

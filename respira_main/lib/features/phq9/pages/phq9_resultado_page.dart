@@ -52,12 +52,12 @@ class _Phq9ResultadoPageState extends State<Phq9ResultadoPage> {
                   if (resposta != null) ...[
                     _CartaoEscore(escore: resposta.calcularEscore()),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       'Isso não é um diagnóstico: procure um profissional para '
                       'uma avaliação completa.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColors.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 14,
                         height: 1.4,
                       ),
@@ -95,8 +95,8 @@ class _Phq9ResultadoPageState extends State<Phq9ResultadoPage> {
                 height: 52,
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.purple900,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    foregroundColor: AppColors.titulo(context),
                     side: BorderSide(
                       color: AppColors.purple500.withValues(alpha: 0.3),
                     ),
@@ -134,7 +134,7 @@ class _Cartao extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: AppColors.purple500.withValues(alpha: 0.2)),
       ),
@@ -159,9 +159,12 @@ class _CartaoEscore extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Escore desta semana',
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontSize: 14,
+              ),
             ),
             const SizedBox(height: 4),
             Row(
@@ -169,8 +172,8 @@ class _CartaoEscore extends StatelessWidget {
                 Text(
                   '$escore',
                   key: const Key('phq9-escore'),
-                  style: const TextStyle(
-                    color: AppColors.purple900,
+                  style: TextStyle(
+                    color: AppColors.titulo(context),
                     fontFamily: AppTheme.fonteTitulos,
                     fontSize: 44,
                     fontWeight: FontWeight.w700,
@@ -184,14 +187,16 @@ class _CartaoEscore extends StatelessWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.blue300.withValues(alpha: 0.5),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
                       faixa.rotulo,
                       key: const Key('phq9-faixa'),
-                      style: const TextStyle(
-                        color: AppColors.purple900,
+                      style: TextStyle(
+                        color: AppColors.titulo(context),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -223,11 +228,11 @@ class _CartaoApoio extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
+          Text(
             'Se você estiver pensando em se ferir, você não precisa passar por '
             'isso sozinho(a). O CVV atende 24h, de graça.',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 15,
               height: 1.4,
             ),
@@ -263,10 +268,10 @@ class _CartaoEvolucao extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Evolução do escore',
             style: TextStyle(
-              color: AppColors.purple900,
+              color: AppColors.titulo(context),
               fontFamily: AppTheme.fonteTitulos,
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -279,9 +284,12 @@ class _CartaoEvolucao extends StatelessWidget {
               child: Center(child: CircularProgressIndicator()),
             )
           else if (escores.isEmpty)
-            const Text(
+            Text(
               'Responda o PHQ-9 para ver sua evolução.',
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontSize: 14,
+              ),
             )
           else ...[
             Semantics(
@@ -291,9 +299,12 @@ class _CartaoEvolucao extends StatelessWidget {
             ),
             if (escores.length == 1) ...[
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 'Sua evolução aparece a partir da segunda semana.',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontSize: 14,
+                ),
               ),
             ],
           ],
@@ -312,7 +323,10 @@ class _GraficoEscore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const estiloEixo = TextStyle(color: AppColors.textSecondary, fontSize: 11);
+    final estiloEixo = TextStyle(
+      color: Theme.of(context).colorScheme.onSurfaceVariant,
+      fontSize: 11,
+    );
     final ultimo = (escores.length - 1).toDouble();
 
     return LineChart(
@@ -369,17 +383,20 @@ class _GraficoEscore extends StatelessWidget {
             ],
             barWidth: 3,
             isStrokeCapRound: true,
-            gradient: const LinearGradient(
-              colors: [AppColors.purple700, AppColors.blue400],
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary,
+                AppColors.blue400,
+              ],
             ),
             dotData: FlDotData(
               getDotPainter: (spot, percent, barra, indice) =>
                   FlDotCirclePainter(
-                radius: 4,
-                color: Colors.white,
-                strokeWidth: 2,
-                strokeColor: AppColors.purple700,
-              ),
+                    radius: 4,
+                    color: Theme.of(context).colorScheme.surface,
+                    strokeWidth: 2,
+                    strokeColor: Theme.of(context).colorScheme.primary,
+                  ),
             ),
           ),
         ],

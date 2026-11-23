@@ -20,9 +20,10 @@ class RespiraAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.mostrarVoltar = true,
     this.transparente = false,
     this.acoesExtras = const [],
+    this.leading,
   });
 
-  final String titulo;
+  final String? titulo;
 
   /// Mostra a seta "‹", que volta à tela anterior. Use `false` nas telas que
   /// saem por outro caminho, como "Cancelar" (docs/justificativas.md,
@@ -36,12 +37,15 @@ class RespiraAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Ícones mostrados antes do SOS, como o ícone de conta da Início.
   final List<Widget> acoesExtras;
 
+  /// Volta personalizada para telas com etapas, como o onboarding.
+  final Widget? leading;
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    final corTexto = transparente ? Colors.white : AppColors.purple900;
+    final corTexto = transparente ? Colors.white : AppColors.titulo(context);
     final podeVoltar = mostrarVoltar && Navigator.of(context).canPop();
 
     return AppBar(
@@ -52,22 +56,26 @@ class RespiraAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: corTexto,
       elevation: 0,
       scrolledUnderElevation: transparente ? 0 : null,
-      leading: podeVoltar
-          ? IconButton(
-              tooltip: 'Voltar',
-              icon: const Icon(Icons.chevron_left, size: 32),
-              onPressed: () => Navigator.of(context).maybePop(),
-            )
-          : null,
-      title: Text(
-        titulo,
-        style: TextStyle(
-          color: corTexto,
-          fontFamily: AppTheme.fonteTitulos,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+      leading:
+          leading ??
+          (podeVoltar
+              ? IconButton(
+                  tooltip: 'Voltar',
+                  icon: const Icon(Icons.chevron_left, size: 32),
+                  onPressed: () => Navigator.of(context).maybePop(),
+                )
+              : null),
+      title: titulo == null
+          ? null
+          : Text(
+              titulo!,
+              style: TextStyle(
+                color: corTexto,
+                fontFamily: AppTheme.fonteTitulos,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
       actions: [
         ...acoesExtras,
         SosCvvButton(onPressed: () => ConfirmacaoCvvPage.abrir(context)),

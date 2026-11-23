@@ -37,7 +37,9 @@ class MoodSelector extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: ativo ? humor.cor : Colors.white,
+                color: ativo
+                    ? humor.cor
+                    : Theme.of(context).colorScheme.surface,
                 border: Border.all(color: humor.cor, width: 1.5),
                 boxShadow: ativo
                     ? [

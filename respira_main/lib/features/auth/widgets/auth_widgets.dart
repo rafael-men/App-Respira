@@ -28,7 +28,7 @@ class AuthHeader extends StatelessWidget {
           titulo,
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
-            color: AppColors.purple900,
+            color: AppColors.titulo(context),
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -37,7 +37,7 @@ class AuthHeader extends StatelessWidget {
           subtitulo,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ],
@@ -55,7 +55,7 @@ class AuthCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -81,13 +81,13 @@ class MensagemErro extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha: 0.08),
+        color: Theme.of(context).colorScheme.error.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         mensagem,
-        style: const TextStyle(
-          color: AppColors.error,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.error,
           fontFamily: AppTheme.fonteTexto,
           fontSize: 14,
         ),
@@ -101,15 +101,19 @@ class AvisoPrivacidade extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        Icon(Icons.lock_outline, size: 18, color: AppColors.textSecondary),
-        SizedBox(width: 8),
+        Icon(
+          Icons.lock_outline,
+          size: 18,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
+        const SizedBox(width: 8),
         Expanded(
           child: Text(
             'Sem conta, seus dados ficam vinculados a este aparelho. Com conta, você recupera seu histórico se reinstalar o app. Nada é compartilhado.',
             style: TextStyle(
-              color: AppColors.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontFamily: AppTheme.fonteTexto,
               fontSize: 13,
             ),

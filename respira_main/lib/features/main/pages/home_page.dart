@@ -29,6 +29,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int? _humor;
+  bool _saindo = false;
 
   void _ligarCvv() {
     // Abre a confirmação (Tela 07); a discagem só acontece depois de
@@ -37,9 +38,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _abrirConta() {
-    final email = widget.authRepository.emailAtual;
+    if (_saindo) return;
 
-    if (email != null) {
+    final auth = widget.authRepository;
+    final email = auth.emailAtual?.trim();
+
+    if (!auth.anonimo && email != null && email.isNotEmpty) {
       _mostrarFolhaDaConta(email);
       return;
     }
@@ -47,25 +51,27 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      builder: (ctx) => Padding(
+      builder: (ctx) => SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
+            Text(
               'Você ainda não tem conta',
               style: TextStyle(
-                color: AppColors.purple900,
+                color: AppColors.titulo(context),
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Faça login e salve seu progresso com a gente. Sem conta, seus dados ficam só neste aparelho e somem se o app for desinstalado.',
+            Text(
+              'Sem cadastro, seus registros ficam no Firebase, vinculados à '
+              'sessão anônima deste aparelho. Crie uma conta para manter o '
+              'acesso a eles ao trocar de aparelho ou reinstalar o app.',
               style: TextStyle(
-                color: AppColors.textSecondary,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 fontSize: 14,
                 height: 1.5,
               ),
@@ -102,12 +108,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _mostrarFolhaDaConta(String email) {
-    final mensagens = ScaffoldMessenger.of(context);
-    showModalBottomSheet<void>(
+  Future<void> _mostrarFolhaDaConta(String email) async {
+    final sair = await showModalBottomSheet<bool>(
       context: context,
       showDragHandle: true,
-      builder: (ctx) => Padding(
+      builder: (ctx) => SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -115,8 +120,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               'Conectado como $email',
-              style: const TextStyle(
-                color: AppColors.purple900,
+              style: TextStyle(
+                color: AppColors.titulo(context),
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -131,22 +136,29 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 8),
             TextButton(
-              style: TextButton.styleFrom(foregroundColor: AppColors.error),
-              onPressed: () async {
-                final navegador = Navigator.of(ctx);
-                try {
-                  await widget.authRepository.sair();
-                  navegador.pop();
-                } on AuthException catch (e) {
-                  mensagens.showSnackBar(SnackBar(content: Text(e.message)));
-                }
-              },
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.error,
+              ),
+              onPressed: () => Navigator.of(ctx).pop(true),
               child: const Text('Sair da conta'),
             ),
           ],
         ),
       ),
     );
+    if (sair != true || !mounted) return;
+    _saindo = true;
+
+    try {
+      await widget.authRepository.sair();
+    } on AuthException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      _saindo = false;
+    }
   }
 
   @override
@@ -163,7 +175,7 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Como você está se sentindo hoje?',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: AppColors.purple900,
+              color: AppColors.titulo(context),
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -181,10 +193,10 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           const SizedBox(height: 28),
-          const Text(
+          Text(
             'O que você quer fazer agora?',
             style: TextStyle(
-              color: AppColors.purple900,
+              color: AppColors.titulo(context),
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),

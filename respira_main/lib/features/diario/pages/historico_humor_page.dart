@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/dependencias.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../auth/widgets/auth_widgets.dart';
@@ -80,7 +81,7 @@ class _HistoricoHumorPageState extends State<HistoricoHumorPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Histórico do Diário'), centerTitle: true),
+    appBar: const RespiraAppBar(titulo: 'Histórico do Diário'),
     body: SafeArea(
       child: Column(
         children: [

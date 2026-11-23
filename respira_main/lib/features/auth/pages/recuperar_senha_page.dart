@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/dependencias.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../data/auth_repository.dart';
 import '../domain/auth_validators.dart';
@@ -55,12 +55,7 @@ class _RecuperarSenhaPageState extends State<RecuperarSenhaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recuperar senha'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: AppColors.purple900,
-      ),
+      appBar: const RespiraAppBar(titulo: 'Recuperar senha'),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -126,10 +121,14 @@ class _RecuperarSenhaPageState extends State<RecuperarSenhaPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
+        Text(
           _mensagemEnviado,
           textAlign: TextAlign.center,
-          style: TextStyle(color: AppColors.textPrimary, fontSize: 15, height: 1.5),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: 15,
+            height: 1.5,
+          ),
         ),
         const SizedBox(height: 24),
         GradientButton(

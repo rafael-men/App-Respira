@@ -3,48 +3,30 @@ import 'package:respira_main/features/main/data/preferencias_usuario.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  setUp(() {
-    SharedPreferences.setMockInitialValues({});
+  setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  test('sem nada salvo, o onboarding ainda não foi concluído', () async {
+    expect((await PreferenciasUsuario.carregar()).onboardingConcluido, isFalse);
   });
 
-  test('sem nada salvo, carrega valores padrão', () async {
-    final p = await PreferenciasUsuario.carregar();
-
-    expect(p.objetivo, isNull);
-    expect(p.frequencia, isNull);
-    expect(p.receberLembretes, isNull);
-    expect(p.onboardingConcluido, isFalse);
+  test('preserva a conclusão salva por uma versão anterior', () async {
+    SharedPreferences.setMockInitialValues({
+      'onboardingConcluido': true,
+      'frequencia': 'diaria',
+    });
+    expect((await PreferenciasUsuario.carregar()).onboardingConcluido, isTrue);
   });
 
-  test('salvar e carregar mantém as respostas e o onboarding concluído', () async {
-    final original = PreferenciasUsuario()
-      ..objetivo = ObjetivoUso.ambos
-      ..frequencia = FrequenciaRegistro.quandoPrecisar
-      ..receberLembretes = false
-      ..onboardingConcluido = true;
+  test('salva a conclusão e remove as respostas antigas', () async {
+    SharedPreferences.setMockInitialValues({
+      'objetivo': 'ambos',
+      'frequencia': 'semanal',
+      'receberLembretes': true,
+    });
+    await (PreferenciasUsuario()..onboardingConcluido = true).salvar();
 
-    await original.salvar();
-    final carregada = await PreferenciasUsuario.carregar();
-
-    expect(carregada.objetivo, ObjetivoUso.ambos);
-    expect(carregada.frequencia, FrequenciaRegistro.quandoPrecisar);
-    expect(carregada.receberLembretes, isFalse);
-    expect(carregada.onboardingConcluido, isTrue);
-  });
-
-  test('campos nulos são removidos ao salvar de novo', () async {
-    final p = PreferenciasUsuario()
-      ..objetivo = ObjetivoUso.alivio
-      ..receberLembretes = true;
-    await p.salvar();
-
-    p
-      ..objetivo = null
-      ..receberLembretes = null;
-    await p.salvar();
-
-    final carregada = await PreferenciasUsuario.carregar();
-    expect(carregada.objetivo, isNull);
-    expect(carregada.receberLembretes, isNull);
+    final prefs = await SharedPreferences.getInstance();
+    expect(prefs.getKeys(), {'onboardingConcluido'});
+    expect((await PreferenciasUsuario.carregar()).onboardingConcluido, isTrue);
   });
 }

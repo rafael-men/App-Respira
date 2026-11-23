@@ -57,6 +57,44 @@ Telas no escopo, conforme o protótipo de alta fidelidade: 01 Início (home), 02
 
 As telas principais são quatro, conforme a restrição do estudo de caso (`docs/estudo-de-caso.md`, seção 7): Diário de humor, Respiração Guiada, PHQ-9 e acesso ao CVV. As demais (onboarding, telas de conta, Início, histórico do diário, resultado do PHQ-9, confirmações e Configurações) são telas secundárias ou de confirmação (`docs/regras-de-negocio.md`, RN12).
  
+### Fluxo de navegação implementado
+
+O diagrama registra as rotas principais da Sprint 4, conforme implementadas no Flutter.
+
+```mermaid
+flowchart TD
+    A["Abrir Respira"] --> B{"Sessão salva e onboarding concluído?"}
+    B -->|Sim| I["01 Início"]
+    B -->|Não| C["Onboarding, tema e lembrete diário"]
+    C -->|Concluir ou pular| I
+    I -->|Diário ou emoji| D["02 Registrar humor"]
+    D -->|Ver histórico| H["03 Histórico"]
+    D -->|Salvar| I
+    I --> R["04 Respiração 4-7-8"]
+    I --> Q["05 PHQ-9"]
+    Q -->|Responder nove perguntas| E["06 Resultado e evolução"]
+    Q -->|Ver minha evolução| E
+    E -->|Voltar ao início| I
+    I --> S["08 Configurações"]
+    S -->|Conta cadastrada| P["Perfil"]
+    S -->|Abrir Botão de Pânico| X["09 Confirmação do Pânico"]
+    X -->|Cancelar| S
+    X -->|Exclusão concluída ou enfileirada| C
+    I -->|Ícone de conta| M{"Conta cadastrada?"}
+    M -->|Não| L["Login"]
+    M -->|Não| G["Cadastro"]
+    L -->|Esqueci minha senha| F["Recuperação de senha"]
+    L -->|Criar conta| G
+    L -->|Entrar| I
+    G -->|Vincular ou criar conta| I
+    M -->|Editar perfil| P
+    M -->|Sair da conta| I
+```
+
+A barra das telas de navegação leva à **Tela 07 Confirmação do CVV**. O cartão de apoio no resultado do PHQ-9 também abre essa tela quando o item 9 tem valor maior que zero. **Cancelar** volta à origem. A confirmação abre o discador.
+
+Em Configurações ficam **Sobre o Respira**, as preferências e o acesso ao Pânico. Os critérios de aceitação constam na [seção 10](#10-critérios-de-aceitação-do-escopo).
+
 ## 5. Escopo técnico
  
 | Item | Definição |
@@ -77,7 +115,7 @@ As telas principais são quatro, conforme a restrição do estudo de caso (`docs
 | Diagrama de Casos de Uso atualizado | Q1 b) i |
 | Diagrama de Classes (modelos de domínio) | Q1 b) ii |
 | Modelagem do banco no Firestore e mapeamento das classes Dart para o Firestore | Q1 b) iii e iv |
-| Fluxo de navegação real do app | Q1 b) v |
+| [Fluxo de navegação real do app](#fluxo-de-navegação-implementado) | Q1 b) v |
 | `docs/uso-de-ia.md` (prompts, erros da IA, soluções e justificativa das bibliotecas) | Q1 b) vi |
 | README.md e CHANGELOG.md atualizados continuamente | Q1 c) ii |
 | Escopo, EAP e planejamento em sprints | Q1 d) i, ii e iii |
@@ -116,11 +154,11 @@ As telas principais são quatro, conforme a restrição do estudo de caso (`docs
 ## 10. Critérios de aceitação do escopo
  
 - [ ] As 9 telas do protótipo de alta fidelidade, o onboarding e as telas de conta estão implementados e navegáveis.
-- [ ] O onboarding aparece só no primeiro acesso e leva à Tela 01 Início, sem exigir cadastro.
+- [ ] O onboarding aparece no primeiro acesso, oferece tema e lembrete diário opcionais e leva à Tela 01 Início sem exigir cadastro. Confirmar a ativação do lembrete no celular solicita a permissão do sistema.
 - [ ] Quem escolhe continuar sem cadastro usa o app de forma anônima, sem informar dados pessoais.
 - [ ] O usuário consegue criar conta com e-mail e senha, entrar, sair, recuperar a senha e manter o histórico depois de reinstalar o app.
 - [ ] Diário e PHQ-9 gravam e leem do Firestore e funcionam em modo avião.
-- [ ] O botão do CVV disca o 188 sem internet, a partir de qualquer tela.
+- [ ] O SOS das telas de navegação abre a Tela 07. Ao confirmar, o app preenche o discador mesmo sem internet. Na demonstração, confira o destino de teste.
 - [ ] O Botão de Pânico apaga o cache local, os documentos do usuário no Firestore e a conta (anônima ou cadastrada).
 - [ ] O app foi executado em emulador e em um Android real de entrada.
 - [ ] Todos os entregáveis da seção 6 estão no repositório.

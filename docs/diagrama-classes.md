@@ -12,6 +12,8 @@ Disciplina: Programação para Dispositivos Móveis | Projeto da Unidade II, Que
  
 O diagrama mostra as principais entidades do domínio do Respira, com atributos, métodos principais e relacionamentos. As classes seguem a tabela de CRUD de `docs/requisitos.md`, seção 4: cada informação que o usuário cria, consulta, atualiza ou exclui virou uma classe. Os métodos `toMap()` e `fromMap()` indicam onde cada classe se converte em documento do Firestore; o mapeamento completo fica na modelagem do banco (Q1 b) iv).
  
+O diagrama e o PDF representam o modelo de domínio. No Flutter, as operações de conta ficam em `FirebaseAuthRepository`, o perfil em `FirestoreUsuarioRepository` e a exclusão total em `FirestoreExclusaoDadosService`. A operação `ContatoEmergencia.ligar()` abre o discador e retorna `Future<bool>` para informar se conseguiu abri-lo. A configuração de demonstração da Sprint 4 é descrita no [README](../README.md#teste-web-e-demonstração-do-sos).
+
 ## 1. Diagrama
 
 ```plantuml
@@ -143,7 +145,7 @@ Diagrama em PlantUML, que pode ser renderizado no site [PlantText](https://www.p
 | `Usuario` → `RespostaPHQ9` | Composição | 1 para 0..* | As respostas pertencem ao usuário e só são removidas com ele. |
 | `Usuario` → `Configuracoes` | Composição | 1 para 1 | Cada usuário tem um único conjunto de preferências. |
 | `RegistroHumor` → `NivelHumor` | Associação | 1 para 1 | Cada registro tem exatamente um nível de humor. |
-| `RegistroHumor`, `RespostaPHQ9` → `Criptografia` | Dependência | — | Usam o serviço para cifrar os dados sensíveis. |
-| `Usuario` → `ContatoEmergencia` | Dependência | — | O usuário aciona o CVV; o contato não pertence a ele e não é gravado. |
+| `RegistroHumor`, `RespostaPHQ9` → `Criptografia` | Dependência | Não se aplica | Usam o serviço para cifrar os dados sensíveis. |
+| `Usuario` → `ContatoEmergencia` | Dependência | Não se aplica | O usuário aciona o CVV; o contato não pertence a ele e não é gravado. |
  
 A composição representa a regra do Botão de Pânico (RF13): quando o `Usuario` é apagado, tudo o que é dele é apagado junto.

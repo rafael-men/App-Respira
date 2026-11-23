@@ -258,7 +258,7 @@ O Firestore não apaga subcoleções quando o documento pai é apagado. Por isso
 3. Apaga o documento `usuarios/{uid}`.
 4. Exclui a conta no Firebase Authentication, **só depois que a nuvem confirma os passos 2 e 3**. Excluir a conta antes deixaria a fila do Firestore sem permissão e os dados órfãos na nuvem.
  
-O app espera até 10 segundos pela confirmação da nuvem. Sem internet, os passos 2 e 3 ficam na fila do Firestore, a conta anônima é mantida vazia para a fila ainda ter permissão de apagar quando a conexão voltar, e o app avisa que a exclusão na nuvem termina quando houver conexão (RN15).
+Depois de localizar os registros, o app espera até 10 segundos por uma confirmação dos lotes. Se esse prazo expirar, os lotes já enviados ficam a cargo da fila do Firestore e a sessão anônima permanece no Firebase para que a fila tenha permissão de executar. A interface informa que a exclusão da nuvem está pendente. Na implementação da Sprint 4, o caminho de timeout retorna antes do passo 4 e a exclusão da conta no Authentication ainda precisa ser retomada ao reconectar (RN07, RN15).
  
 ## 9. Decisão sobre criptografia
 

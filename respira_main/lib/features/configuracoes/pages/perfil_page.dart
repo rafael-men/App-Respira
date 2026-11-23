@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../core/dependencias.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../auth/domain/usuario.dart';
 import '../../auth/pages/cadastro_page.dart';
@@ -134,12 +135,7 @@ class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Perfil'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: AppColors.purple900,
-      ),
+      appBar: const RespiraAppBar(titulo: 'Perfil'),
       body: SafeArea(
         child: _carregando
             ? const Center(child: CircularProgressIndicator())
@@ -160,11 +156,11 @@ class _PerfilPageState extends State<PerfilPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
+              Text(
                 'Crie uma conta para personalizar seu perfil.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.purple900,
+                  color: AppColors.titulo(context),
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -199,10 +195,10 @@ class _PerfilPageState extends State<PerfilPage> {
                         ? null
                         : MemoryImage(base64Decode(foto)),
                     child: foto == null
-                        ? const Icon(
+                        ? Icon(
                             Icons.person_outline,
                             size: 56,
-                            color: AppColors.purple700,
+                            color: Theme.of(context).colorScheme.primary,
                           )
                         : null,
                   ),
@@ -236,10 +232,10 @@ class _PerfilPageState extends State<PerfilPage> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const Text(
+                Text(
                   'Seu nome e sua foto aparecem só para você. Nada é compartilhado.',
                   style: TextStyle(
-                    color: AppColors.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 13,
                     height: 1.4,
                   ),

@@ -19,7 +19,7 @@ class FeatureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -46,13 +46,16 @@ class FeatureCard extends StatelessWidget {
                     color: AppColors.purple500.withValues(alpha: 0.12),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(icone, color: AppColors.purple700),
+                  child: Icon(
+                    icone,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
                 const Spacer(),
                 Text(
                   titulo,
-                  style: const TextStyle(
-                    color: AppColors.purple900,
+                  style: TextStyle(
+                    color: AppColors.titulo(context),
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),
@@ -60,8 +63,8 @@ class FeatureCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   descricao,
-                  style: const TextStyle(
-                    color: AppColors.textSecondary,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),

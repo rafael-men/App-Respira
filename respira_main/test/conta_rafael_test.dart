@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:respira_main/core/dependencias.dart';
@@ -82,6 +84,44 @@ void main() {
   });
 
   group('sair da conta (N09)', () {
+    testWidgets('sessão anônima com e-mail vazio mostra os atalhos de conta', (
+      tester,
+    ) async {
+      final auth = _SessaoAnonimaComEmailVazio();
+      await tester.pumpWidget(
+        _com(_montar(auth: auth), HomePage(authRepository: auth)),
+      );
+      await tester.tap(find.byTooltip('Conta'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Editar perfil'), findsNothing);
+      expect(find.text('Entrar'), findsOneWidget);
+      expect(find.text('Criar conta'), findsOneWidget);
+    });
+
+    testWidgets('sair fecha a folha antes de a sessão terminar de sair', (
+      tester,
+    ) async {
+      final auth = _SaidaDemorada();
+      await auth.cadastrar(email: 'ana@teste.com', senha: '123456');
+      await tester.pumpWidget(
+        _com(_montar(auth: auth), HomePage(authRepository: auth)),
+      );
+      await tester.tap(find.byTooltip('Conta'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Sair da conta'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Sair da conta'), findsNothing);
+      expect(find.byType(HomePage), findsOneWidget);
+      auth.saida.complete();
+      await tester.pumpAndSettle();
+      expect(find.byType(HomePage), findsOneWidget);
+      await tester.tap(find.byTooltip('Conta'));
+      await tester.pumpAndSettle();
+      expect(find.text('Entrar'), findsOneWidget);
+    });
+
     testWidgets(
       'com conta, a folha mostra "Sair da conta" e sair deixa o uso sem cadastro',
       (tester) async {
@@ -266,4 +306,19 @@ void main() {
       expect(auth.emailAtual, 'ana@teste.com');
     });
   });
+}
+
+class _SessaoAnonimaComEmailVazio extends LocalAuthRepository {
+  @override
+  String? get emailAtual => '';
+}
+
+class _SaidaDemorada extends LocalAuthRepository {
+  final saida = Completer<void>();
+
+  @override
+  Future<void> sair() async {
+    await saida.future;
+    await super.sair();
+  }
 }

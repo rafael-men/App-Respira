@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/dependencias.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../main/pages/home_page.dart';
@@ -123,6 +124,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const RespiraAppBar(titulo: 'Entrar na conta'),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

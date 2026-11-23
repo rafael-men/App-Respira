@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/dependencias.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../auth/data/auth_repository.dart';
+import '../../configuracoes/domain/configuracoes.dart';
 import '../data/preferencias_usuario.dart';
 import '../widgets/onboarding_slide.dart';
 import '../widgets/opcao_resposta.dart';
@@ -34,26 +39,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
   static const _totalApresentacao = 3;
   static const _larguraMaxima = 480.0;
 
+  static const _indiceTema = 0;
+  static const _indiceLembretes = 1;
   static const _perguntas = [
-    _Pergunta('O que mais te traz ao Respira?', [
-      'Preciso de alívio em momentos difíceis',
-      'Quero acompanhar meu humor no dia a dia',
-      'Quero as duas coisas',
-    ]),
-    _Pergunta('Com que frequência você quer registrar como se sente?', [
-      'Todos os dias',
-      'Algumas vezes por semana',
-      'Quando eu sentir vontade',
-    ]),
-    _Pergunta('Quer receber lembretes gentis?', [
-      'Sim, de vez em quando',
-      'Não por enquanto',
+    _Pergunta('Qual tema você prefere?', ['Claro', 'Escuro']),
+    _Pergunta('Quer receber um lembrete diário para registrar como se sente?', [
+      'Ativar lembretes',
+      'Agora não',
     ]),
   ];
 
   final _controller = PageController();
   final List<int?> _respostas = List.filled(_perguntas.length, null);
   int _pagina = 0;
+  bool _concluindo = false;
+
+  bool? get _temaEscuro => switch (_respostas[_indiceTema]) {
+    0 => false,
+    1 => true,
+    _ => null,
+  };
 
   int get _total => _totalApresentacao + _perguntas.length;
 
@@ -92,34 +97,66 @@ class _OnboardingPageState extends State<OnboardingPage> {
     setState(() => _respostas[indicePergunta] = indiceOpcao);
   }
 
+  Future<void> _concluir({bool configurarLembretes = true}) async {
+    if (_concluindo) return;
+    setState(() => _concluindo = true);
 
-  Future<void> _concluir() async {
-    final p = widget.preferencias;
-
-    final objetivo = _respostas[0];
-    if (objetivo != null) {
-      p.objetivo = ObjetivoUso.values[objetivo];
-    }
-
-    final frequencia = _respostas[1];
-    if (frequencia != null) {
-      p.frequencia = FrequenciaRegistro.values[frequencia];
-    }
-
-    final lembretes = _respostas[2];
-    if (lembretes != null) {
-      p.receberLembretes = lembretes == 0;
-    }
-    p.onboardingConcluido = true;
-    await p.salvar();
+    final mensagem = await _salvarEscolhas(configurarLembretes);
+    final preferencias = widget.preferencias;
+    preferencias.onboardingConcluido = true;
+    await preferencias.salvar();
 
     if (!mounted) return;
+    if (mensagem != null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(mensagem)));
+    }
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (_) => HomePage(authRepository: widget.authRepository),
       ),
       (_) => false,
     );
+  }
+
+  Future<String?> _salvarEscolhas(bool configurarLembretes) async {
+    final temaEscuro = _temaEscuro;
+    final lembretes = configurarLembretes ? _respostas[_indiceLembretes] : null;
+    if (temaEscuro == null && lembretes == null) return null;
+
+    final deps = DependenciasScope.of(context);
+    var novoAgendamento = false;
+    try {
+      final usuario = await deps.usuarios.observarUsuario().first.timeout(
+        const Duration(seconds: 5),
+      );
+      if (!mounted) return null;
+      final atual = usuario?.configuracoes ?? Configuracoes();
+      var notificacoesAtivas = atual.notificacoesAtivas;
+      if (lembretes != null) {
+        notificacoesAtivas = lembretes == 0 && await deps.lembretes.ativar();
+        novoAgendamento = notificacoesAtivas && !atual.notificacoesAtivas;
+        if (!notificacoesAtivas && atual.notificacoesAtivas) {
+          await deps.lembretes.desativar();
+        }
+      }
+      await deps.usuarios.salvarConfiguracoes(
+        Configuracoes(
+          temaEscuro: temaEscuro ?? atual.temaEscuro,
+          notificacoesAtivas: notificacoesAtivas,
+        ),
+      );
+      if (lembretes == 0 && !notificacoesAtivas) {
+        return kIsWeb
+            ? 'Os lembretes estão disponíveis no aplicativo para celular.'
+            : 'Os lembretes ficaram desativados. Você pode tentar ativá-los em Configurações.';
+      }
+      return null;
+    } catch (_) {
+      if (novoAgendamento) await deps.lembretes.desativar();
+      return 'Não foi possível salvar as escolhas agora. Você pode ajustá-las em Configurações.';
+    }
   }
 
   Widget _pagina_(Widget conteudo, {bool centralizar = true}) {
@@ -137,7 +174,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
-  List<Widget> _paginas(double tamanhoIlustracao) {
+  List<Widget> _paginas(double tamanhoIlustracao, BuildContext context) {
     return [
       _pagina_(
         OnboardingSlide(
@@ -173,11 +210,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
         ),
       ),
       for (var i = 0; i < _perguntas.length; i++)
-        _pagina_(_conteudoPergunta(i), centralizar: false),
+        _pagina_(_conteudoPergunta(i, context), centralizar: false),
     ];
   }
 
-  Widget _conteudoPergunta(int indice) {
+  Widget _conteudoPergunta(int indice, BuildContext context) {
     final pergunta = _perguntas[indice];
     final selecionada = _respostas[indice];
 
@@ -188,13 +225,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
         const SizedBox(height: 16),
         Text(
           'Pergunta ${indice + 1} de ${_perguntas.length}',
-          style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            fontSize: 13,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
           pergunta.titulo,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            color: AppColors.purple900,
+            color: AppColors.titulo(context),
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -203,7 +243,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
           OpcaoResposta(
             texto: pergunta.opcoes[i],
             selecionada: selecionada == i,
-            onTap: () => _selecionar(indice, i),
+            onTap: () {
+              if (!_concluindo) _selecionar(indice, i);
+            },
           ),
           const SizedBox(height: 12),
         ],
@@ -213,23 +255,41 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final tema = switch (_temaEscuro) {
+      true => AppTheme.dark,
+      false => AppTheme.light,
+      null => Theme.of(context),
+    };
+    return Theme(
+      data: tema,
+      child: Builder(builder: _construirTela),
+    );
+  }
+
+  Widget _construirTela(BuildContext context) {
     final tamanhoIlustracao = (MediaQuery.sizeOf(context).shortestSide * 0.35)
         .clamp(96.0, 140.0)
         .toDouble();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: AppColors.purple900,
+      appBar: RespiraAppBar(
+        titulo: null,
+        mostrarVoltar: false,
         leading: _pagina > 0
             ? IconButton(
                 tooltip: 'Voltar',
                 icon: const Icon(Icons.arrow_back),
-                onPressed: _voltar,
+                onPressed: _concluindo ? null : _voltar,
               )
             : null,
-        actions: [TextButton(onPressed: _concluir, child: const Text('Pular'))],
+        acoesExtras: [
+          TextButton(
+            onPressed: _concluindo
+                ? null
+                : () => _concluir(configurarLembretes: false),
+            child: const Text('Pular'),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Center(
@@ -248,7 +308,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       child: LinearProgressIndicator(
                         value: valor,
                         minHeight: 6,
-                        color: AppColors.purple700,
+                        color: Theme.of(context).colorScheme.primary,
                         backgroundColor: AppColors.purple500.withValues(
                           alpha: 0.15,
                         ),
@@ -259,13 +319,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     child: PageView(
                       controller: _controller,
                       onPageChanged: (i) => setState(() => _pagina = i),
-                      children: _paginas(tamanhoIlustracao),
+                      physics: _concluindo
+                          ? const NeverScrollableScrollPhysics()
+                          : null,
+                      children: _paginas(tamanhoIlustracao, context),
                     ),
                   ),
                   const SizedBox(height: 16),
                   GradientButton(
-                    label: _ehUltima ? 'Começar' : 'Continuar',
-                    onPressed: _podeAvancar ? _avancar : null,
+                    label: _concluindo
+                        ? 'Salvando…'
+                        : (_ehUltima ? 'Começar' : 'Continuar'),
+                    onPressed: _podeAvancar && !_concluindo ? _avancar : null,
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -290,7 +355,7 @@ class _IconeIlustracao extends StatelessWidget {
       width: tamanho,
       height: tamanho,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
@@ -300,7 +365,11 @@ class _IconeIlustracao extends StatelessWidget {
           ),
         ],
       ),
-      child: Icon(icone, size: tamanho * 0.47, color: AppColors.purple700),
+      child: Icon(
+        icone,
+        size: tamanho * 0.47,
+        color: Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 }

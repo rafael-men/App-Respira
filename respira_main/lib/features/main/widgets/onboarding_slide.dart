@@ -27,7 +27,7 @@ class OnboardingSlide extends StatelessWidget {
           titulo,
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineSmall?.copyWith(
-            color: AppColors.purple900,
+            color: AppColors.titulo(context),
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -35,8 +35,8 @@ class OnboardingSlide extends StatelessWidget {
         Text(
           texto,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: AppColors.textPrimary,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
             fontSize: 16,
             height: 1.5,
           ),

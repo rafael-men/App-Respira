@@ -11,7 +11,10 @@ import '../domain/contato_emergencia.dart';
 /// de "Ligar agora"; "Cancelar" volta à tela de origem. O número está no
 /// código (`ContatoEmergencia`), então a tela funciona sem internet.
 class ConfirmacaoCvvPage extends StatefulWidget {
-  const ConfirmacaoCvvPage({super.key, this.contato = const ContatoEmergencia()});
+  const ConfirmacaoCvvPage({
+    super.key,
+    this.contato = const ContatoEmergencia(),
+  });
 
   final ContatoEmergencia contato;
 
@@ -48,6 +51,10 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
 
   @override
   Widget build(BuildContext context) {
+    final contato = widget.contato;
+    final demonstracao = contato.demonstracao;
+    final numero = contato.numeroDiscagem;
+    final cores = Theme.of(context).colorScheme;
     return Scaffold(
       // Sem seta (sai por "Cancelar") e sem SOS, que abriria esta mesma tela;
       // é assim no protótipo (página 7).
@@ -55,10 +62,10 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Central de Valorização da Vida',
           style: TextStyle(
-            color: AppColors.purple900,
+            color: AppColors.titulo(context),
             fontFamily: AppTheme.fonteTitulos,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -68,36 +75,44 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
       body: SafeArea(
         child: Column(
           children: [
-            const Expanded(
+            Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(24, 32, 24, 24),
+                padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
                 child: Column(
                   children: [
-                    _Circulo188(),
-                    SizedBox(height: 32),
+                    const _Circulo188(),
+                    const SizedBox(height: 32),
                     Text(
-                      'Você está prestes a ligar para o ${ContatoEmergencia.nome}',
+                      demonstracao
+                          ? 'SOS · Demonstração'
+                          : 'Você está prestes a ligar para o ${ContatoEmergencia.nome}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColors.purple900,
+                        color: AppColors.titulo(context),
                         fontFamily: AppTheme.fonteTitulos,
                         fontSize: 20,
                         height: 1.4,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Text(
-                      'Atendimento gratuito, sigiloso e 24h, todos os dias da semana.',
+                      demonstracao
+                          ? numero == null
+                                ? 'Configure um número de teste válido para abrir o discador.'
+                                : 'Destino do teste: $numero. Confira no discador e cancele antes de ligar.'
+                          : 'Atendimento gratuito, sigiloso e 24h, todos os dias da semana.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColors.textSecondary,
+                        color: cores.onSurfaceVariant,
                         fontSize: 15,
                         height: 1.4,
                       ),
                     ),
-                    SizedBox(height: 24),
-                    _SeloSemInternet(),
+                    if (!demonstracao) ...[
+                      const SizedBox(height: 24),
+                      const _SeloSemInternet(),
+                    ],
                   ],
                 ),
               ),
@@ -109,11 +124,13 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
                   if (_semDiscador) ...[
                     Semantics(
                       liveRegion: true,
-                      child: const Text(
-                        'Ligue ${ContatoEmergencia.numero} pelo telefone do aparelho.',
+                      child: Text(
+                        demonstracao
+                            ? 'O discador de teste não está disponível neste aparelho.'
+                            : 'Ligue ${ContatoEmergencia.numero} pelo telefone do aparelho.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: AppColors.purple900,
+                          color: AppColors.titulo(context),
                           fontSize: 15,
                           height: 1.4,
                           fontWeight: FontWeight.w600,
@@ -123,10 +140,12 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
                     const SizedBox(height: 12),
                   ],
                   DangerButton(
-                    label: 'Ligar agora',
+                    label: demonstracao
+                        ? 'Abrir discador de teste'
+                        : 'Ligar agora',
                     icone: Icons.phone,
                     carregando: _ligando,
-                    onPressed: _ligar,
+                    onPressed: numero == null ? null : _ligar,
                   ),
                   const SizedBox(height: 8),
                   SizedBox(
@@ -134,10 +153,10 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
                     height: 52,
                     child: TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text(
+                      child: Text(
                         'Cancelar',
                         style: TextStyle(
-                          color: AppColors.textSecondary,
+                          color: cores.onSurfaceVariant,
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
                         ),
@@ -154,8 +173,7 @@ class _ConfirmacaoCvvPageState extends State<ConfirmacaoCvvPage> {
   }
 }
 
-/// Círculo vermelho com o "188", com dois anéis discretos em volta, como no
-/// protótipo.
+/// Número oficial no círculo vermelho do protótipo.
 class _Circulo188 extends StatelessWidget {
   const _Circulo188();
 
@@ -164,7 +182,7 @@ class _Circulo188 extends StatelessWidget {
     final anel = AppColors.emergency.withValues(alpha: 0.18);
 
     return Semantics(
-      label: 'Número do CVV: ${ContatoEmergencia.numero}',
+      label: 'Número oficial do CVV: ${ContatoEmergencia.numero}',
       excludeSemantics: true,
       child: Container(
         width: 176,
@@ -230,17 +248,17 @@ class _SeloSemInternet extends StatelessWidget {
           Container(
             width: 8,
             height: 8,
-            decoration: const BoxDecoration(
-              color: AppColors.purple700,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
               shape: BoxShape.circle,
             ),
           ),
           const SizedBox(width: 10),
-          const Flexible(
+          Flexible(
             child: Text(
               'disponível mesmo sem conexão à internet',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 13.5,
                 height: 1.4,
               ),

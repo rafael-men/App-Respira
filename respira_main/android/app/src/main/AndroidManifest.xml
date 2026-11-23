@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
-        android:label="respira_main"
+        android:label="Respira"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'core/dependencias.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/data/auth_repository.dart';
+import 'features/configuracoes/domain/configuracoes.dart';
 import 'features/main/data/preferencias_usuario.dart';
 import 'features/main/pages/home_page.dart';
 import 'features/main/pages/onboarding_page.dart';
@@ -35,9 +36,8 @@ Future<void> main() async {
   // No primeiro acesso, a conta anônima é criada enquanto o usuário vê o
   // onboarding. Sem internet, ela é criada no próximo uso (RN18).
 
-  // Nos acessos seguintes, abre direto na Início (RN18). O onboarding só
-  // aparece no primeiro acesso, ou quando a sessão ainda não existe.
-  final abrirNaInicio = temSessao && preferencias.onboardingConcluido;
+  // A saída da conta não apaga a conclusão do onboarding (RN18).
+  final abrirNaInicio = preferencias.onboardingConcluido;
 
   runApp(
     MyApp(
@@ -70,7 +70,7 @@ Future<Dependencias> _montarDependencias() async {
   return Dependencias.firebase();
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({
     super.key,
     required this.authRepository,
@@ -85,19 +85,44 @@ class MyApp extends StatelessWidget {
   final bool sessaoExistente;
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Stream<Configuracoes?>? _configuracoes = widget.dependencias?.usuarios
+      .observarConfiguracoes();
+
+  @override
+  void didUpdateWidget(MyApp oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.dependencias?.usuarios != widget.dependencias?.usuarios) {
+      _configuracoes = widget.dependencias?.usuarios.observarConfiguracoes();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final app = MaterialApp(
-      title: 'Respira',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      home: sessaoExistente
-          ? HomePage(authRepository: authRepository)
-          : OnboardingPage(
-              authRepository: authRepository,
-              preferencias: preferencias,
-            ),
+    final app = StreamBuilder<Configuracoes?>(
+      stream: _configuracoes,
+      builder: (_, snapshot) => MaterialApp(
+        title: 'Respira',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light,
+        darkTheme: AppTheme.dark,
+        themeMode:
+            snapshot.connectionState == ConnectionState.active &&
+                snapshot.data?.temaEscuro == true
+            ? ThemeMode.dark
+            : ThemeMode.light,
+        home: widget.sessaoExistente
+            ? HomePage(authRepository: widget.authRepository)
+            : OnboardingPage(
+                authRepository: widget.authRepository,
+                preferencias: widget.preferencias,
+              ),
+      ),
     );
-    final deps = dependencias;
+    final deps = widget.dependencias;
     return deps == null
         ? app
         : DependenciasScope(dependencias: deps, child: app);

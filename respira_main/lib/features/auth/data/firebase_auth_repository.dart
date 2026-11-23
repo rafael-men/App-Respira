@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../../core/crypto/criptografia.dart';
 import '../../../core/data/colecoes_respira.dart';
@@ -72,12 +71,12 @@ class FirebaseAuthRepository implements AuthRepository {
   @override
   Future<void> entrar({required String email, required String senha}) =>
       _executar(() async {
-        _encerrarSessaoLocal();
         final usuario = (await _auth.signInWithEmailAndPassword(
           email: email.trim(),
           password: senha,
         ))
             .user!;
+        _encerrarSessaoLocal();
         await _prepararDocumento(usuario);
       });
 
@@ -95,13 +94,7 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<void> sair() => _executar(() async {
         await _auth.signOut();
         _encerrarSessaoLocal();
-        try {
-          await aguardarSessao();
-        } on AuthException catch (e) {
-          // Já saiu da conta. Sem internet, a nova conta anônima é criada no
-          // próximo uso (RN15); não é um erro para o usuário.
-          debugPrint('Respira: conta anônima adiada após sair: ${e.message}');
-        }
+        // As telas de dados preparam a sessão anônima quando for necessário.
       });
 
   @override

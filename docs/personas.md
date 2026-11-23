@@ -9,7 +9,7 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 | Autores desta seção | Rafael Menezes Gonçalves (Persona 1) e Rene Mendonça Marinho (Persona 2) |
 | Data | 08/09/2026 |
 
-## Persona 1 — Marina Souza (uso emergencial/crise)
+## Persona 1. Marina Souza (uso emergencial/crise)
 
 *Perfil/contexto:* 29 anos, paciente de CAPS em tratamento para transtorno de ansiedade há 8 meses. Mora sozinha, trabalha em horário comercial, tem um smartphone de entrada com plano de dados limitado.
 
@@ -36,7 +36,7 @@ Disciplina: Programação para Dispositivos Móveis | Valor da atividade: 2,0 po
 
 *Relação com o aplicativo:* Usa o Respira principalmente em momentos de crise (engajamento emergencial), mas também mantém o diário de humor como rotina de manutenção entre atendimentos no CAPS. Para ela, o app é uma ponte de segurança até a rede de apoio profissional, nunca um substituto dela.
 
-## Persona 2 — Lucas Andrade (uso diário/rotina)
+## Persona 2. Lucas Andrade (uso diário/rotina)
 
 *Perfil/contexto:* 21 anos, estudante universitário em período de provas frequentes, mora com os pais, usa o celular entre aulas e durante intervalos curtos. Nunca teve contato com um serviço de saúde mental.
 

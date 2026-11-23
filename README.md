@@ -40,11 +40,11 @@ Programação para Dispositivos Móveis, GP0029VNO07A
 | Tela | Nome | Responsável |
 | --- | --- | --- |
 | 01 | Início | Murilo Pedral Mota |
-| 02 | Diário de Humor — Registro | Murilo Pedral Mota |
-| 03 | Diário de Humor — Histórico | Murilo Pedral Mota |
+| 02 | Diário de Humor (Registro) | Murilo Pedral Mota |
+| 03 | Diário de Humor (Histórico) | Murilo Pedral Mota |
 | 04 | Respiração Guiada (4-7-8) | Franck Patrick Hora Vasconcelos |
-| 05 | Questionário PHQ-9 — Pergunta | Franck Patrick Hora Vasconcelos |
-| 06 | Questionário PHQ-9 — Resultado | Rene Mendonça Marinho |
+| 05 | Questionário PHQ-9 (Pergunta) | Franck Patrick Hora Vasconcelos |
+| 06 | Questionário PHQ-9 (Resultado) | Rene Mendonça Marinho |
 | 07 | Confirmação de Chamada ao CVV | Rene Mendonça Marinho |
 | 08 | Configurações | Rafael Menezes Gonçalves |
 | 09 | Confirmação do Botão de Pânico | Rafael Menezes Gonçalves |
@@ -172,14 +172,42 @@ Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 
 
 | Integrante | Entregas da Sprint 4 | Status |
 |---|---|---|
-| Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico. Replanejamento de 21/11: T01 (Flutter 3.50.0 e lock), T02 (Pânico apaga as preferências locais), T04, T06 (regras RN22 a RN25), N11 (lembretes) e V01 (emulador Android) | Entregas de 17/11 concluídas. De 21/11: T01, T02, T06, N11 (código; teste real dos lembretes depende da Tela 08) e V01 (APK no emulador Android) concluídos; T04 pendente (depende de N01 e N03 de Rene) |
-| Murilo Pedral Mota | T05 (tipografia Poppins e Inter), N05 (Telas 02 e 03 Diário de humor), N06 (Tela 08 Configurações), T08 (atualização da classe Criptografia no Diagrama de Classes) e V03 (diário no Firebase real) | T05 e T08 concluídos. N05 e N06 implementados com navegação, perfil e lembretes integrados. SOS nas três telas depende da AppBar de Rene (N01). V03 passou no Chrome com o Firebase real. |
-| Rene Mendonça Marinho | N01 (AppBar padrão com SOS), N02 (Tela 07 CVV), N03 (SOS ligado à Tela 07), N07 (Telas 05 e 06 PHQ-9) e V04 (PHQ-9 no Firebase real) | N01, N02, N03 e N07 concluídos no código e testados com repositórios em memória (`respira_app_bar_test.dart`, `cvv_test.dart`, `phq9_test.dart` e `sos_telas_test.dart`). Não verificados: discagem do 188 num Android e V04 (PHQ-9 no Firebase real) |
-| Rafael Menezes Gonçalves | Ajustes A1 a A3; T03 (aviso antes de trocar de conta), T07 (CHANGELOG e README), N04 (SOS nas telas de entrada), N08 (recuperação de senha), N09 (sair da conta), N10 (perfil), N12 (tema escuro) e V02 (cadastro com vínculo pelo app) | A1 a A3 concluídos; demais pendentes |
-| --- | --- | --- |
-| Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico | Código entregue; projeto Firebase `respira-71159` configurado (Android, iOS e web) e Security Rules publicadas; falta testar em emulador e em Android real |
-| Rene Mendonça Marinho | AppBar padrão com SOS, Tela 07 CVV, Telas 05 e 06 PHQ-9 e recuperação de senha | Pendente |
-| Rafael Menezes Gonçalves | Ajustes A1 a A3 concluídos. Conta concluída no código e testada com repositórios em memória: recuperação de senha, sair da conta, perfil opcional e aviso da RN24 (`respira_main/test/conta_rafael_test.dart`). Pendentes: A9 (SOS nas telas de entrada, depende da AppBar padrão de Rene), validação do cadastro com vínculo no Firebase real (V02) e tema escuro (N12, depende de T05, N05 e N06 de Murilo) | Parcial |
+| Franck Patrick Hora Vasconcelos | Firebase (Authentication e Firestore offline), repositórios de dados, criptografia, Security Rules, Tela 04 Respiração 4-7-8 e Tela 09 Botão de Pânico. Replanejamento de 21/11: T01 (Flutter 3.50.0 e lock), T02 (Pânico apaga as preferências locais), T04, T06 (regras RN22 a RN25), N11 (lembretes) e V01 (emulador Android) | T01, T02 e T06 implementados. V01 registrado no emulador. N11 integrado às Configurações, com entrega do lembrete no aparelho ainda a validar. T04 pendente. |
+| Murilo Pedral Mota | T05 (tipografia Poppins e Inter), N05 (Diário de humor), N06 (Configurações), T08 (classe Criptografia no Diagrama de Classes), V03 (diário no Firebase real) e integração de N04 e N12 para a demonstração | Diário e Configurações usam a barra de Rene. V03 passou no Chrome com o Firebase real. Tema escuro, SOS nas telas restantes e destino de demonstração integrados. Revisão final, fluxo de navegação, texto do uso anônimo e opção **Alguns dias** no PHQ-9. Onboarding com escolha de tema e convite para ativar um lembrete diário. |
+| Rene Mendonça Marinho | N01 (AppBar padrão com SOS), N02 (Tela 07 CVV), N03 (SOS ligado à Tela 07), N07 (Telas 05 e 06 PHQ-9) e V04 (PHQ-9 no Firebase real) | N01, N02, N03 e N07 concluídos no código e testados com repositórios em memória (`respira_app_bar_test.dart`, `cvv_test.dart`, `phq9_test.dart` e `sos_telas_test.dart`). V04 aguarda evidência do documento cifrado e da janela de sete dias no Firebase real |
+| Rafael Menezes Gonçalves | Ajustes A1 a A3; T03 (aviso antes de trocar de conta), T07 (CHANGELOG e README), N04 (SOS nas telas de entrada), N08 (recuperação de senha), N09 (sair da conta), N10 (perfil), N12 (tema escuro) e V02 (cadastro com vínculo pelo app) | A1 a A3 e os fluxos de conta estão implementados. Integração de N04 e N12 na base de Rafael (Murilo). V02 ainda precisa de evidência do mesmo UID e dos registros preservados no Firebase. |
+
+O onboarding oferece **Claro** e **Escuro** com visualização imediata. A opção **Ativar lembretes** pede permissão ao tocar em **Começar** no celular. O lembrete é diário, local e silencioso. Quem escolher **Agora não**, pular ou recusar a permissão pode continuar e ajustar a preferência em Configurações. No navegador, o lembrete fica desativado.
+
+No menu de conta, **Entrar** abre uma conta existente e **Criar conta** vincula a sessão anônima a um cadastro novo. Editar o perfil é opcional. **Sair da conta** volta ao uso sem cadastro na Início.
+
+### Teste web e demonstração do SOS
+
+Execute os comandos em `respira_main`, com Flutter 3.50.0. A porta `5050` está autorizada pela chave web do Firebase Respira.
+
+```powershell
+flutter run -d chrome --web-hostname=localhost --web-port=5050
+```
+
+Para a demonstração, informe o número de teste no formato internacional, com `+` e o código do país. Use um número cujo titular concordou com o teste.
+
+```powershell
+$numeroDemo = Read-Host 'Número de teste no formato internacional'
+flutter run -d chrome --web-hostname=localhost --web-port=5050 "--dart-define=RESPIRA_CVV_DEMO_NUMBER=$numeroDemo"
+```
+
+O círculo da confirmação mantém o **188** como referência visual. O rótulo **SOS · Demonstração** informa o destino de teste, que será preenchido no discador ao confirmar. O comando padrão usa o número oficial fixado pela RN08.
+
+Para testar no Android, conecte o aparelho com a depuração USB habilitada. Com o Android SDK instalado e as licenças aceitas, localize o ID do aparelho e execute:
+
+```powershell
+flutter devices
+flutter run -d ID_DO_ANDROID "--dart-define=RESPIRA_CVV_DEMO_NUMBER=$numeroDemo"
+```
+
+Para atualizar uma instalação com o mesmo identificador e a mesma assinatura de depuração, conecte o aparelho e use `adb install -r "CAMINHO_DO_APK"`. A atualização preserva os dados do app. O nome exibido na lista de aplicativos é **Respira**.
+
+Abra o SOS, confira o 188 e o aviso de demonstração, e toque em **Abrir discador de teste**. Confira o destino no discador e volte ao app antes de iniciar a chamada.
 
 # Projeto Unidade II: Regras de Negócio (Questão 01 a) iv e b) i)
 
@@ -192,6 +220,7 @@ Replanejamento de 17/11/2026: a Sprint 4 implementa todas as telas e a Sprint 5 
 | Atividade | Responsável |
 | --- | --- |
 | Adicionar [`docs/uso-de-ia.md`](docs/uso-de-ia.md), com a tabela de inconsistências encontradas na revisão da documentação, as correções aplicadas e as decisões do grupo | Franck Patrick Hora Vasconcelos |
+| Complementar `docs/uso-de-ia.md` com o trabalho assistido pelo Codex na Sprint 4, as verificações e as declarações de uso de IA de Rene e Rafael | Murilo Pedral Mota (registro), Rene Mendonça Marinho e Rafael Menezes Gonçalves (autores das contribuições) |
 
 # Projeto Unidade II: Revisão e correção da documentação
 
@@ -218,3 +247,5 @@ Franck Patrick Hora Vasconcelos revisou a documentação da Unidade II e fez cor
 | `respira_main/lib/core/widgets/danger_button.dart` | Franck Patrick Hora Vasconcelos | Feita por Rene Mendonça Marinho em 22/11/2026 (N02): parâmetro opcional `icone`, para o telefone de "Ligar agora" na Tela 07. O uso no Botão de Pânico não muda. |
 | `respira_main/lib/features/main/pages/home_page.dart` | Rafael Menezes Gonçalves (cards e seletor de humor de Murilo Pedral Mota) | Feita por Rene Mendonça Marinho em 22/11/2026 (N03 e N07): barra trocada pela `RespiraAppBar` com o ícone de conta em `acoesExtras`, `_ligarCvv` abrindo a Tela 07, card PHQ-9 abrindo a Tela 05 e remoção do `_emBreve` sem uso. |
 | `respira_main/lib/features/respiracao/pages/respiracao_page.dart`, `respira_main/lib/features/panico/pages/panico_page.dart` e `respira_main/test/telas_franck_test.dart` | Franck Patrick Hora Vasconcelos | Feita por Rene Mendonça Marinho em 22/11/2026 (N03): só a barra superior, trocada pela `RespiraAppBar` (transparente na Tela 04, sem seta na Tela 09), com o SOS abrindo a Tela 07; teste do SOS da Tela 04 atualizado. |
+| Tema, inicialização, onboarding, autenticação e perfil | Rafael Menezes Gonçalves (base Flutter e telas), Franck Patrick Hora Vasconcelos (integração Firebase) | Preferência de tema por conta e barra de SOS nas telas restantes. Murilo (22/11/2026). |
+| Barra de SOS, confirmação do CVV, PHQ-9, Respiração e Pânico | Rene Mendonça Marinho (barra, CVV e PHQ-9) e Franck Patrick Hora Vasconcelos (Respiração e Pânico) | Modo de demonstração e ajuste das cores ao tema ativo. Murilo (22/11/2026). |

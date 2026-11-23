@@ -24,7 +24,7 @@ abstract final class PerguntasPhq9 {
 
   static const opcoes = <OpcaoPhq9>[
     OpcaoPhq9('Nenhuma vez', 0),
-    OpcaoPhq9('Vários dias', 1),
+    OpcaoPhq9('Alguns dias', 1),
     OpcaoPhq9('Mais da metade dos dias', 2),
     OpcaoPhq9('Quase todos os dias', 3),
   ];

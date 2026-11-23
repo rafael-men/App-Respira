@@ -33,7 +33,7 @@
 
 ### Adicionado
 
-- Documento completo de funcionalidades e requisitos em docs/requisitos.md (Atividade 03): 10 funcionalidades com nome, descrição, necessidade do usuário e justificativa; 16 requisitos funcionais (RF01–RF16); 8 requisitos não funcionais (RNF01–RNF08); tabela de CRUD; priorização em essenciais, importantes e secundárias; e a funcionalidade mais importante com justificativa. Rene, Franck, Murilo e Rafael.
+- Documento completo de funcionalidades e requisitos em docs/requisitos.md (Atividade 03): 10 funcionalidades com nome, descrição, necessidade do usuário e justificativa; 16 requisitos funcionais (RF01 a RF16); 8 requisitos não funcionais (RNF01 a RNF08); tabela de CRUD; priorização em essenciais, importantes e secundárias; e a funcionalidade mais importante com justificativa. Rene, Franck, Murilo e Rafael.
 - Slides de apresentação da Atividade 03 em docs/apresentacaoRequisitos.pdf, cobrindo funcionalidades, requisitos funcionais e não funcionais, exemplo de CRUD, priorização e a funcionalidade mais importante. Franck.
 
 ### Alterado
@@ -301,3 +301,88 @@ As correções abaixo foram feitas por Franck em documentos de outros integrante
   - O parâmetro `onSos` continua existindo, sem uso, para não mudar a assinatura das telas.
   - Rene.
 - `respira_main/test/telas_franck_test.dart` (autoria original: Franck): o teste "sem a Tela 07, o SOS avisa que está em breve" virou "o SOS abre a confirmação do CVV". Rene.
+
+## [22/11/2026] Unidade II, Sprint 4 (integração do tema e do SOS)
+
+### Adicionado
+
+- N12 (RF15): tema escuro com fundo `#191627` e cartões `#241F38`. O app aplica a preferência de Configurações em tempo real e acompanha a preferência da conta ativa ao reabrir ou trocar de sessão. Base de tema de Rafael e integração Firebase de Franck. Murilo.
+- Modo de demonstração da confirmação do SOS ativado por `RESPIRA_CVV_DEMO_NUMBER`. A tela identifica a demonstração, apresenta o número de teste e abre o discador após confirmação. Com destino inválido, a discagem fica indisponível. Implementação original do CVV de Rene. Murilo.
+- Testes de alternância e restauração do tema, navegação do SOS nas telas restantes e validação do destino de demonstração. Murilo.
+
+### Alterado
+
+- N01 e N04 (RF09, RN18): a barra de Rene foi integrada ao Diário e a Configurações (Murilo), ao onboarding e às telas de login, cadastro, recuperação de senha e perfil (Rafael). A Tela 07 continua sendo o destino da confirmação. Murilo.
+- Cartões, campos e textos acompanham a paleta ativa. Créditos das telas e serviços originais mantidos no README. Murilo.
+- README.md registra a porta web `5050`, o comando de demonstração e a autoria dos ajustes de integração. Murilo.
+- Tela 07 mantém o 188 no círculo também na demonstração. O aviso informa o destino de teste usado pelo discador. O README registra como conferir a discagem em Android. Murilo.
+
+### Verificado
+
+- Flutter 3.50.0: 99 testes passaram. `flutter analyze --no-fatal-infos` ficou sem erros e sem avisos. A compilação web com configuração de demonstração passou. A abertura do discador foi simulada nos testes. Murilo.
+
+## [22/11/2026] Unidade II, Sprint 4 (validação final)
+
+### Adicionado
+
+- docs/escopo.md: fluxo de navegação das telas do Flutter (Q1 b) v), incluindo entrada, conta, diário, PHQ-9, Configurações, Pânico e confirmação do SOS. Murilo.
+- README.md: evidências por funcionalidade, teste manual no Galaxy A56 e itens de validação em aberto. Murilo.
+
+### Alterado
+
+- Tela 05 e `phq9_test.dart`: rótulo “Vários dias” substituído por “Alguns dias” nas nove perguntas. A opção continua valendo 1 ponto. Implementação original do PHQ-9 de Rene. Murilo.
+- Tela 01: menu de conta explica que os registros sem cadastro são salvos no Firebase, vinculados à sessão anônima, e que o cadastro permite manter o acesso ao trocar de aparelho ou reinstalar. Início de Rafael e autenticação de Franck. Murilo.
+- docs/requisitos.md, docs/regras-de-negocio.md, docs/diagrama-casos-de-uso.md e docs/escopo.md: documentação alinhada ao rótulo do PHQ-9, aos controles da Tela 07 e à abertura do discador. As diferenças de implementação de RF13 e RF14 foram registradas. Murilo.
+- docs/modelagem-firestore.md, docs/diagrama-classes.md e docs/sprints.md: registrada a pendência de retomada do Pânico offline, a correspondência entre o modelo de domínio e os serviços Flutter e o estado da validação. Murilo.
+- `respira_main/pubspec.lock`: restaurada a resolução de dependências da T01 para o Flutter 3.50.0. `respira_main/README.md` agora referencia a execução e os testes do Respira. Murilo.
+
+### Removido
+
+- README.md: linhas duplicadas e estados provisórios já superados na tabela da Sprint 4. O README de `respira_main` deixou de usar as instruções genéricas de um projeto Flutter recém-criado. Murilo.
+
+### Verificado
+
+- Flutter 3.50.0: lock validado com `--enforce-lockfile`, 99 testes passaram, análise estática com 44 apontamentos informativos e sem erros ou avisos, e compilações web e Android (APK de depuração da demonstração) concluídas. Murilo.
+- Revisados o mapeamento do Firestore, as regras versionadas, os cinco métodos de Criptografia no Markdown e no PDF, e os links locais da documentação. A redação nova vale para a versão implementada. O protótipo de baixa fidelidade fica como registro da Unidade I. Murilo.
+
+## [23/11/2026] Unidade II, Sprint 4 (registro de uso de IA)
+
+### Adicionado
+
+- docs/uso-de-ia.md: registro das solicitações, das entregas, dos limites da validação e das ferramentas de IA usadas na Sprint 4. As seções individuais registram Codex (OpenAI, baseado em GPT-6), Claude Opus 5.5 e Kiro com as respectivas contribuições. Murilo.
+
+### Alterado
+
+- README.md: atualização da seção Registro de Uso de IA com a complementação de Murilo e as declarações de Rene e Rafael. Murilo.
+
+## [23/11/2026] Unidade II, Sprint 4 (nome do app no Android)
+
+### Alterado
+
+- `respira_main/android/app/src/main/AndroidManifest.xml`: o aplicativo aparece como **Respira** na lista de apps do Android. README.md registra como atualizar o APK sobre a versão instalada. Murilo.
+
+## [23/11/2026] Unidade II, Sprint 4 (preferências no primeiro acesso)
+
+### Adicionado
+
+- Onboarding: escolha de tema claro ou escuro com visualização imediata e opção de lembrete diário. Ao confirmar a ativação no celular, o app pede permissão e usa o serviço de lembretes de Franck. A preferência acompanha as Configurações. Base do onboarding de Rafael. Murilo.
+
+### Alterado
+
+- README.md e docs: atualização do fluxo de primeiro acesso, do caso de uso de lembretes, das regras de negócio, do escopo e do planejamento. Murilo.
+- APK de demonstração: destino de teste do SOS atualizado por `RESPIRA_CVV_DEMO_NUMBER`. Murilo.
+
+### Removido
+
+- Onboarding: perguntas de objetivo de uso e frequência de registro e gravação local das respostas antigas. A conclusão do onboarding de versões anteriores continua válida. Murilo.
+
+### Verificado
+
+- Flutter 3.50.0: 103 testes passaram. A análise estática retornou zero erros e zero avisos. Os testes do onboarding cobrem aceitação e recusa da permissão simulada, opção de pular, desativação e aplicação do tema. O APK Android compilou com o novo destino de demonstração. Murilo.
+
+## [23/11/2026] Unidade II, Sprint 4 (fluxos de conta)
+
+### Corrigido
+
+- Início: o menu diferencia o uso anônimo da sessão cadastrada mesmo quando o e-mail está vazio. A saída fecha o menu antes de aguardar o Firebase e mantém a tela Início. O onboarding concluído é respeitado ao reabrir o app. Os menus de conta permitem rolagem em telas menores. Base dos fluxos de conta de Rafael e integração Firebase de Franck. Murilo.
+- Cadastro: atalho **Já tenho conta** para entrar em conta existente e confirmação de que editar o perfil após criar a conta é opcional. Se um login falhar, a sessão anterior mantém a chave do histórico. Murilo.

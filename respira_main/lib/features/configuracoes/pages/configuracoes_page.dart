@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/respira_app_bar.dart';
 import '../../../core/dependencias.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../auth/domain/usuario.dart';
@@ -70,7 +71,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Configurações'), centerTitle: true),
+    appBar: const RespiraAppBar(titulo: 'Configurações'),
     body: SafeArea(
       child: StreamBuilder<Usuario?>(
         stream: _usuario,
@@ -146,14 +147,14 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                 ),
                 child: ListTile(
                   minTileHeight: 80,
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.delete_outline,
-                    color: AppColors.emergency,
+                    color: Theme.of(context).colorScheme.error,
                   ),
-                  title: const Text(
+                  title: Text(
                     'Botão de Pânico',
                     style: TextStyle(
-                      color: AppColors.emergency,
+                      color: Theme.of(context).colorScheme.error,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -37,19 +37,19 @@ Todos os pares texto/fundo do sistema foram verificados a olho para manter leitu
 Foram escolhidas duas famílias, ambas gratuitas e disponíveis nas bibliotecas padrão do Figma e do Flutter (via Google Fonts), o que evita qualquer dependência de licenciamento pago no momento da implementação em Unidade II:
 
 - *Poppins* (geométrica, levemente arredondada) para títulos, nomes de tela, rótulos de botão e números de destaque (como o escore do PHQ-9 e o "188" do CVV). Poppins tem um traço amigável sem ser infantil, o que ajuda a sustentar o tom "empático e livre de julgamentos" pedido na seção 5.3 do estudo de caso sem parecer um aplicativo de entretenimento.
-- *Inter* (humanista, desenhada para telas pequenas) para corpo de texto, descrições, opções de formulário e legendas. Inter foi escolhida por sua legibilidade documentada em tamanhos pequenos (12–14px), relevante porque RNF08 exige teste em aparelhos de entrada, onde telas menores e mais densas tornam a legibilidade um requisito técnico, não só estético.
+- *Inter* (humanista, desenhada para telas pequenas) para corpo de texto, descrições, opções de formulário e legendas. Inter foi escolhida por sua legibilidade documentada em tamanhos pequenos (12 a 14px), relevante porque RNF08 exige teste em aparelhos de entrada, onde telas menores e mais densas tornam a legibilidade um requisito técnico, não só estético.
 
 A hierarquia de tamanhos segue uma escala pequena e previsível, para que qualquer tela nova criada na Unidade II possa reaproveitar os mesmos níveis sem redesenhar do zero:
 
 | Nível | Fonte/peso | Tamanho | Uso |
 |---|---|---|---|
-| Título de tela | Poppins SemiBold/Bold | 17–20px | Nome da AppBar |
-| Número de destaque | Poppins Bold | 34–48px | Escore do PHQ-9, "188" do CVV |
-| Título de cartão | Poppins SemiBold | 15–16px | Nome dos cards da Home, do resultado |
-| Corpo | Inter Regular/Medium | 13–15px | Perguntas, descrições, opções |
-| Legenda | Inter Regular | 11–12,5px | Metadados, timestamps, texto de apoio |
+| Título de tela | Poppins SemiBold/Bold | 17 a 20px | Nome da AppBar |
+| Número de destaque | Poppins Bold | 34 a 48px | Escore do PHQ-9, "188" do CVV |
+| Título de cartão | Poppins SemiBold | 15 a 16px | Nome dos cards da Home, do resultado |
+| Corpo | Inter Regular/Medium | 13 a 15px | Perguntas, descrições, opções |
+| Legenda | Inter Regular | 11 a 12,5px | Metadados, timestamps, texto de apoio |
 
-Nenhum texto do protótipo é menor que 11px, e os textos de maior responsabilidade (perguntas do PHQ-9, aviso do Botão de Pânico, confirmação de ligação ao CVV) usam Inter Regular 13,5–16,5px com altura de linha generosa (1,4–1,5×), o que atende à persona Marina em crise, cuja atenção está reduzida (seção 2 do estudo de caso) e não pode depender de textos pequenos ou densos para decidir algo urgente.
+Nenhum texto do protótipo é menor que 11px, e os textos de maior responsabilidade (perguntas do PHQ-9, aviso do Botão de Pânico, confirmação de ligação ao CVV) usam Inter Regular 13,5 a 16,5px com altura de linha generosa (1,4 a 1,5×), o que atende à persona Marina em crise, cuja atenção está reduzida (seção 2 do estudo de caso) e não pode depender de textos pequenos ou densos para decidir algo urgente.
 
 ## 3. Organização das informações (disposição e fluxo visual)
 
@@ -84,7 +84,7 @@ O protótipo define um pequeno conjunto de componentes reutilizáveis, para que 
 O estudo de caso já define, na seção 3 (linha "Estímulos sensoriais") e no RNF02, que o app não pode usar vibração excessiva, animações rápidas ou pop-ups, e deve funcionar com feedback háptico desativado e em silêncio total. O protótipo de alta fidelidade segue essa exigência de três formas concretas:
 
 * Nenhuma confirmação crítica (chamada ao CVV, exclusão de dados) usa um pop-up modal sobreposto à tela: ambas são telas de página inteira, navegáveis como qualquer outra, o que evita o "susto" de um elemento flutuante aparecendo de repente.
-* Todos os alvos de toque (botões, cards, opções de rádio, linhas de configuração) têm altura mínima de 48–56px, bem acima do mínimo recomendado de 44px, considerando o uso por pessoas com atenção reduzida ou em ambientes com pouca luz.
+* Todos os alvos de toque (botões, cards, opções de rádio, linhas de configuração) têm altura mínima de 48 a 56px, bem acima do mínimo recomendado de 44px, considerando o uso por pessoas com atenção reduzida ou em ambientes com pouca luz.
 * O contraste de texto evita tanto o preto puro sobre branco puro (excesso de contraste, cansativo em uso noturno) quanto tons pastéis de baixo contraste (ilegíveis), um meio-termo verificado visualmente em cada tela, com reforço adicional de peso de fonte (SemiBold/Bold) em vez de apenas cor para indicar seleção (por exemplo, na opção do PHQ-9 selecionada e no chip de humor ativo), o que ajuda usuários com baixa percepção de cor a identificar o estado sem depender só da cor.
 
 ## 7. Decisões relacionadas ao contexto de uso

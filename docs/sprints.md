@@ -137,14 +137,14 @@ Prioridade: **P0** até domingo 22/11 (outros dependem); **P1** até segunda 23/
 
 | ID | Resultado esperado | Origem | Responsável | Prioridade | Esforço | Depende de | Critério de aceite |
 |---|---|---|---|---|---|---|---|
-| T01 | Flutter 3.50.0 em todas as máquinas e `pubspec.lock` regenerado | Auditoria B1; P1 | Franck | P0 | P | — | `flutter pub get --enforce-lockfile` funciona com o Flutter 3.50.0 nas quatro máquinas |
+| T01 | Flutter 3.50.0 em todas as máquinas e `pubspec.lock` regenerado | Auditoria B1; P1 | Franck | P0 | P | Sem dependência | `flutter pub get --enforce-lockfile` funciona com o Flutter 3.50.0 nas quatro máquinas |
 | T02 | O Botão de Pânico também apaga as preferências do onboarding salvas no aparelho | Auditoria B2; RF13, RN07 | Franck | P1 | P | T01 | Depois do Pânico, nenhuma preferência do onboarding continua no aparelho |
 | T03 | Aviso com confirmação antes de entrar numa conta existente quando há dados feitos sem cadastro | Auditoria B8; P5; RN19 | Rafael | P1 | M | T06 (texto da regra) | Com registros sem cadastro, "Entrar" mostra o aviso; "Cancelar" não troca de conta |
 | T04 | Tela 04 anuncia ao leitor de tela só a troca de etapa, não cada segundo | Auditoria B9 | Franck | P2 | P | N01 | Leitor de tela anuncia "Inspire", "Segure" e "Expire", uma vez por etapa |
 | T05 | Tipografia Poppins (títulos e botões) e Inter (corpo) | Auditoria B6; ajuste A4 | Murilo | P0 | M | T01 | Fontes embutidas no app; nenhum uso de Libre Baskerville |
-| T06 | Regras novas RN22 a RN25 (P2 a P5) e textos ligados a elas | P2 a P5 | Franck | P0 | M | — | Regras publicadas em docs/regras-de-negocio.md antes de 22/11 |
-| T07 | CHANGELOG e README de Rafael corrigidos (data e posição da entrada; status) | Auditoria, seção E | Rafael | P1 | P | — | Entrada datada de 17/11 na ordem cronológica; status coerente com o código |
-| T08 | Classe `Criptografia` no Diagrama de Classes com os métodos do código | Auditoria, seção D; M7 | Murilo | P2 | P | — | Diagrama e PDF com `gerarChave`, `definirChave`, `cifrar`, `decifrar` e `limpar` |
+| T06 | Regras novas RN22 a RN25 (P2 a P5) e textos ligados a elas | P2 a P5 | Franck | P0 | M | Sem dependência | Regras publicadas em docs/regras-de-negocio.md antes de 22/11 |
+| T07 | CHANGELOG e README de Rafael corrigidos (data e posição da entrada; status) | Auditoria, seção E | Rafael | P1 | P | Sem dependência | Entrada datada de 17/11 na ordem cronológica; status coerente com o código |
+| T08 | Classe `Criptografia` no Diagrama de Classes com os métodos do código | Auditoria, seção D; M7 | Murilo | P2 | P | Sem dependência | Diagrama e PDF com `gerarChave`, `definirChave`, `cifrar`, `decifrar` e `limpar` |
 | N01 | AppBar padrão com o botão SOS (contrato usado por todos) | Ajuste A5; RF09 | Rene | P0 | P | T01 | `RespiraAppBar` na `main` até 21/11, 22h |
 | N02 | Tela 07: confirmação e discagem do 188, com número embutido | F04; RF09, RF10, RN08, RN09 | Rene | P0 | M | N01 | "Ligar agora" abre o discador com 188; "Cancelar" volta |
 | N03 | SOS abre a Tela 07 na Início e nas Telas 04 e 09 | Auditoria B3 | Rene | P1 | P | N01, N02 | Nenhum SOS mostra "Disponível em breve." |
@@ -152,13 +152,13 @@ Prioridade: **P0** até domingo 22/11 (outros dependem); **P1** até segunda 23/
 | N05 | Telas 02 e 03: registro, histórico e exclusão do diário; card e seletor de humor da Início levam à Tela 02 | F01; RF01 a RF04, RF16, RN03, RN16 | Murilo | P0 | G | N01, T05 | Registro aparece no histórico e no Firestore; excluir remove |
 | N06 | Tela 08: tema, notificações, "Sobre o Respira", perfil e acesso ao Botão de Pânico | RF13 a RF15 | Murilo | P1 | M | N01, N10 (contrato), N11 (contrato) | Interruptores salvam no Firestore; cartão abre a Tela 09 |
 | N07 | Telas 05 e 06: PHQ-9 com perguntas, escore, faixas, cartão de apoio, gráfico e intervalo de 7 dias | F03; RF06 a RF08, RN14, RN17, RN22, RN23 | Rene | P1 | G | N01, T06 | Resposta completa grava no Firestore e mostra escore, faixa e gráfico |
-| N08 | Recuperação de senha e link "Esqueci minha senha" no login | RF19, RN21; ajuste A6 | Rafael | P1 | P | — | Mensagem igual exista ou não a conta; e-mail recebido numa conta de teste |
-| N09 | Sair da conta pelo ícone de conta da Início | RF19; ajuste A6 | Rafael | P1 | P | — | Depois de sair, o app continua na Início, sem cadastro |
-| N10 | Perfil opcional (nome de usuário e foto) | RF20, RN20 | Rafael | P1 | M | — | Nome e foto salvos no Firestore; sem cadastro, o perfil não abre |
-| N11 | Lembretes não invasivos (notificações locais) | F09, RF14 | Franck | P2 | M | T01 | Ligar o interruptor agenda um lembrete diário; desligar cancela |
+| N08 | Recuperação de senha e link "Esqueci minha senha" no login | RF19, RN21; ajuste A6 | Rafael | P1 | P | Sem dependência | Mensagem igual exista ou não a conta; e-mail recebido numa conta de teste |
+| N09 | Sair da conta pelo ícone de conta da Início | RF19; ajuste A6 | Rafael | P1 | P | Sem dependência | Depois de sair, o app continua na Início, sem cadastro |
+| N10 | Perfil opcional (nome de usuário e foto) | RF20, RN20 | Rafael | P1 | M | Sem dependência | Nome e foto salvos no Firestore; sem cadastro, o perfil não abre |
+| N11 | Lembretes não invasivos (notificações locais) | F09, RF14 | Franck | P2 | M | T01 | Confirmar a ativação no onboarding ou em Configurações solicita permissão e agenda um lembrete diário no celular. Desativar em Configurações cancela |
 | N12 | Tema escuro fiel ao protótipo | F10, RF15 | Rafael | P2 | M | T05, N05, N06 | Com o tema escuro ligado, fundo #191627 e cartões #241F38 em todas as telas |
 | V01 | App compilado e executado num emulador Android | Observação 6; RNF05 | Franck | P1 | M | T01 | APK de depuração roda no emulador com onboarding, Início e Tela 04 |
-| V02 | Cadastro com vínculo da conta anônima validado pelo app | RN19; auditoria F | Rafael | P1 | P | — | Mesmo `uid` e mesmos registros antes e depois do cadastro (console do Firebase) |
+| V02 | Cadastro com vínculo da conta anônima validado pelo app | RN19; auditoria F | Rafael | P1 | P | Sem dependência | Mesmo `uid` e mesmos registros antes e depois do cadastro (console do Firebase) |
 | V03 | Diário validado no Firebase real pelo app | RF16; auditoria F | Murilo | P1 | P | N05 | Registro aparece no console do Firestore com a nota cifrada |
 | V04 | PHQ-9 validado no Firebase real pelo app | RF06 a RF08; auditoria F | Rene | P1 | P | N07 | Resposta no console com `respostasCifradas` e escore; segunda tentativa no mesmo dia bloqueada |
 
@@ -172,11 +172,15 @@ Prioridade: **P0** até domingo 22/11 (outros dependem); **P1** até segunda 23/
 | Seg, 23/11, até 18h | N03, N04, N06, N07, T03, T07 e V01 a V04; build web e APK da apresentação |
 | Até qua, 25/11 | N11, N12, T04 e T08 |
 
-**Arquivos compartilhados:** cada trecho tem um único dono. Na Início (`home_page.dart`), Murilo liga os cards Diário e Configurações e o seletor de humor; Rene liga o SOS e o card PHQ-9; Rafael altera o ícone de conta. No `pubspec.yaml`, cada um acrescenta só as próprias dependências, com o Flutter 3.50.0, depois de `git pull`. O `main.dart` só é alterado por Rafael (tema escuro, N12).
+**Arquivos compartilhados:** cada trecho tem um único dono. Na tela Início (`home_page.dart`), a divisão é Diário, Configurações e seletor de humor (Murilo), SOS e PHQ-9 (Rene) e ícone de conta (Rafael). No `pubspec.yaml`, cada um acrescenta só as próprias dependências, com o Flutter 3.50.0, depois de `git pull`. O `main.dart` só é alterado por Rafael (tema escuro, N12).
 
 **Prazo:** o volume é grande para 21/11 a 23/11. O caminho crítico é T01 → N01 → (N05, N07) → N03 → V01. Se faltar tempo, valem as regras já combinadas: P2 até 25/11, e o que não ficar pronto até lá é registrado como fora da entrega. Nenhuma funcionalidade P0 ou P1 sai sem decisão do grupo.
 
 **Pronto quando (Sprint 4, a partir de 21/11):** as tarefas P0 e P1 estão na `main`; o app compila com o lock da T01 e roda no navegador (porta 5050) e no emulador Android; nenhum botão mostra "Disponível em breve."; V01 a V04 registrados com evidência.
+
+#### Validação da integração em 22/11/2026
+
+A integração de N04 e N12 (Murilo) reuniu as entregas de Rafael, Rene e Franck. T08 foi conferida no diagrama e no PDF. V01 e V03 têm evidências registradas, e o Galaxy A56 foi usado para a demonstração em aparelho. As verificações e os limites da evidência constam no [registro de uso de IA](uso-de-ia.md#53-verificações-e-limites-da-evidência).
 
 ## 7. Sprint 5 (24/11/2026 a 01/12/2026): testes, validações e acabamento
 

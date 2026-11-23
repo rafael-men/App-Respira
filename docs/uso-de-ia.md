@@ -150,3 +150,75 @@ Poppins (títulos) e Inter (textos) são distribuídas em `assets/fonts/`, com a
   - A barra de progresso da Tela 05 recebeu um `semanticsValue` em texto ("Pergunta 1 de 9"). O Flutter só aceita número nesse campo e acusou erro nos testes da tela. O texto saiu desse campo, e o "Pergunta X de 9" continua visível na tela.
   - O teste do card PHQ-9 da Início tentava tocar num card fora da área visível da tela de teste. Na primeira correção, a IA estreitou a tela para 412 px, e os cards da Início (que não são desta tarefa) estouraram com a fonte de teste. O teste passou a usar a largura padrão (800 px) com uma altura maior.
 - **Não verificado:** a V04 (PHQ-9 no Firebase real) e a discagem num Android dependem do app rodando no navegador ou num aparelho. Não são declaradas como feitas com base nos testes em memória.
+
+## 5. Sprint 4: implementação, integração e validação (Murilo Pedral Mota, registro de 23/11/2026)
+
+| Campo | Preenchimento |
+| --- | --- |
+| Responsável pelas solicitações, decisões e teste manual no celular | Murilo Pedral Mota |
+| Assistente que executou as tarefas e redigiu este registro | Codex (OpenAI) |
+| Identificação do modelo | Codex baseado em GPT-6. GPT-6.2 Sol |
+| Período de referência | Sprint 4 (17/11/2026 a 23/11/2026). A seção 3 registra a primeira etapa da contribuição de Murilo. |
+
+### 5.1 Pedidos e resultados
+
+| Pedido de Murilo | Trabalho do Codex e resultado |
+| --- | --- |
+| Ler o código e a documentação e estruturar dois prompts com papéis, limites e etapas. | Organizou o roteiro em uma fase de auditoria, testes e comparação com os documentos, com perguntas diretas para decisões pendentes antes de editar, e outra de planejamento a partir das respostas. O segundo roteiro previa atualizar o plano da Sprint 4 e preparar instruções de implementação por integrante para uso local. Murilo forneceu o guia individual que orientou a execução das suas tarefas. |
+| Executar o guia de Murilo para tipografia, Diário e Configurações (T05, N05 e N06). | Embutiu Poppins e Inter com as licenças OFL, implementou o registro com emoji e nota opcional, o histórico e a confirmação de exclusão. Ligou os cards e o seletor de humor da Início, integrou preferências, Sobre o Respira, perfil e acesso ao Pânico, e verificou as telas com testes de widget e comparação com o protótipo a 360 px. |
+| Corrigir o diagrama de classes e validar o Diário com Firebase real (T08 e V03). | Alinhou o PlantUML e o PDF aos cinco métodos da classe `Criptografia`, incluindo `gerarChave()` estático. No Chrome, com nota sintética, conferiu a gravação cifrada, a leitura no histórico após recarregar com a mesma sessão e a exclusão no servidor Firestore. |
+| Atualizar a base com a integração de Franck e resolver avisos e erros em **Problems**, inclusive em `lib`. | Conferiu a base integrada, corrigiu a resolução do `pubspec.lock` para Flutter 3.50.0 e atualizou o teste de conta para o contrato dos lembretes. Rodou a análise e os testes após a integração e registrou as correções. |
+| Integrar a entrega de Murilo na `main` do GitHub e depois trazer a entrega de Rene para a `main` local. | A entrega de diário e configurações ficou no commit `6bfffcf`, identificado em `origin/main`. A entrega de Rene entrou por avanço direto da `main` local até `ce138ec`, reaproveitando os commits da branch de Rene. |
+| Rodar a versão integrada, reproduzir os problemas da web e conferir o que o Firebase deveria permitir. | Compilou o app web e revisou no Chrome os fluxos relatados por Murilo: cadastro e sessão, Diário, PHQ-9, Respiração, SOS, Configurações, Sobre e Pânico. Orientou a conferência de provedores e restrições de chave no Firebase e no Google Cloud. O diagnóstico comparou a porta que falhava com `localhost:5050`, autorizada para o Firebase do Respira. Murilo relatou que conseguiu executar os fluxos no navegador após o ajuste da origem. |
+| Corrigir o tema escuro e incluir SOS nas telas restantes com um destino diferente na demonstração. | Ligou o tema à preferência da conta ativa e verificou alternância e restauração. Reaproveitou a barra de Rene no Diário, nas Configurações, no onboarding e nas telas de conta. Configurou o destino de teste por `RESPIRA_CVV_DEMO_NUMBER`, com identificação da demonstração e confirmação antes de abrir o discador. |
+| Explicar como testar em um aparelho e preparar o ambiente Android no Windows. | Instalou e verificou Android Studio, Android SDK, Platform Tools, Build Tools e Command-line Tools. Orientou a ativação da depuração USB nas opções do sistema, verificou a conexão por ADB, compilou e instalou o APK de demonstração no Galaxy A56 e deixou o roteiro de teste. Murilo executou o teste manual e relatou funcionamento normal. |
+| Trocar “Vários dias” por “Alguns dias” e fazer a última comparação entre o código e os documentos. | Atualizou o rótulo do PHQ-9 e os testes, mantendo 1 ponto. Corrigiu a explicação sobre a sessão anônima na Início, documentou a navegação real, conferiu as Security Rules, o diagrama e os links locais e registrou as diferenças e verificações pendentes. |
+| Registrar as inclusões, alterações e remoções no padrão do projeto, preservando os créditos. | Atualizou o README, o CHANGELOG e as seções afetadas dos documentos de escopo, requisitos, regras de negócio, diagramas, modelagem e sprints. O README identifica a integração de Murilo sobre as entregas de Franck, Rene e Rafael. |
+
+### 5.2 Inconsistências e como foram tratadas
+
+| Situação encontrada | Correção ou decisão |
+| --- | --- |
+| O web abria, mas as operações do Firebase falhavam em uma porta fora da origem permitida pela chave web. | O teste passou a usar `localhost:5050`; o README recebeu o comando de execução com essa porta. |
+| O interruptor do tema existia, mas a preferência precisava chegar ao tema global. | O app observa as configurações da conta ativa, aplica a paleta ao alternar o interruptor e recupera a preferência ao reabrir. |
+| Algumas telas ainda não usavam o SOS compartilhado. O discador da demonstração precisava receber um destino de teste. | Foi adotada a `RespiraAppBar` de Rene. O círculo da Tela 07 conserva “188” como referência visual; o aviso de demonstração informa o destino de teste que será preenchido no discador. |
+| O menu da Início dizia que os dados anônimos ficavam só no aparelho. | O texto passou a explicar o vínculo com a sessão anônima do Firebase e como o cadastro preserva o acesso aos registros. |
+| Alguns requisitos superavam o comportamento observado no app. | A revisão registrou o acesso ao Pânico em Configurações, a retomada pendente da exclusão de conta após uma operação offline, a diferença entre lembretes locais e push, a validação do PHQ-9 concorrente e o anúncio da respiração pelo leitor de tela. |
+
+### 5.3 Verificações e limites da evidência
+
+- Flutter 3.50.0: a versão final passou 99 testes. A análise estática retornou zero erros, zero avisos e 44 apontamentos informativos. A resolução do lock foi confirmada com `--enforce-lockfile` e as compilações web e Android foram concluídas.
+- A validação manual no Galaxy A56 foi executada por Murilo. Depois do seu retorno sobre o PHQ-9, foi compilado outro APK com o rótulo atualizado.
+- V03 tem evidência no Firebase real. V02 e V04 ainda exigem as evidências previstas na sprint. Os testes de modo avião, entrega e cancelamento de lembretes, TalkBack, iOS, Android de entrada e consumo de bateria permanecem registrados para validação.
+
+### 5.4 Apresentação final
+
+Murilo pediu ao Codex (OpenAI, baseado em GPT-6) que criasse a apresentação do Respira a partir do código e da documentação. O Codex estruturou e diagramou os slides, aproveitou o ícone do app e o protótipo de alta fidelidade, e gerou o [PDF da apresentação](apresentacao-final.pdf).
+
+Após Murilo compartilhar os critérios de demonstração e arguição, o Codex revisou e recompilou o PDF. A versão final mantém a capa e divide os slides de conteúdo entre Franck (escopo e funcionalidades), Rafael (Firebase e fluxo do Diário) e Rene (PHQ-9 e SOS, entregas da Sprint 4). Murilo conduz a demonstração ao vivo no final. As respostas da arguição ficam a cargo dos integrantes.
+
+### 5.5 Preferências no primeiro acesso
+
+Murilo observou que optar por lembretes no onboarding apenas gravava uma resposta local. O Codex verificou que as perguntas de objetivo e frequência também não influenciavam o app. Depois que Murilo escolheu tema e lembrete diário, o Codex integrou essas opções às Configurações e reaproveitou o serviço de permissão e agendamento. O número de demonstração do SOS foi atualizado no build a pedido de Murilo.
+
+## 6. Sprint 4: declaração de uso de IA (Rene Mendonça Marinho)
+
+| Campo | Preenchimento |
+| --- | --- |
+| Autor das contribuições | Rene Mendonça Marinho |
+| Modelo informado | Claude Opus 5.5 |
+| Escopo de uso informado | Toda a contribuição de Rene na Sprint 4. |
+| Origem da informação sobre o modelo | Nome informado por Murilo Pedral Mota para este registro, em 23/11/2026. |
+
+O modelo foi utilizado nas atividades da Sprint 4 descritas na seção 4, incluindo a barra padrão, a Tela 07, a ligação dos botões SOS e a implementação e os testes do PHQ-9.
+
+## 7. Sprint 4: declaração de uso de IA (Rafael Menezes Gonçalves)
+
+| Campo | Preenchimento |
+| --- | --- |
+| Autor das contribuições | Rafael Menezes Gonçalves |
+| Ferramenta informada | Kiro, na versão mais recente disponível durante a Sprint 4. |
+| Escopo de uso informado | Toda a contribuição de Rafael na Sprint 4. |
+| Origem da informação sobre a ferramenta | Informação fornecida por Murilo Pedral Mota para este registro, em 23/11/2026. |
+
+O Kiro foi utilizado nas atividades da Sprint 4 descritas na seção 2, incluindo recuperação de senha, saída da conta, perfil e confirmação de troca de conta, com os respectivos testes.

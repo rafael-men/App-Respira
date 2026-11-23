@@ -13,6 +13,13 @@ abstract final class AppColors {
   static const emergencyDark = Color(0xFFC23B31);
   static const error = Color(0xFFB3261E);
 
+  static Color titulo(BuildContext context) {
+    final tema = Theme.of(context);
+    return tema.brightness == Brightness.dark
+        ? tema.colorScheme.onSurface
+        : purple900;
+  }
+
   static const brandGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

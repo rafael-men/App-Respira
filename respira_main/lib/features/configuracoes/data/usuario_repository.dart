@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/data/colecoes_respira.dart';
@@ -10,6 +11,9 @@ import '../domain/configuracoes.dart';
 /// `usuarios/{uid}`.
 abstract class UsuarioRepository {
   Stream<Usuario?> observarUsuario();
+
+  /// Acompanha as preferências da sessão atual, inclusive na troca de conta.
+  Stream<Configuracoes?> observarConfiguracoes();
 
   Future<void> salvarConfiguracoes(Configuracoes configuracoes);
 
@@ -56,6 +60,35 @@ class FirestoreUsuarioRepository implements UsuarioRepository {
   }
 
   @override
+  Stream<Configuracoes?> observarConfiguracoes() => Stream.multi((saida) {
+    StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? documento;
+    final sessao = _auth
+        .authStateChanges()
+        .map((u) => u?.uid)
+        .distinct()
+        .listen((uid) {
+          unawaited(documento?.cancel());
+          saida.add(null);
+          documento = uid == null
+              ? null
+              : _colecoes.usuarioDoc(uid).snapshots().listen((snapshot) {
+                  final dados = snapshot.data();
+                  saida.add(
+                    dados == null
+                        ? null
+                        : Configuracoes.fromMap(
+                            dados['configuracoes'] as Map<String, dynamic>?,
+                          ),
+                  );
+                }, onError: saida.addError);
+        }, onError: saida.addError);
+    saida.onCancel = () async {
+      await sessao.cancel();
+      await documento?.cancel();
+    };
+  });
+
+  @override
   Future<void> salvarConfiguracoes(Configuracoes configuracoes) async {
     await _colecoes.aguardarSessao();
     gravarEmSegundoPlano(
@@ -65,7 +98,10 @@ class FirestoreUsuarioRepository implements UsuarioRepository {
   }
 
   @override
-  Future<void> atualizarPerfil({String? nomeUsuario, String? fotoPerfil}) async {
+  Future<void> atualizarPerfil({
+    String? nomeUsuario,
+    String? fotoPerfil,
+  }) async {
     final anonimo = _auth.currentUser?.isAnonymous ?? true;
     _validarPerfil(anonimo, nomeUsuario, fotoPerfil);
     await _colecoes.aguardarSessao();
@@ -93,6 +129,10 @@ class MemoriaUsuarioRepository implements UsuarioRepository {
     yield* _mudancas.stream;
   }
 
+  @override
+  Stream<Configuracoes?> observarConfiguracoes() =>
+      observarUsuario().map((usuario) => usuario?.configuracoes);
+
   /// Usado pelo repositório de autenticação em memória ao cadastrar ou sair.
   void substituir(Usuario usuario) {
     _usuario = usuario;
@@ -105,7 +145,10 @@ class MemoriaUsuarioRepository implements UsuarioRepository {
   }
 
   @override
-  Future<void> atualizarPerfil({String? nomeUsuario, String? fotoPerfil}) async {
+  Future<void> atualizarPerfil({
+    String? nomeUsuario,
+    String? fotoPerfil,
+  }) async {
     _validarPerfil(_usuario.anonimo, nomeUsuario, fotoPerfil);
     substituir(_copiar(
       nomeUsuario: nomeUsuario,

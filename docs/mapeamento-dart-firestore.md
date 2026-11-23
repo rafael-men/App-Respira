@@ -19,10 +19,10 @@ Este documento liga as duas pontas: as classes de domínio definidas em docs/dia
 | Usuario | Documento usuarios/{uid} | uid = id do documento | toMap() / fromMap(uid, dados) |
 | Configuracoes | Campo de mapa configuracoes dentro de usuarios/{uid} | Não tem id próprio | toMap() / fromMap(dados) |
 | RegistroHumor | Documento em usuarios/{uid}/registros_humor/{id} | id = id do documento | toMap() / fromMap(id, dados) |
-| NivelHumor | Campo humor (string) em registros_humor | — | humor.name / NivelHumor.values.byName(...) |
+| NivelHumor | Campo humor (string) em registros_humor | Não se aplica | humor.name / NivelHumor.values.byName(...) |
 | RespostaPHQ9 | Documento em usuarios/{uid}/respostas_phq9/{id} | id = id do documento | toMap() / fromMap(id, dados) |
-| ContatoEmergencia | *Não é gravado* | — | Constante no código (RF10, RN08) |
-| Criptografia | *Não é gravada* | — | Serviço usado dentro de toMap() e fromMap() |
+| ContatoEmergencia | *Não é gravado* | Não se aplica | Constante no código (RF10, RN08) |
+| Criptografia | *Não é gravada* | Não se aplica | Serviço usado dentro de toMap() e fromMap() |
  
 ```plantuml
 @startuml
@@ -67,8 +67,8 @@ Representação visual feita no site [PlantText](https://www.planttext.com/). Ve
 | String id / String uid | id do documento | Lido de snapshot.id; nunca gravado como campo | Evita guardar o mesmo valor duas vezes. |
 | DateTime | timestamp | Timestamp.fromDate(data) / (valor as Timestamp).toDate() | O Firestore ordena timestamp nativamente (consultas da seção 6 da modelagem). |
 | enum (NivelHumor) | string | humor.name / NivelHumor.values.byName(texto) | O nome é legível no console e não muda se a ordem do enum mudar. |
-| bool | boolean | Direto | — |
-| int | number | Direto | — |
+| bool | boolean | Direto | Não se aplica |
+| int | number | Direto | Não se aplica |
 | String? sensível (nota) | string ou null | Criptografia.cifrar ao gravar / decifrar ao ler | RF12, RN06. |
 | `List<int>` sensível (respostas) | string | jsonEncode → cifrar ao gravar / decifrar → jsonDecode ao ler | A lista inteira vira um único texto cifrado (RF12). |
 | Objeto 1 para 1 (Configuracoes) | map | configuracoes.toMap() dentro do documento do usuário | Composição 1 para 1 no diagrama de classes. |
@@ -83,12 +83,12 @@ O nome do campo no Firestore é o mesmo do atributo Dart, exceto nos campos cifr
 |---|---|---|---|---|
 | uid | String | id do documento | string | snapshot.id |
 | anonimo | bool | anonimo | boolean | Direto; passa a false no cadastro |
-| email | String? | *Não é gravado* | — | Lido de FirebaseAuth.instance.currentUser?.email (fica só no Firebase Authentication) |
+| email | String? | *Não é gravado* | Não se aplica | Lido de FirebaseAuth.instance.currentUser?.email (fica só no Firebase Authentication) |
 | nomeUsuario | String? | nomeUsuario | string ou null | Direto; só para usuário cadastrado |
 | fotoPerfil | String? | fotoPerfil | string ou null | Foto reduzida no aparelho e convertida em Base64 |
-| — | — | chaveCriptografia | string | Gerada na criação do documento por Criptografia.gerarChave() e carregada com Criptografia.instancia.definirChave() a cada login (docs/modelagem-firestore.md, seção 9) |
+| Não se aplica | Não se aplica | chaveCriptografia | string | Gerada na criação do documento por Criptografia.gerarChave() e carregada com Criptografia.instancia.definirChave() a cada login (docs/modelagem-firestore.md, seção 9) |
 | criadoEm | DateTime | criadoEm | timestamp | Timestamp.fromDate / toDate() |
-| — | — | configuracoes | map | Gravado junto na criação com Configuracoes().toMap() |
+| Não se aplica | Não se aplica | configuracoes | map | Gravado junto na criação com Configuracoes().toMap() |
  
 ### 3.2 Configuracoes → campo configuracoes de usuarios/{uid}
  

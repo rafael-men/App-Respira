@@ -29,11 +29,11 @@ class OpcaoResposta extends StatelessWidget {
         decoration: BoxDecoration(
           color: selecionada
               ? AppColors.purple500.withValues(alpha: 0.12)
-              : Colors.white,
+              : Theme.of(context).colorScheme.surface,
           borderRadius: raio,
           border: Border.all(
             color: selecionada
-                ? AppColors.purple700
+                ? Theme.of(context).colorScheme.primary
                 : AppColors.purple500.withValues(alpha: 0.3),
             width: 2,
           ),
@@ -57,7 +57,7 @@ class OpcaoResposta extends StatelessWidget {
                         duration: duracao,
                         curve: Curves.easeOut,
                         style: TextStyle(
-                          color: AppColors.textPrimary,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 15,
                           height: 1.4,
                           fontWeight: selecionada
@@ -77,7 +77,7 @@ class OpcaoResposta extends StatelessWidget {
                             ? Icons.radio_button_checked
                             : Icons.radio_button_unchecked,
                         key: ValueKey<bool>(selecionada),
-                        color: AppColors.purple700,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ],

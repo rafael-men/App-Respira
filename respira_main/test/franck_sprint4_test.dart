@@ -6,20 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   group('PreferenciasUsuario.limpar', () {
     test('apaga todas as preferências do onboarding (RN07)', () async {
-      SharedPreferences.setMockInitialValues({});
-      final p = PreferenciasUsuario()
-        ..objetivo = ObjetivoUso.ambos
-        ..frequencia = FrequenciaRegistro.diaria
-        ..receberLembretes = true
-        ..onboardingConcluido = true;
-      await p.salvar();
+      SharedPreferences.setMockInitialValues({
+        'objetivo': 'ambos',
+        'frequencia': 'diaria',
+        'receberLembretes': true,
+        'onboardingConcluido': true,
+      });
 
       await PreferenciasUsuario.limpar();
 
       final lidas = await PreferenciasUsuario.carregar();
-      expect(lidas.objetivo, isNull);
-      expect(lidas.frequencia, isNull);
-      expect(lidas.receberLembretes, isNull);
       expect(lidas.onboardingConcluido, isFalse);
       final prefs = await SharedPreferences.getInstance();
       expect(prefs.getKeys(), isEmpty);

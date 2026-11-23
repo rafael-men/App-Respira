@@ -7,14 +7,22 @@ abstract final class AppTheme {
   static const fonteTexto = 'Inter';
   static const fontFamily = fonteTexto;
 
-  static ThemeData get light {
+  static final ThemeData light = _criar(Brightness.light);
+  static final ThemeData dark = _criar(Brightness.dark);
+
+  static ThemeData _criar(Brightness brilho) {
+    final escuro = brilho == Brightness.dark;
     final scheme = ColorScheme.fromSeed(
       seedColor: AppColors.purple700,
-      primary: AppColors.purple700,
-      onPrimary: Colors.white,
-      surface: Colors.white,
-      onSurface: AppColors.textPrimary,
-      error: AppColors.error,
+      brightness: brilho,
+      primary: escuro ? const Color(0xFFCBB9FD) : AppColors.purple700,
+      onPrimary: escuro ? AppColors.purple900 : Colors.white,
+      surface: escuro ? const Color(0xFF241F38) : Colors.white,
+      onSurface: escuro ? const Color(0xFFF2EEF9) : AppColors.textPrimary,
+      onSurfaceVariant: escuro
+          ? const Color(0xFFCCC3DE)
+          : AppColors.textSecondary,
+      error: escuro ? const Color(0xFFFFB4AB) : AppColors.error,
     );
 
     final borda = OutlineInputBorder(
@@ -22,10 +30,10 @@ abstract final class AppTheme {
       borderSide: BorderSide(color: AppColors.purple500.withValues(alpha: 0.3)),
     );
 
-    final texto = ThemeData.light().textTheme.apply(
+    final texto = ThemeData(brightness: brilho).textTheme.apply(
       fontFamily: fonteTexto,
-      bodyColor: AppColors.textPrimary,
-      displayColor: AppColors.textPrimary,
+      bodyColor: scheme.onSurface,
+      displayColor: scheme.onSurface,
     );
     TextStyle? titulo(TextStyle? estilo) =>
         estilo?.copyWith(fontFamily: fonteTitulos);
@@ -33,7 +41,9 @@ abstract final class AppTheme {
       useMaterial3: true,
       fontFamily: fontFamily,
       colorScheme: scheme,
-      scaffoldBackgroundColor: AppColors.background,
+      scaffoldBackgroundColor: escuro
+          ? const Color(0xFF191627)
+          : AppColors.background,
       textTheme: texto.copyWith(
         displayLarge: titulo(texto.displayLarge),
         displayMedium: titulo(texto.displayMedium),
@@ -47,14 +57,14 @@ abstract final class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white,
-        labelStyle: const TextStyle(color: AppColors.textSecondary),
-        prefixIconColor: AppColors.purple500,
-        suffixIconColor: AppColors.purple500,
+        fillColor: scheme.surface,
+        labelStyle: TextStyle(color: scheme.onSurfaceVariant),
+        prefixIconColor: escuro ? scheme.primary : AppColors.purple500,
+        suffixIconColor: escuro ? scheme.primary : AppColors.purple500,
         border: borda,
         enabledBorder: borda,
         focusedBorder: borda.copyWith(
-          borderSide: const BorderSide(color: AppColors.purple700, width: 2),
+          borderSide: BorderSide(color: scheme.primary, width: 2),
         ),
       ),
     );

@@ -72,6 +72,7 @@ class _RespiracaoPageState extends State<RespiracaoPage>
 
   @override
   Widget build(BuildContext context) {
+    final tema = Theme.of(context);
     final diametro = (MediaQuery.sizeOf(context).shortestSide * 0.7)
         .clamp(200.0, 320.0)
         .toDouble();
@@ -85,11 +86,21 @@ class _RespiracaoPageState extends State<RespiracaoPage>
       body: DecoratedBox(
         // Fundo em tela cheia com a passagem do roxo profundo ao azul claro
         // (docs/justificativas.md, seção 1).
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [AppColors.purple900, AppColors.purple500, AppColors.blue400],
+            colors: tema.brightness == Brightness.dark
+                ? [
+                    tema.scaffoldBackgroundColor,
+                    tema.colorScheme.surface,
+                    AppColors.purple900,
+                  ]
+                : const [
+                    AppColors.purple900,
+                    AppColors.purple500,
+                    AppColors.blue400,
+                  ],
           ),
         ),
         child: SafeArea(
@@ -168,21 +179,22 @@ class _Circulo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
     return Container(
       width: diametro,
       height: diametro,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         // Quase opaco, para contraste alto no ponto de maior atenção.
-        color: Colors.white.withValues(alpha: 0.95),
+        color: cores.surface.withValues(alpha: 0.95),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             rotulo,
-            style: const TextStyle(
-              color: AppColors.purple900,
+            style: TextStyle(
+              color: AppColors.titulo(context),
               fontSize: 28,
               fontWeight: FontWeight.w700,
             ),
@@ -190,7 +202,7 @@ class _Circulo extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             '$restantes',
-            style: const TextStyle(color: AppColors.purple700, fontSize: 20),
+            style: TextStyle(color: cores.primary, fontSize: 20),
           ),
         ],
       ),

@@ -126,7 +126,7 @@ class _PanicoPageState extends State<PanicoPage> {
                         'Apagar todos os seus dados?',
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
-                              color: AppColors.purple900,
+                              color: AppColors.titulo(context),
                               fontWeight: FontWeight.w700,
                             ),
                       ),
@@ -145,10 +145,10 @@ class _PanicoPageState extends State<PanicoPage> {
                             : 'Sua conta anônima',
                       ),
                       const SizedBox(height: 16),
-                      const Text(
+                      Text(
                         'Essa ação não pode ser desfeita.',
                         style: TextStyle(
-                          color: AppColors.emergencyDark,
+                          color: Theme.of(context).colorScheme.error,
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),
@@ -205,11 +205,7 @@ class _PanicoPageState extends State<PanicoPage> {
   }
 }
 
-const _estiloTexto = TextStyle(
-  color: AppColors.textPrimary,
-  fontSize: 15,
-  height: 1.5,
-);
+const _estiloTexto = TextStyle(fontSize: 15, height: 1.5);
 
 class _Item extends StatelessWidget {
   const _Item(this.texto);
