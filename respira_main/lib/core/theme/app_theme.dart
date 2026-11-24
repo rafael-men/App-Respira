@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 abstract final class AppTheme {
-  static const fonteTitulos = 'Poppins';
+  static const fonteTitulos = 'PlayfairDisplay';
   static const fonteTexto = 'Inter';
   static const fontFamily = fonteTexto;
 
